@@ -61,6 +61,14 @@ class OnboardingActivity : AppIntro2() {
                 imageDrawable = R.drawable.ic_intro_storage,
                 backgroundColor = resources.getColor(R.color.seed),
             ))
+
+        addSlide(
+            AppIntroFragment.newInstance(
+                title = getString(R.string.intro_notifications_title),
+                description = getString(R.string.intro_notifications_description),
+                imageDrawable = R.drawable.ic_intro_notifications,
+                backgroundColor = resources.getColor(R.color.md_theme_light_tertiary),
+            ))
     }
 
     override fun attachBaseContext(newBase: Context) {
