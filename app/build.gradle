@@ -57,10 +57,6 @@ android {
 
     flavorDimensions 'edition'
     productFlavors {
-        // Default GitHub and Google Play build
-        rcx {
-            dimension 'edition'
-        }
         // OSS build
         oss {
             dimension 'edition'
