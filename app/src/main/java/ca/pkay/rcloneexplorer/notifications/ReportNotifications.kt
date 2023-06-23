@@ -4,8 +4,6 @@ import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.datastore.core.DataStore
@@ -21,8 +19,6 @@ import ca.pkay.rcloneexplorer.Services.SyncService
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
-
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "notifications")
 
 class ReportNotifications(var mContext: Context) {
 

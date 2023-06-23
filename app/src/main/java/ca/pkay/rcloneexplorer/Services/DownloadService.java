@@ -1,21 +1,16 @@
 package ca.pkay.rcloneexplorer.Services;
 
-import static ca.pkay.rcloneexplorer.notifications.DownloadNotifications.CHANNEL_ID;
 import static ca.pkay.rcloneexplorer.notifications.DownloadNotifications.PERSISTENT_NOTIFICATION_ID;
-import static ca.pkay.rcloneexplorer.notifications.UploadNotifications.CHANNEL_NAME;
 
 import android.app.IntentService;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.preference.PreferenceManager;
 
@@ -28,14 +23,12 @@ import java.io.InputStreamReader;
 import java.io.InterruptedIOException;
 import java.util.ArrayList;
 
-import ca.pkay.rcloneexplorer.BroadcastReceivers.DownloadCancelAction;
 import ca.pkay.rcloneexplorer.Items.FileItem;
 import ca.pkay.rcloneexplorer.Items.RemoteItem;
 import ca.pkay.rcloneexplorer.Log2File;
 import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.Rclone;
 import ca.pkay.rcloneexplorer.notifications.DownloadNotifications;
-import ca.pkay.rcloneexplorer.notifications.GenericSyncNotification;
 import ca.pkay.rcloneexplorer.notifications.StatusObject;
 import ca.pkay.rcloneexplorer.util.FLog;
 import ca.pkay.rcloneexplorer.util.SyncLog;
@@ -70,11 +63,7 @@ public class DownloadService extends IntentService {
         log2File = new Log2File(this);
 
         mNotifications = new DownloadNotifications(this);
-        (new GenericSyncNotification(this)).setNotificationChannel(
-                DownloadNotifications.CHANNEL_ID,
-                CHANNEL_NAME,
-                R.string.download_service_notification_description
-        );
+
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         transferOnWiFiOnly = sharedPreferences.getBoolean(getString(R.string.pref_key_wifi_only_transfers), false);
@@ -184,45 +173,6 @@ public class DownloadService extends IntentService {
             stopSelf();
         }
     };
-
-    private void updateNotification(FileItem downloadItem, String content, String[] bigTextArray) {
-        StringBuilder bigText = new StringBuilder();
-        for (int i = 0; i < bigTextArray.length; i++) {
-            String progressLine = bigTextArray[i];
-            if (null != progressLine) {
-                bigText.append(progressLine);
-            }
-            if (!"inode/directory".equals(downloadItem.getMimeType())) {
-                break;
-            }
-            if (i < 4) {
-                bigText.append("\n");
-            }
-        }
-
-        Intent foregroundIntent = new Intent(this, DownloadService.class);
-        int flags = 0;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            flags = PendingIntent.FLAG_IMMUTABLE;
-        }
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, foregroundIntent, flags);
-
-        Intent cancelIntent = new Intent(this, DownloadCancelAction.class);
-        PendingIntent cancelPendingIntent = PendingIntent.getBroadcast(this, 0, cancelIntent, flags);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_twotone_cloud_download_24)
-                .setContentTitle(downloadItem.getName())
-                .setContentText(content)
-                .setPriority(NotificationCompat.PRIORITY_LOW)
-                .setContentIntent(pendingIntent)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(bigText.toString()))
-                .addAction(R.drawable.ic_cancel_download, getString(R.string.cancel), cancelPendingIntent);
-
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
-        notificationManagerCompat.notify(PERSISTENT_NOTIFICATION_ID, builder.build());
-    }
-
 
     @Override
     public void onDestroy() {

@@ -32,7 +32,7 @@ class UploadNotifications(var mContext: Context) {
         title: String?,
         bigTextArray: java.util.ArrayList<String?>?
     ): NotificationCompat.Builder? {
-        return GenericSyncNotification(mContext).updateGenericNotification(
+        /*return GenericSyncNotification(mContext).updateGenericNotification(
             title,
             title,
             R.drawable.ic_twotone_cloud_upload_24,
@@ -41,7 +41,8 @@ class UploadNotifications(var mContext: Context) {
             SyncService::class.java,
             UploadCancelAction::class.java,
             CHANNEL_ID
-        )
+        )*/
+        return null
     }
 
     /**
@@ -57,7 +58,7 @@ class UploadNotifications(var mContext: Context) {
             return
         }
         val notificationManagerCompat = NotificationManagerCompat.from(mContext)
-        var builder = GenericSyncNotification(mContext).updateGenericNotification(
+        /*var builder = GenericSyncNotification(mContext).updateGenericNotification(
             title,
             content,
             R.drawable.ic_twotone_cloud_upload_24,
@@ -67,7 +68,7 @@ class UploadNotifications(var mContext: Context) {
             SyncCancelAction::class.java,
             CHANNEL_ID
         )
-        builder?.let { notificationManagerCompat.notify(PERSISTENT_NOTIFICATION_ID, it.build()) }
+        builder?.let { notificationManagerCompat.notify(PERSISTENT_NOTIFICATION_ID, it.build()) }*/
     }
 
 

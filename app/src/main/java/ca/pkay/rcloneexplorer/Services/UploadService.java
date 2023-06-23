@@ -30,7 +30,7 @@ import ca.pkay.rcloneexplorer.Items.RemoteItem;
 import ca.pkay.rcloneexplorer.Log2File;
 import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.Rclone;
-import ca.pkay.rcloneexplorer.notifications.GenericSyncNotification;
+import ca.pkay.rcloneexplorer.notifications.AbstractSyncNotification;
 import ca.pkay.rcloneexplorer.notifications.StatusObject;
 import ca.pkay.rcloneexplorer.notifications.UploadNotifications;
 import ca.pkay.rcloneexplorer.util.FLog;
@@ -66,7 +66,7 @@ public class UploadService extends IntentService {
         log2File = new Log2File(this);
         mNotifications = new UploadNotifications(this);
 
-        (new GenericSyncNotification(this)).setNotificationChannel(
+        (new AbstractSyncNotification(this)).setNotificationChannel(
                 CHANNEL_ID,
                 CHANNEL_NAME,
                 R.string.upload_service_notification_channel_description

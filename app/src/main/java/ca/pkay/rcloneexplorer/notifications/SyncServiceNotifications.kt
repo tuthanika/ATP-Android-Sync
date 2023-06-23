@@ -12,7 +12,7 @@ import ca.pkay.rcloneexplorer.BroadcastReceivers.SyncCancelAction
 import ca.pkay.rcloneexplorer.R
 import ca.pkay.rcloneexplorer.Services.SyncService
 
-class SyncServiceNotifications(var mContext: Context) {
+class SyncServiceNotifications(override var mContext: Context) : AbstractReportNotification(mContext){
 
 
     companion object {
@@ -31,9 +31,33 @@ class SyncServiceNotifications(var mContext: Context) {
     private val OPERATION_SUCCESS_GROUP = "ca.pkay.rcexplorer.OPERATION_SUCCESS_GROUP"
 
 
-    private fun useReports(): Boolean {
-        val mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext)
-        return mSharedPreferences.getBoolean(mContext.getString(R.string.pref_key_app_notification_reports), true)
+
+    override val mChannelID = CHANNEL_ID
+    override val mChannelName = mContext.getString(R.string.sync_service_notification_channel_title)
+    override val mChannelDescriptionID = R.string.sync_service_notification_channel_description
+
+
+
+
+    init {
+        setNotificationChannel(
+            CHANNEL_ID,
+            mContext.getString(R.string.sync_service_notification_channel_title),
+            R.string.sync_service_notification_channel_description
+        )
+
+        setNotificationChannel(
+            CHANNEL_SUCCESS_ID,
+            mContext.getString(R.string.sync_service_notification_channel_success_title),
+            R.string.sync_service_notification_channel_success_description
+        )
+
+
+        setNotificationChannel(
+            CHANNEL_FAIL_ID,
+            mContext.getString(R.string.sync_service_notification_channel_fail_title),
+            R.string.sync_service_notification_channel_fail_description
+        )
     }
 
     fun showFailedNotificationOrReport(
@@ -159,10 +183,9 @@ class SyncServiceNotifications(var mContext: Context) {
         if(content?.isBlank() == true || content == null){
             return
         }
-        val builder = GenericSyncNotification(mContext).updateGenericNotification(
+        val builder = updateNotification(
             mContext.getString(R.string.syncing_service, title),
             content,
-            R.drawable.ic_twotone_rounded_cloud_sync_24,
             bigTextArray!!,
             percent,
             SyncService::class.java,
@@ -172,4 +195,5 @@ class SyncServiceNotifications(var mContext: Context) {
         val notificationManagerCompat = NotificationManagerCompat.from(mContext)
         notificationManagerCompat.notify(PERSISTENT_NOTIFICATION_ID_FOR_SYNC, builder!!.build())
     }
+
 }

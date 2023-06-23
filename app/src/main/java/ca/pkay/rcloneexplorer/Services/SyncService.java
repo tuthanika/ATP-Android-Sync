@@ -33,7 +33,7 @@ import ca.pkay.rcloneexplorer.Items.Task;
 import ca.pkay.rcloneexplorer.Log2File;
 import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.Rclone;
-import ca.pkay.rcloneexplorer.notifications.GenericSyncNotification;
+import ca.pkay.rcloneexplorer.notifications.AbstractSyncNotification;
 import ca.pkay.rcloneexplorer.notifications.ReportNotifications;
 import ca.pkay.rcloneexplorer.notifications.StatusObject;
 import ca.pkay.rcloneexplorer.notifications.SyncServiceNotifications;
@@ -85,22 +85,8 @@ public class SyncService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        (new GenericSyncNotification(this)).setNotificationChannel(
-                SyncServiceNotifications.CHANNEL_ID,
-                getString(R.string.sync_service_notification_channel_title),
-                R.string.sync_service_notification_channel_description
-        );
-        (new GenericSyncNotification(this)).setNotificationChannel(
-                SyncServiceNotifications.CHANNEL_SUCCESS_ID,
-                getString(R.string.sync_service_notification_channel_success_title),
-                R.string.sync_service_notification_channel_success_description
-        );
-        (new GenericSyncNotification(this)).setNotificationChannel(
-                SyncServiceNotifications.CHANNEL_FAIL_ID,
-                getString(R.string.sync_service_notification_channel_fail_title),
-                R.string.sync_service_notification_channel_fail_description
-        );
-        (new GenericSyncNotification(this)).setNotificationChannel(
+
+        (new AbstractSyncNotification(this)).setNotificationChannel(
                 ReportNotifications.CHANNEL_REPORT_ID,
                 getString(R.string.sync_service_notification_channel_report_title),
                 R.string.sync_service_notification_channel_report_description
