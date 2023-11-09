@@ -52,16 +52,24 @@ jobs:
     - name: Extract Version
       id: extract_version
       run: |
-        version=$(grep -o "versionName\s*['\"]\([^'\"]*\)" app/build.gradle | sed "s/versionName\s*['\"]//")
-        echo "Extracted version: $version"
-        echo "::set-output name=version::$version"
-    
+          version=$(grep -o "versionName\s*['\"]\([^'\"]*\)" app/build.gradle | sed "s/versionName\s*['\"]//")
+          echo "Extracted version: $version"
+          echo "::set-output name=version::$version"
+          if [[ $version == *beta* ]]; then
+            beta=true
+          else
+            beta=false
+          fi
+          echo "Is beta version: $beta"
+          echo "::set-output name=beta::$beta"
+
     - name: Create Release And Upload APKs
       uses: ncipollo/release-action@v1
       with:
          token: ${{ secrets.GAT }}
          name: "RoundSync - v${{ steps.extract_version.outputs.version }}"
-         tag: "v${{ steps.extract_version.outputs.version }}"
+         tag: "v${{ steps.extract_version.outputs.version }}"         
+         prerelease: "${{ steps.extract_version.outputs.beta }}"
          artifacts: app/build/outputs/apk/oss/release/*-signed*.apk
       
     - name: Archive Reports For Job
