@@ -2,6 +2,9 @@ name: release
 
 on:
   workflow_dispatch:
+  push:
+   branches:
+     - patch-1
   
 jobs:
   build-and-release:
