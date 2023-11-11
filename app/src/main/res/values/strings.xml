@@ -26,7 +26,7 @@
     <string name="star_on_github">Star on GitHub</string>
     <string name="report_a_bug">Report a bug</string>
     <string name="author">Original Author</string>
-    <string name="author_name" translatable="false">Patryk Kaczmarkiewicz</string>
+    <string name="author_name" translatable="false">Patryk Kaczmarkiewicz &lt;github.com/patrykcoding&gt;</string>
     <string name="follow_on_github">Follow on GitHub</string>
     <string name="maintainer">Maintainer</string>
     <string name="maintainer_name" translatable="false">Felix Nüsse &lt;github.com/newhinton&gt;</string>
