@@ -17,9 +17,10 @@ data class Task(var id: Long) {
     @JsonNames("syncDirection") var direction = 0
     var md5sum = TASK_MD5SUM_DEFAULT
     var wifionly = TASK_WIFIONLY_DEFAULT
+    var keepDeleted = TASK_KEEP_DELETED_DEFAULT
 
     override fun toString(): String {
-        return "$title: $remoteId: $remoteType: $remotePath: $localPath: $direction"
+        return "$title: $remoteId: $remoteType: $remotePath: $localPath: $direction: $keepDeleted"
     }
 
     companion object {
@@ -33,9 +34,11 @@ data class Task(var id: Long) {
         var COLUMN_NAME_SYNC_DIRECTION = "task_direction"
         var COLUMN_NAME_MD5SUM = "task_use_md5sum"
         var COLUMN_NAME_WIFI_ONLY = "task_use_only_wifi"
+        var COLUMN_NAME_KEEP_DELETED = "task_keep_deleted"
 
         const val TASK_MD5SUM_DEFAULT = false
         const val TASK_WIFIONLY_DEFAULT = false
+        const val TASK_KEEP_DELETED_DEFAULT = false
 
         fun fromString(json: String): Task {
             return Json.decodeFromString(json)

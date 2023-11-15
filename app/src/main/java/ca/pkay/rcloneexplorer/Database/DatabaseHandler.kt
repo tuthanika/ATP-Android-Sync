@@ -11,6 +11,7 @@ import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_CREATE_TABLES_
 import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_CREATE_TABLE_TRIGGER
 import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_UPDATE_TASK_ADD_MD5
 import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_UPDATE_TASK_ADD_WIFI
+import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_UPDATE_TASK_ADD_KEEP_DELETED
 import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_UPDATE_TRIGGER_ADD_TYPE
 import ca.pkay.rcloneexplorer.Items.Task
 import ca.pkay.rcloneexplorer.Items.Trigger
@@ -24,6 +25,7 @@ class DatabaseHandler(context: Context?) :
         sqLiteDatabase.execSQL(SQL_CREATE_TABLE_TRIGGER)
         sqLiteDatabase.execSQL(SQL_UPDATE_TASK_ADD_MD5)
         sqLiteDatabase.execSQL(SQL_UPDATE_TASK_ADD_WIFI)
+        sqLiteDatabase.execSQL(SQL_UPDATE_TASK_ADD_KEEP_DELETED)
         sqLiteDatabase.execSQL(SQL_UPDATE_TRIGGER_ADD_TYPE)
     }
 
@@ -118,7 +120,8 @@ class DatabaseHandler(context: Context?) :
             Task.COLUMN_NAME_LOCAL_PATH,
             Task.COLUMN_NAME_SYNC_DIRECTION,
             Task.COLUMN_NAME_MD5SUM,
-            Task.COLUMN_NAME_WIFI_ONLY
+            Task.COLUMN_NAME_WIFI_ONLY,
+            Task.COLUMN_NAME_KEEP_DELETED
         )
 
     private fun taskFromCursor(cursor: Cursor): Task {
@@ -131,6 +134,7 @@ class DatabaseHandler(context: Context?) :
         task.direction = cursor.getInt(6)
         task.md5sum = getBoolean(cursor, 7)
         task.wifionly = getBoolean(cursor, 8)
+        task.keepDeleted = getBoolean(cursor, 9)
         return task
     }
 
@@ -159,6 +163,7 @@ class DatabaseHandler(context: Context?) :
         values.put(Task.COLUMN_NAME_SYNC_DIRECTION, task.direction)
         values.put(Task.COLUMN_NAME_MD5SUM, task.md5sum)
         values.put(Task.COLUMN_NAME_WIFI_ONLY, task.wifionly)
+        values.put(Task.COLUMN_NAME_KEEP_DELETED, task.keepDeleted)
         return values
     }
 

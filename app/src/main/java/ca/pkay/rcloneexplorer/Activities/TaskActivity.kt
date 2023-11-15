@@ -38,6 +38,7 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback {
 
     private lateinit var switchWifi: Switch
     private lateinit var switchMD5sum: Switch
+    private lateinit var switchKeepDeleted: Switch
 
 
     private var existingTask: Task? = null
@@ -98,6 +99,7 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback {
         fab = findViewById(R.id.saveButton)
         switchWifi = findViewById(R.id.task_wifionly)
         switchMD5sum = findViewById(R.id.task_md5sum)
+        switchKeepDeleted = findViewById(R.id.task_keep_deleted)
 
         rcloneInstance = Rclone(this)
         dbHandler = DatabaseHandler(this)
@@ -129,6 +131,7 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback {
         findViewById<TextView>(R.id.task_title_textfield).text = existingTask?.title
         switchWifi.isChecked = existingTask?.wifionly ?: false
         switchMD5sum.isChecked = existingTask?.md5sum ?: false
+        switchKeepDeleted.isChecked = existingTask?.keepDeleted ?: false
         prepareSyncDirectionDropdown()
         prepareLocal()
         prepareRemote()
@@ -183,6 +186,7 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback {
 
         taskToPopulate.wifionly = switchWifi.isChecked
         taskToPopulate.md5sum = switchMD5sum.isChecked
+        taskToPopulate.keepDeleted = switchKeepDeleted.isChecked
 
         // Verify if data is completed
         if (localPath.text.toString() == "") {

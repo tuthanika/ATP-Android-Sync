@@ -158,7 +158,8 @@ class SyncWorker (private var mContext: Context, workerParams: WorkerParameters)
                 mTask.localPath,
                 mTask.remotePath,
                 mTask.direction,
-                mTask.md5sum
+                mTask.md5sum,
+                mTask.keepDeleted
             )
             handleSync(mTitle)
             sendUploadFinishedBroadcast(remoteItem.name, mTask.remotePath)

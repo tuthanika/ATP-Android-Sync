@@ -31,9 +31,11 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -58,6 +60,7 @@ import io.github.x0b.safdav.file.SafConstants;
 public class Rclone {
 
     private static final String TAG = "Rclone";
+    private static final String backupPath = "_backup_deleted";
     public static final int SYNC_DIRECTION_LOCAL_TO_REMOTE = 1;
     public static final int SYNC_DIRECTION_REMOTE_TO_LOCAL = 2;
     public static final int SERVE_PROTOCOL_HTTP = 1;
@@ -663,10 +666,10 @@ public class Rclone {
      */
     @Deprecated
     public Process sync(RemoteItem remoteItem, String localPath, String remotePath, int syncDirection) {
-        return sync(remoteItem, localPath, remotePath, syncDirection, false);
+        return sync(remoteItem, localPath, remotePath, syncDirection, false, false);
     }
 
-    public Process sync(RemoteItem remoteItem, String localPath, String remotePath, int syncDirection, boolean useMD5Sum) {
+    public Process sync(RemoteItem remoteItem, String localPath, String remotePath, int syncDirection, boolean useMD5Sum, boolean keepDeleted) {
         String[] command;
         String remoteName = remoteItem.getName();
         String localRemotePath = (remoteItem.isRemoteType(RemoteItem.LOCAL)) ? getLocalRemotePathPrefix(remoteItem, context)  + "/" : "";
@@ -679,19 +682,39 @@ public class Rclone {
             defaultParameter.add("--checksum");
         }
 
+        String dateForBackupPath = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String backupPathPlusDate = "/" + backupPath + "/" + dateForBackupPath + "/";
+        if(keepDeleted) {
+            // Exclude backupPath because rclone requires it in order to allow a backup-dir inside the target path
+            defaultParameter.add("--filter");
+            defaultParameter.add("- " + backupPath + "/**");
+            defaultParameter.add("--backup-dir");
+        }
         if (syncDirection == SyncDirectionObject.SYNC_LOCAL_TO_REMOTE) {
+            if(keepDeleted) {
+                defaultParameter.add(remoteSection + backupPathPlusDate);
+            }
             Collections.addAll(directionParameter, "sync", localPath, remoteSection);
             directionParameter.addAll(defaultParameter);
             command = createCommandWithOptions(directionParameter);
         } else if (syncDirection == SyncDirectionObject.SYNC_REMOTE_TO_LOCAL) {
+            if(keepDeleted) {
+                defaultParameter.add(localPath + backupPathPlusDate);
+            }
             Collections.addAll(directionParameter, "sync", remoteSection, localPath);
             directionParameter.addAll(defaultParameter);
             command = createCommandWithOptions(directionParameter);
         } else if (syncDirection == SyncDirectionObject.COPY_LOCAL_TO_REMOTE) {
+            if(keepDeleted) {
+                defaultParameter.add(remoteSection + backupPathPlusDate);
+            }
             Collections.addAll(directionParameter, "copy", localPath, remoteSection);
             directionParameter.addAll(defaultParameter);
             command = createCommandWithOptions(directionParameter);
         }else if (syncDirection == SyncDirectionObject.COPY_REMOTE_TO_LOCAL) {
+            if(keepDeleted) {
+                defaultParameter.add(localPath + backupPathPlusDate);
+            }
             Collections.addAll(directionParameter, "copy", remoteSection, localPath);
             directionParameter.addAll(defaultParameter);
             command = createCommandWithOptions(directionParameter);
