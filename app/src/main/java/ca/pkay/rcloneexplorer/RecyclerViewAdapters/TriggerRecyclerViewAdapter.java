@@ -2,6 +2,7 @@ package ca.pkay.rcloneexplorer.RecyclerViewAdapters;
 
 
 import static ca.pkay.rcloneexplorer.Activities.TriggerActivity.ID_ALL_TASKS;
+import static ca.pkay.rcloneexplorer.Activities.TriggerActivity.UNICODE_CHAR_RANGE;
 import static ca.pkay.rcloneexplorer.Items.Trigger.TRIGGER_DAY_FRI;
 import static ca.pkay.rcloneexplorer.Items.Trigger.TRIGGER_DAY_MON;
 import static ca.pkay.rcloneexplorer.Items.Trigger.TRIGGER_DAY_SAT;
@@ -86,6 +87,9 @@ public class TriggerRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         String targetTaskTitle = "ERR: NOTFOUND";
         if (selectedTrigger.getTriggerTarget() == ID_ALL_TASKS) {
             targetTaskTitle = context.getResources().getString(R.string.sync_title_all_tasks_asc);
+        } else if (UNICODE_CHAR_RANGE - selectedTrigger.getTriggerTarget() >= 0) {
+            String firstCharOfTaskName = new String(Character.toChars((int) (UNICODE_CHAR_RANGE - selectedTrigger.getTriggerTarget())));
+            targetTaskTitle = firstCharOfTaskName + context.getResources().getString(R.string.sync_title_all_tasks_prefixed_asc);
         } else {
             Task task = (new DatabaseHandler(context)).getTask(selectedTrigger.getTriggerTarget());
             if (task != null) { targetTaskTitle = task.getTitle(); }

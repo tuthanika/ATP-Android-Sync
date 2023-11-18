@@ -8,6 +8,7 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
+import ca.pkay.rcloneexplorer.Activities.TriggerActivity
 import ca.pkay.rcloneexplorer.Activities.TriggerActivity.Companion.ID_ALL_TASKS
 import ca.pkay.rcloneexplorer.Database.DatabaseHandler
 import ca.pkay.rcloneexplorer.Items.Task
@@ -20,8 +21,10 @@ class SyncManager(private var mContext: Context) {
 
     fun queue(trigger: Trigger) {
         if (trigger.triggerTarget == ID_ALL_TASKS) {
-            queueAllTasks()
-        } else {
+            queueAllTasks(null)
+        } else if (TriggerActivity.UNICODE_CHAR_RANGE - trigger.triggerTarget >= 0) {
+            queueAllTasks((TriggerActivity.UNICODE_CHAR_RANGE - trigger.triggerTarget).toInt().toChar().toString())
+        } else{
             queue(trigger.triggerTarget)
         }
     }
@@ -34,11 +37,17 @@ class SyncManager(private var mContext: Context) {
         work(getOneTimeWorkRequest(taskID))
     }
 
-    private fun queueAllTasks() {
+    private fun queueAllTasks(prefixFilter: String?) {
         val mTaskList = mDatabase.allTasks
         mTaskList.sortedBy { it.title }
         for (i in mTaskList.indices) {
-            workOneByOne(getOneTimeWorkRequest(mTaskList[i].id))
+            if (prefixFilter == null) {
+                workOneByOne(getOneTimeWorkRequest(mTaskList[i].id))
+            } else {
+                if (mTaskList[i].title.trim().uppercase().startsWith(prefixFilter)) {
+                    workOneByOne(getOneTimeWorkRequest(mTaskList[i].id))
+                }
+            }
         }
     }
 

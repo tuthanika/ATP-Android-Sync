@@ -486,6 +486,9 @@
     <string name="description_sync_direction_sync_bidirectional">Make sure local and remote storage have the same files by transferring, downloading, and deleting files as needed to maintain an identical folder structure.</string>
     <string name="sync_option_all_tasks_asc">All tasks (in alphabetical order)</string>
     <string name="sync_title_all_tasks_asc">All tasks</string>
+    <string name="sync_option_all">All</string>
+    <string name="sync_option_all_tasks_prefixed_asc">… named tasks</string>
+    <string name="sync_title_all_tasks_prefixed_asc">… tasks</string>
     <string name="intro_success">Success!</string>
     <string name="intro_successful_setup">You are now ready to start!</string>
     <string name="intro_write_external_storage_denied">File access permission not granted</string>
