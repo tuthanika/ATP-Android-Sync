@@ -93,4 +93,4 @@ This app is released under the terms of the [GPLv3 license](https://github.com/n
 
 
 ## About this app
-This is a fork of RCX by x0b [<github.com/x0b>](https://github.com/x0b) which is itself a fork of rcloneExplorer by Patryk Kaczmarkiewicz [<github.com/patrykcoding>](https://github.com/patrykcoding). For the original repository, see [patrykcoding/rcloneExplorer](https://github.com/patrykcoding/rcloneExplorer) or [x0b/rcx](https://github.com/x0b/rcx). If you want to convey a modified version (fork), we ask you to use a different name, app icon and package id as well as proper attribution to avoid user confusion.
+This is a fork of `RCX` by **x0b** [<github.com/x0b>](https://github.com/x0b) which is itself a fork of `rcloneExplorer` by **Patryk Kaczmarkiewicz** [<github.com/patrykcoding>](https://github.com/patrykcoding). For the original repository, see [patrykcoding/rcloneExplorer](https://github.com/patrykcoding/rcloneExplorer) or [x0b/rcx](https://github.com/x0b/rcx). If you want to convey a modified version (fork), we ask you to use a different name, app icon and package id as well as proper attribution to avoid user confusion.
