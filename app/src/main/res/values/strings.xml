@@ -560,4 +560,6 @@
     <string name="permissions_batteryoptimizations_label">Battery Optimizations</string>
     <string name="permissions_batteryoptimizations_description">If the device is asleep, your tasks might be delayed when this permission is not granted.</string>
     <string name="sync_service_notification_startingsync">Starting Sync...</string>
+    <string name="use_keep_deleted">Backup deleted files</string>
+    <string name="task_keep_deleted_hint">If enabled, deleted or overwritten files will be moved to the folder \"_backup_deleted/(date)\" in the target. This folder will never be synced, copied or deleted as long as this setting is enabled.</string>
 </resources>
