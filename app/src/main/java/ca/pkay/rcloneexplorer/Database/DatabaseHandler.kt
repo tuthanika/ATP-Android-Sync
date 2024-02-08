@@ -9,8 +9,10 @@ import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.DATABASE_NAME
 import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.DATABASE_VERSION
 import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_CREATE_TABLES_TASKS
 import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_CREATE_TABLE_TRIGGER
+import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_UPDATE_TASK_ADD_DELETE_EXCLUDED
 import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_UPDATE_TASK_ADD_MD5
 import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_UPDATE_TASK_ADD_WIFI
+import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_UPDATE_TASK_ADD_EXCLUDE
 import ca.pkay.rcloneexplorer.Database.DatabaseInfo.Companion.SQL_UPDATE_TRIGGER_ADD_TYPE
 import ca.pkay.rcloneexplorer.Items.Task
 import ca.pkay.rcloneexplorer.Items.Trigger
@@ -25,6 +27,8 @@ class DatabaseHandler(context: Context?) :
         sqLiteDatabase.execSQL(SQL_UPDATE_TASK_ADD_MD5)
         sqLiteDatabase.execSQL(SQL_UPDATE_TASK_ADD_WIFI)
         sqLiteDatabase.execSQL(SQL_UPDATE_TRIGGER_ADD_TYPE)
+        sqLiteDatabase.execSQL(SQL_UPDATE_TASK_ADD_EXCLUDE)
+        sqLiteDatabase.execSQL(SQL_UPDATE_TASK_ADD_DELETE_EXCLUDED)
     }
 
     override fun onUpgrade(sqLiteDatabase: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -37,6 +41,10 @@ class DatabaseHandler(context: Context?) :
         }
         if (oldVersion < 4) {
             sqLiteDatabase.execSQL(SQL_UPDATE_TRIGGER_ADD_TYPE)
+        }
+        if (oldVersion < 5) {
+            sqLiteDatabase.execSQL(SQL_UPDATE_TASK_ADD_EXCLUDE)
+            sqLiteDatabase.execSQL(SQL_UPDATE_TASK_ADD_DELETE_EXCLUDED)
         }
     }
 
@@ -118,7 +126,9 @@ class DatabaseHandler(context: Context?) :
             Task.COLUMN_NAME_LOCAL_PATH,
             Task.COLUMN_NAME_SYNC_DIRECTION,
             Task.COLUMN_NAME_MD5SUM,
-            Task.COLUMN_NAME_WIFI_ONLY
+            Task.COLUMN_NAME_WIFI_ONLY,
+            Task.COLUMN_NAME_EXCLUDE,
+            Task.COLUMN_NAME_DELETE_EXCLUDED
         )
 
     private fun taskFromCursor(cursor: Cursor): Task {
@@ -131,6 +141,8 @@ class DatabaseHandler(context: Context?) :
         task.direction = cursor.getInt(6)
         task.md5sum = getBoolean(cursor, 7)
         task.wifionly = getBoolean(cursor, 8)
+        task.exclude = cursor.getString(9)
+        task.deleteExcluded = getBoolean(cursor, 10)
         return task
     }
 
@@ -156,6 +168,8 @@ class DatabaseHandler(context: Context?) :
         values.put(Task.COLUMN_NAME_REMOTE_ID, task.remoteId)
         values.put(Task.COLUMN_NAME_REMOTE_PATH, task.remotePath)
         values.put(Task.COLUMN_NAME_REMOTE_TYPE, task.remoteType)
+        values.put(Task.COLUMN_NAME_EXCLUDE, task.exclude)
+        values.put(Task.COLUMN_NAME_DELETE_EXCLUDED, task.deleteExcluded)
         values.put(Task.COLUMN_NAME_SYNC_DIRECTION, task.direction)
         values.put(Task.COLUMN_NAME_MD5SUM, task.md5sum)
         values.put(Task.COLUMN_NAME_WIFI_ONLY, task.wifionly)

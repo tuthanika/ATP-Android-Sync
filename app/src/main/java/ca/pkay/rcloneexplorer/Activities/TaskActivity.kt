@@ -34,10 +34,12 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback {
     private lateinit var localPath: EditText
     private lateinit var remoteDropdown: Spinner
     private lateinit var syncDirection: Spinner
+    private lateinit var exclude: EditText
     private lateinit var fab: FloatingActionButton
 
     private lateinit var switchWifi: Switch
     private lateinit var switchMD5sum: Switch
+    private lateinit var switchDeleteExcluded: Switch
 
 
     private var existingTask: Task? = null
@@ -95,6 +97,8 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback {
         remoteDropdown = findViewById(R.id.task_remote_spinner)
         syncDirection = findViewById(R.id.task_direction_spinner)
         syncDescription = findViewById(R.id.descriptionSyncDirection)
+        exclude = findViewById(R.id.task_exclude_textfield)
+        switchDeleteExcluded = findViewById(R.id.task_exclude_delete_toggle)
         fab = findViewById(R.id.saveButton)
         switchWifi = findViewById(R.id.task_wifionly)
         switchMD5sum = findViewById(R.id.task_md5sum)
@@ -129,10 +133,11 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback {
         findViewById<TextView>(R.id.task_title_textfield).text = existingTask?.title
         switchWifi.isChecked = existingTask?.wifionly ?: false
         switchMD5sum.isChecked = existingTask?.md5sum ?: false
+        switchDeleteExcluded.isChecked = existingTask?.deleteExcluded ?: false
+        exclude.setText(existingTask?.exclude ?: "")
         prepareSyncDirectionDropdown()
         prepareLocal()
         prepareRemote()
-
     }
 
     private val remoteItems: Array<String?>
@@ -180,9 +185,11 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback {
         taskToPopulate.remotePath = remotePath.text.toString()
         taskToPopulate.localPath = localPath.text.toString()
         taskToPopulate.direction = direction
+        taskToPopulate.exclude = exclude.text.toString()
 
         taskToPopulate.wifionly = switchWifi.isChecked
         taskToPopulate.md5sum = switchMD5sum.isChecked
+        taskToPopulate.deleteExcluded = switchDeleteExcluded.isChecked
 
         // Verify if data is completed
         if (localPath.text.toString() == "") {

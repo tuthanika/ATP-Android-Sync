@@ -386,6 +386,10 @@
     <string name="task_edit_hint_title">Title</string>
     <string name="task_edit_hint_local">Local Path</string>
     <string name="task_edit_hint_remote">Remote Path</string>
+    <string name="task_edit_label_exclude">Exclude</string>
+    <string name="task_edit_hint_exclude">**/.thumbnails/**</string>
+    <string name="task_edit_description_exclude">Patterns of files/folders to exclude, separated on newlines.</string>
+    <string name="task_edit_exclude_delete_toggle_text">Delete excluded files from destination</string>
     <string name="rcd_service_notification_running_in_background">Rclone runs in the background</string>
     <string name="rcd_service_notification_no_active_jobs">No active jobs.</string>
     <string name="rcd_service_notification_btn_stop_all">Stop All</string>
