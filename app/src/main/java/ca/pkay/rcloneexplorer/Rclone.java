@@ -47,6 +47,7 @@ import java.util.zip.ZipOutputStream;
 import ca.pkay.rcloneexplorer.Database.json.Exporter;
 import ca.pkay.rcloneexplorer.Database.json.SharedPreferencesBackup;
 import ca.pkay.rcloneexplorer.Items.FileItem;
+import ca.pkay.rcloneexplorer.Items.FilterEntry;
 import ca.pkay.rcloneexplorer.Items.RemoteItem;
 import ca.pkay.rcloneexplorer.Items.SyncDirectionObject;
 import ca.pkay.rcloneexplorer.rclone.Provider;
@@ -664,10 +665,10 @@ public class Rclone {
      */
     @Deprecated
     public Process sync(RemoteItem remoteItem, String localPath, String remotePath, int syncDirection) {
-        return sync(remoteItem, localPath, remotePath, syncDirection, false, "", false);
+        return sync(remoteItem, localPath, remotePath, syncDirection, false, new ArrayList<>(0), false);
     }
 
-    public Process sync(RemoteItem remoteItem, String localPath, String remotePath, int syncDirection, boolean useMD5Sum, String exclude, boolean deleteExcluded) {
+    public Process sync(RemoteItem remoteItem, String localPath, String remotePath, int syncDirection, boolean useMD5Sum, ArrayList<FilterEntry> filters, boolean deleteExcluded) {
         String[] command;
         String remoteName = remoteItem.getName();
         String localRemotePath = (remoteItem.isRemoteType(RemoteItem.LOCAL)) ? getLocalRemotePathPrefix(remoteItem, context)  + "/" : "";
@@ -683,15 +684,9 @@ public class Rclone {
             defaultParameter.add("--delete-excluded");
         }
 
-        if(!Objects.equals(exclude, "")) {
-            String[] excludeParts = exclude.split(System.lineSeparator());
-
-            for (String excludePart : excludeParts) {
-                if(Objects.equals(excludePart, ""))
-                    continue;
-                defaultParameter.add("--exclude");
-                defaultParameter.add(excludePart);
-            }
+        for (FilterEntry filter : filters) {
+            defaultParameter.add("--filter");
+            defaultParameter.add((filter.filterType == FilterEntry.FILTER_INCLUDE ? "+ " : "- ") + filter.filter);
         }
 
         if (syncDirection == SyncDirectionObject.SYNC_LOCAL_TO_REMOTE) {

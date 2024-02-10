@@ -42,7 +42,7 @@
                         android:textSize="24sp" />
 
                     <EditText
-                        android:id="@+id/task_title_textfield"
+                        android:id="@+id/filter_title_textfield"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -102,7 +102,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/label_direction"
+                        android:id="@+id/label_filters"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/task_edit_label_direction"
@@ -207,6 +207,7 @@
 
             <androidx.cardview.widget.CardView
                 style="@style/SecondaryCardStyle"
+                android:theme="@style/SecondaryCardStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
@@ -219,30 +220,55 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/label_exclude"
+                        android:id="@+id/label_filter"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:text="@string/task_edit_label_exclude"
+                        android:text="@string/task_edit_label_filter"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                         android:textSize="24sp" />
 
-                    <EditText
-                        android:id="@+id/task_exclude_textfield"
+                    <FrameLayout
+                        android:id="@+id/task_edit_filter_holder"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:gravity="start|top"
-                        android:hint="@string/task_edit_hint_exclude"
-                        android:inputType="textMultiLine"
-                        android:minHeight="48dp"
-                        android:singleLine="false" />
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <Spinner
+                                android:id="@+id/task_filter_spinner"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:minHeight="48dp" />
+
+                            <ImageButton
+                                android:id="@+id/task_edit_filter_options_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:background="?selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/task_edit_filter_options_button"
+                                android:minWidth="48dp"
+                                android:minHeight="48dp"
+                                android:padding="4dp"
+                                android:src="@drawable/ic_more_vert"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </LinearLayout>
+
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/description_exclude"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/task_edit_description_exclude" />
+                        android:text="@string/task_edit_description_filter" />
 
                     <Switch
                         android:id="@+id/task_exclude_delete_toggle"

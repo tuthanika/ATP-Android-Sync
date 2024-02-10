@@ -17,7 +17,7 @@ data class Task(var id: Long) {
     @JsonNames("syncDirection") var direction = 0
     var md5sum = TASK_MD5SUM_DEFAULT
     var wifionly = TASK_WIFIONLY_DEFAULT
-    var exclude = ""
+    var filterId: Long? = null
     var deleteExcluded = false;
 
     override fun toString(): String {
@@ -35,7 +35,7 @@ data class Task(var id: Long) {
         var COLUMN_NAME_SYNC_DIRECTION = "task_direction"
         var COLUMN_NAME_MD5SUM = "task_use_md5sum"
         var COLUMN_NAME_WIFI_ONLY = "task_use_only_wifi"
-        var COLUMN_NAME_EXCLUDE = "task_exclude"
+        var COLUMN_NAME_FILTER_ID = "task_filter_id"
         var COLUMN_NAME_DELETE_EXCLUDED = "task_delete_excluded"
 
         const val TASK_MD5SUM_DEFAULT = false
