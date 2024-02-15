@@ -101,9 +101,9 @@ class DatabaseHandler(context: Context?) :
         } else results[0]
     }
 
-    fun createTask(taskToStore: Task): Task {
+    fun createTask(taskToStore: Task, withId: Boolean = false): Task {
         val db = writableDatabase
-        val newRowId = db.insert(Task.TABLE_NAME, null, getTaskContentValues(taskToStore))
+        val newRowId = db.insert(Task.TABLE_NAME, null, if(withId) getTaskContentValuesWithID(taskToStore) else getTaskContentValues(taskToStore))
         db.close()
         taskToStore.id = newRowId
         return taskToStore
@@ -231,9 +231,9 @@ class DatabaseHandler(context: Context?) :
         } else results[0]
     }
 
-    fun createTrigger(triggerToStore: Trigger): Trigger {
+    fun createTrigger(triggerToStore: Trigger, withId: Boolean = false): Trigger {
         val db = writableDatabase
-        val newRowId = db.insert(Trigger.TABLE_NAME, null, getTriggerContentValues(triggerToStore))
+        val newRowId = db.insert(Trigger.TABLE_NAME, null, if(withId) getTriggerContentValuesWithID(triggerToStore) else getTriggerContentValues(triggerToStore))
         db.close()
         triggerToStore.id = newRowId
         return triggerToStore
@@ -267,6 +267,9 @@ class DatabaseHandler(context: Context?) :
 
     private fun getTriggerContentValues(t: Trigger): ContentValues {
         val values = ContentValues()
+        if(t.id != Trigger.TRIGGER_ID_DOESNTEXIST) {
+            values.put(Trigger.COLUMN_NAME_ID, t.id)
+        }
         values.put(Trigger.COLUMN_NAME_TITLE, t.title)
         values.put(Trigger.COLUMN_NAME_ENABLED, t.isEnabled)
         values.put(Trigger.COLUMN_NAME_TIME, t.time)
@@ -350,9 +353,9 @@ class DatabaseHandler(context: Context?) :
         } else results[0]
     }
 
-    fun createFilter(filterToStore: Filter): Filter {
+    fun createFilter(filterToStore: Filter, withId: Boolean = false): Filter {
         val db = writableDatabase
-        val newRowId = db.insert(Filter.TABLE_NAME, null, getFilterContentValues(filterToStore))
+        val newRowId = db.insert(Filter.TABLE_NAME, null, if(withId) getFilterContentValuesWithID(filterToStore) else getFilterContentValues(filterToStore))
         db.close()
         filterToStore.id = newRowId
         return filterToStore
