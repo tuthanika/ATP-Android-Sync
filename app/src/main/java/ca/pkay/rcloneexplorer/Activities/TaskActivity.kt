@@ -55,6 +55,7 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
 
 
     private lateinit var filterDropdown: Spinner
+    private lateinit var createNewFilterButton: Button
     private lateinit var switchDeleteExcluded: Switch
 
 
@@ -161,6 +162,10 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
         filterOptionsButton.setOnClickListener {
             val filter = if(filterDropdown.selectedItemPosition > 0 && filterDropdown.selectedItemPosition < filterDropdown.count) filterItems[filterDropdown.selectedItemPosition - 1] else null
             showFilterMenu(filterOptionsButton, filter)
+        }
+        createNewFilterButton = findViewById<Button>(R.id.task_edit_filter_add_button)
+        createNewFilterButton.setOnClickListener {
+            openFilterActivity()
         }
 
         findViewById<TextView>(R.id.filter_title_textfield).text = existingTask?.title
@@ -328,20 +333,8 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
         val filterList = filterItems.toMutableList()
 
         if(filterList.isEmpty()) {
-            val createNewButton = Button(this)
-            createNewButton.text = getString(R.string.add_filter)
-            createNewButton.setOnClickListener {
-                openFilterActivity()
-            }
-            val layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            createNewButton.layoutParams = layoutParams
-
-            val spinnerPlaceholder = findViewById<FrameLayout>(R.id.task_edit_filter_holder)
+            createNewFilterButton.visibility = View.VISIBLE
             filterDropdown.visibility = View.INVISIBLE
-            spinnerPlaceholder.addView(createNewButton)
         }
         else {
             val titles = mutableListOf<String?>().apply {
@@ -351,6 +344,8 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
 
             val adapter = FilterSpinnerAdapter(this, android.R.layout.simple_spinner_dropdown_item, titles)
             filterDropdown.adapter = adapter
+            createNewFilterButton.visibility = View.INVISIBLE
+            filterDropdown.visibility = View.VISIBLE
 
             if (existingTask != null) {
                 for ((i, filter) in filterList.withIndex()) {
