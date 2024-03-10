@@ -1,0 +1,600 @@
+<resources>
+  <string name="app_name">Round Sync</string>
+  <string name="app_description">Android için Rclone</string>
+  <string name="app_short_name">Round Sync</string>
+  <string name="title_activity_about">Hakkında</string>
+  <string name="title_activity_changelog">Değişiklik Günlüğü</string>
+  <string name="title_activity_contributors">Lisans</string>
+  <string name="remotes">Uzaktan Kumandalar</string>
+  <string name="settings">Ayarlar</string>
+  <string name="import_rclone_config">Yapılandırmayı içe aktar</string>
+  <string name="export_rclone_config">Yapılandırmayı dışa aktar</string>
+  <string name="about">Hakkında</string>
+  <string name="sort">Sırala</string>
+  <string name="select_all">Tümünü seç</string>
+  <string name="serve">Servis edin…</string>
+  <string name="download">İndir</string>
+  <string name="move">Taşı</string>
+  <string name="rename">Yeniden adlandır</string>
+  <string name="delete">Sil</string>
+  <string name="app_version">Uygulama Sürümü</string>
+  <string name="rclone_version">Rclone Sürümü</string>
+  <string name="changelog">Değişiklik Günlüğü</string>
+  <string name="license_and_contributors">Lisans ve Katkıda Bulunanlar</string>
+  <string name="credits_libraries">Kütüphaneler ve Krediler</string>
+  <string name="star_on_github">GitHub'da yıldızla</string>
+  <string name="report_a_bug">Hata bildir</string>
+  <string name="author">Asıl Yazar</string>
+  <string name="author_name" translatable="false">Patryk Kaczmarkiewicz &lt;github.com/patrykcoding&gt;</string>
+  <string name="follow_on_github">GitHub'da takip et</string>
+  <string name="maintainer">Bakımcı</string>
+  <string name="maintainer_name" translatable="false">Felix Nüsse &lt;github.com/newhinton&gt;</string>
+  <string name="old_maintainer">Eski Bakımcı</string>
+  <string name="old_maintainer_name" translatable="false">x0b &lt;github.com/x0b&gt;</string>
+  <string name="empty_folder">Klasör boş</string>
+  <string name="ooops">Hay aksi!</string>
+  <string name="no_config_found">Yapılandırma bulunamadı, lütfen içe aktarın veya uzaktan kumanda ekleyin</string>
+  <string name="import_configuration">Yapılandırmayı içe aktar</string>
+  <string name="empty_state_icon">Boş durum simgesi</string>
+  <string name="file_icon">Dosya simgesi</string>
+  <string name="interpunct">•</string>
+  <string name="remote_icon">Uzak Simge</string>
+  <string name="new_folder">Yeni Klasör</string>
+  <string name="cancel">İptal</string>
+  <string name="select">Seç</string>
+  <string name="app_icon">Uygulama Simgesi</string>
+  <string name="github_app_url" translatable="false">https://github.com/newhinton/Round-Sync</string>
+  <string name="github_issue_url" translatable="false">https://github.com/newhinton/Round-Sync/issues/new/choose</string>
+  <string name="github_author_url" translatable="false">https://github.com/patrykcoding</string>
+  <string name="github_maintainer_url" translatable="false">https://github.com/newhinton</string>
+  <string name="replace_config_file_question">Geçerli yapılandırma dosyası değiştirilsin mi?</string>
+  <string name="config_file_lost_statement">Mevcut yapılandırmanız kaybolacak</string>
+  <string name="continue_statement">Devam et</string>
+  <string name="worker_download_complete">İndirme tamamlandı</string>
+  <string name="streaming_service_notification_title">Akış Hizmeti</string>
+  <string name="streaming_service_notification_content">Http://127.0.0.1:%1$d adresinde sunuluyor</string>
+  <string name="streaming_service_notification_channel_description">Akış hizmeti</string>
+  <string name="streaming_task_failed">Dosya akışı sağlanamadı</string>
+  <string name="rcd_service_notification_channel_description">Arka Plan Hizmeti</string>
+  <string name="worker_upload_complete">Yükleme tamamlandı</string>
+  <string name="remotes_toolbar_title">Uzaktan Kumandalar</string>
+  <string name="fab_upload_files">Dosya Yükle</string>
+  <string name="fab_new_folder">Yeni Klasör</string>
+  <string name="okay_confirmation">Tamam</string>
+  <string name="selected">seçildi</string>
+  <string name="rename_file">Bir dosyayı yeniden adlandır</string>
+  <string name="type_new_file_name">Yeni bir dosya adı girin</string>
+  <string name="select_destination">Varış noktası seçin</string>
+  <string name="create_new_folder">Klasör oluştur</string>
+  <string name="hint_new_folder">Klasör adı</string>
+  <string name="type_new_folder_name">Yeni bir klasör adı girin</string>
+  <string name="loading_file">Dosya yükleniyor</string>
+  <string name="please_wait">Lütfen bekleyin</string>
+  <string name="ok">Tamam</string>
+  <string name="file_renamed_success">Dosya Yeniden Adlandırıldı</string>
+  <string name="make_directory_success">Yeni klasör oluşturuldu</string>
+  <string name="error_getting_dir_content">Dizin içeriği alınırken hata oluştu</string>
+  <string name="error_getting_remotes">Uzaktan kumandalar alınamadı</string>
+  <string name="error_mkdir">Dizin oluşturulurken hata oluştu</string>
+  <string name="error_moving_file">Dosya taşıma hatası</string>
+  <string name="sort_by_name">Ada göre</string>
+  <string name="sort_by_date_modified">Değişiklik tarihine göre</string>
+  <string name="sort_by_size">Boyuta göre</string>
+  <string name="sort_ascending">Artan</string>
+  <string name="sort_descending">Azalan</string>
+  <string name="filename">Dosya adı</string>
+  <string name="modified_time">Modifikasyon süresi</string>
+  <string name="size">Boyut</string>
+  <string name="md5" translatable="false">MD5</string>
+  <string name="sha1" translatable="false">SHA1</string>
+  <string name="tap_to_calculate">Hesaplamak için dokun</string>
+  <string name="calculating">Hesaplanıyor..</string>
+  <string name="hash_error">HATA</string>
+  <string name="hash_unsupported">DESTEKLENMİYOR</string>
+  <string name="hash_copied_confirmation">Karma panoya kopyalandı</string>
+  <string name="copying_rclone_config">Rclone yapılandırması kopyalanıyor</string>
+  <string name="copying_rclone_config_fail">Rclone yapılandırması kopyalanamadı</string>
+  <string name="import_configuration_fail_rclone">İçe aktarılamadı. Rclone.conf dosyanız geçerli değil!</string>
+  <string name="import_configuration_fail_zip_json_missing">İçe aktarılamadı. Posta Kodunuz Tetikleyiciler ve Görevler içermiyor!</string>
+  <string name="import_configuration_fail_zip_conf_missing">İçe aktarılamadı. Posta kodunuz rclone.conf içermiyor!</string>
+  <string name="config_password_protected">Yapılandırma dosyası şifre korumalıdır</string>
+  <string name="please_enter_password">Parolanızı girin</string>
+  <string name="working">Çalışıyor</string>
+  <string name="error_unlocking_config">Yapılandırma kilidi açılırken hata oluştu</string>
+  <string name="locked_configuration_password">Kilitli yapılandırma şifresi</string>
+  <string name="configuration_is_password_protected">Yapılandırma şifre korumalıdır</string>
+  <string name="press_to_unlock">Kilidi açmak için basın</string>
+  <string name="worker_download_failed">İndirilemedi</string>
+  <string name="worker_upload_failed">Yükleme başarısız</string>
+  <string name="properties">Özellikler</string>
+  <string name="open_as">Farklı aç</string>
+  <string name="open_as_text">Metin</string>
+  <string name="open_as_audio">Ses</string>
+  <string name="open_as_video">Video</string>
+  <string name="open_as_image">Resim</string>
+  <string name="title_activity_settings">Ayarlar</string>
+  <string name="pref_header_general">Genel</string>
+  <string name="restart_required">Uygulamanın yeniden başlatılması gerekiyor</string>
+  <string name="app_icon_made_by">Uygulama simgesini yapan</string>
+  <string name="smashicons" translatable="false">Smashiconlar</string>
+  <string name="from">başlangıç</string>
+  <string name="flaticon" translatable="false">Flaticon</string>
+  <string name="intro_welcome_title">Hoş geldiniz!</string>
+  <string name="intro_welcome_description">Round Sync, cihazınızda veya bulutta depolanan dosyaları işleyebilen bir dosya yönetim aracıdır. Daha fazla soru için github.com/newhinton/Round-Sync adresini ziyaret edin.</string>
+  <string name="intro_storage_title">Depolama erişimi</string>
+  <string name="intro_storage_description">Round Sync, rclone'a dayanır ve tüm dosyalara erişmek için izninize ihtiyaç duyar. Lütfen istendiğinde depolama erişimi verin, aksi takdirde uygulama düzgün çalışmayacaktır.</string>
+  <string name="intro_community_title">Topluluk</string>
+  <string name="intro_community_description">Round Sync topluluk odaklı bir projedir. Uygulamaya katkıda bulunmak ve uygulamayı iyileştirmek için anonim hata bildirimini etkinleştirebilirsiniz. Daha fazla bilgi için lütfen felixnuesse.de/privacy-roundsync adresini ziyaret edin.</string>
+  <string name="pref_key_logs" translatable="false">pref_key_logs</string>
+  <string name="pref_key_dark_theme" translatable="false">pref_key_theme_mode</string>
+  <string name="pref_key_wrap_filenames" translatable="false">pref_key_wrap_filenames</string>
+  <string name="pref_key_app_updates" translatable="false">pref_key_app_update</string>
+  <string name="pref_key_app_updates_beta" translatable="false">pref_key_app_update_beta</string>
+  <string name="pref_key_app_notification_reports" translatable="false">pref_key_app_notification_reports</string>
+  <string name="pref_key_crash_reports" translatable="false">pref_key_crash_reports</string>
+  <string name="pref_key_show_thumbnails" translatable="false">pref_key_show_thumbnails</string>
+  <string name="pref_key_thumbnail_size_limit" translatable="false">thumbnail_max_size</string>
+  <string name="pref_key_wifi_only_transfers" translatable="false">pref_key_wifi_only_transfers</string>
+  <string name="pref_key_version_code" translatable="false">pref_key_version_code</string>
+  <string name="pref_key_version_name" translatable="false">pref_key_version_name</string>
+  <string name="pref_key_enable_saf" translatable="false">pref_key_enable_saf</string>
+  <string name="pref_key_enable_vcp" translatable="false">vcp_enable</string>
+  <string name="pref_key_vcp_declare_local" translatable="false">vcp_resolure_local</string>
+  <string name="pref_key_vcp_grant_all" translatable="false">vcp_ grant_all</string>
+  <string name="file_access">Dosya Erişimi</string>
+  <string name="look_and_feel">Bak ve Hisset</string>
+  <string name="dark_theme">Koyu tema</string>
+  <string name="transfer_only_on_wifi">Dosyaları yalnızca Wi - Fi üzerinden aktarın</string>
+  <string name="transfer_only_on_wifi_summary">Dosya aktarımları için Wi - Fi bağlantısı gerekli</string>
+  <string name="pref_key_use_proxy" translatable="false">use_proxy</string>
+  <string name="pref_key_proxy_host" translatable="false">proxy_host</string>
+  <string name="pref_key_proxy_port" translatable="false">proxy_port</string>
+  <string name="pref_key_proxy_protocol" translatable="false">proxy_protocol</string>
+  <string name="pref_key_no_proxy_hosts" translatable="false">no_proxy_hosts</string>
+  <string name="pref_use_proxy_title">Proxy Kullan</string>
+  <string name="pref_use_proxy_summary">Desteklenen tüm veri aktarımları için proxy kullanın (http, https)</string>
+  <string name="pref_proxy_protocol">Vekalet Protokolü</string>
+  <string name="pref_proxy_protocol_dlg_title">Protokol Seç</string>
+  <string name="pref_proxy_host">Vekil Sunucu</string>
+  <string name="pref_proxy_host_dlg_title">Proxy IP'si veya etki alanı girin</string>
+  <string name="pref_proxy_port">Proxy Bağlantı Noktası</string>
+  <string name="pref_proxy_port_dlg_title">Proxy bağlantı noktası girin</string>
+  <string name="pref_locale">Dil</string>
+  <string name="pref_locale_dlg_title">Dil Seçin</string>
+  <string name="pref_locale_restart_notice">Dilin değiştirilmesi, uygulama yeniden başlatıldıktan sonra geçerli olacaktır</string>
+  <string name="pref_key_locale" translatable="false">yerel ayar</string>
+  <string name="use_logs">Günlük rclone hataları</string>
+  <string name="use_logs_summary">Hata günlükleri \' Android/data/de.felixnuesse.extract/files/logs\' adresindeki yerel bir dosyaya kaydedilecektir</string>
+  <string name="notifications_pref_title">Bildirimler</string>
+  <string name="open_system_settings">Sistem ayarlarını aç</string>
+  <string name="content_description_circle">daire</string>
+  <string name="loading">Yükleniyor</string>
+  <string name="app_not_configured">Round Sync yapılandırılmadı</string>
+  <string name="open_app_to_configure">Önce ayarlamak için lütfen uygulamayı açın</string>
+  <string name="error_retrieving_files">Dosyalar alınırken hata oluştu</string>
+  <string name="background_service_broadcast" translatable="false">ca.pkay.rcexplorer.BACKGROUND_SERVICE_BROADCAST</string>
+  <string name="background_service_broadcast_data_remote" translatable="false">ca.pkay.rcexplorer.BACKGROUND_SERVICE_BROADCAST_DATA_REMOTE</string>
+  <string name="background_service_broadcast_data_path" translatable="false">ca.pkay.rcexplorer.BACKGROUND_SERVICE_BROADCAST_DATA_PATH</string>
+  <string name="background_service_broadcast_data_path2" translatable="false">ca.pkay.rcexplorer.BACKGROUND_SERVICE_BROADCAST_DATA_PATH2</string>
+  <string name="sync_service_notification_channel_description">Senkronizasyon için arka plan hizmeti</string>
+  <string name="moving_info">Taşınıyor...</string>
+  <string name="deleting_info">Siliniyor...</string>
+  <string name="operation_failed">Senkronizasyon başarısız</string>
+  <string name="operation_failed_unknown">%1$s bilinmeyen bir hata nedeniyle senkronize edilemedi</string>
+  <string name="operation_failed_no_unmetered">Wi - Fi bağlantısı olmadığı için %1$s senkronize edilemedi</string>
+  <string name="operation_failed_no_connection">Ağ kullanılamadığı için %1$s eşitlenemedi</string>
+  <string name="operation_failed_data_change">Cihazınızda mobil veri senkronizasyonu devre dışı bırakıldığı için %1$s senkronize edilemedi</string>
+  <string name="operation_failed_unknown_rclone_error">%1$s bilinmeyen bir rclone hatası nedeniyle senkronize edilemedi</string>
+  <string name="operation_failed_cancelled">Senkronizasyon iptal edildi</string>
+  <string name="operation_failed_notask">Başlatılacak bir görev yoktu!</string>
+  <string name="moving_service">Taşıma Hizmeti</string>
+  <string name="delete_service">Hizmeti Sil</string>
+  <string name="syncing_service">%1$s senkronize ediliyor</string>
+  <string name="search">Ara</string>
+  <string name="search_clear_button">Temizle düğmesini ara</string>
+  <string name="no_search_results">Arama sonucu yok</string>
+  <string name="nothing_selected">Hiçbir şey seçilmedi</string>
+  <string name="file_picker_root_title">Cihaz depolama</string>
+  <string name="remote_name_hint">İsim (yalnızca a - z, 0 -9)</string>
+  <string name="waiting_for_code">Kod bekleniyor</string>
+  <string name="open_browser">Tarayıcıyı aç</string>
+  <string name="provider_ftp">FTP</string>
+  <string name="provider_http">Http</string>
+  <string name="serve_dlna">DLNA</string>
+  <string name="provider_webdav">Webdav</string>
+  <string name="error_creating_remote">Uzaktan kumanda oluşturulurken hata oluştu</string>
+  <string name="remote_creation_success">Uzaktan kumanda başarıyla oluşturuldu</string>
+  <string name="next">Sonraki</string>
+  <string name="title_activity_remote_config">Tür seç</string>
+  <string name="error_exporting_config_file">Yapılandırma dosyası dışa aktarılırken hata oluştu</string>
+  <string name="app_update_notification_title">Uygulama güncellemesi Github'da mevcut</string>
+  <string name="app_updates_notifications">Uygulama güncellemeleri hakkında bildirim alın</string>
+  <string name="beta_app_updates_notifications">Yayın öncesi sürümler hakkında bildirim alın</string>
+  <string name="delete_remote_title">Uzaktan kumanda silinsin mi?</string>
+  <string name="rename_remote">Uzaktan Kumandayı Yeniden Adlandır</string>
+  <string name="empty_trash">Çöpü boşalt</string>
+  <string name="trash_emptied">Çöp boşaltıldı</string>
+  <string name="error_emptying_trash">Çöp boşaltılırken hata oluştu</string>
+  <string name="file_options_content_description">Dosya seçenekleri</string>
+  <string name="link">Bağlantı</string>
+  <string name="error_generating_link">Bağlantı oluşturulurken hata oluştu</string>
+  <string name="generating_public_link">Genel bağlantı oluşturuluyor</string>
+  <string name="public_link">Herkese açık bağlantı</string>
+  <string name="link_copied_to_clipboard">Bağlantı panoya kopyalandı</string>
+  <string name="send_anonymous_crash_reports">Anonim çökme raporları gönder</string>
+  <string name="pref_crash_report_summary">Hata ve kilitlenme raporları göndererek geliştiricilere yardımcı olun. Bkz. https://x0b.github.io/rcx-privacy.\nID: %1$s.</string>
+  <string name="pref_send_test_report_title">Test Raporu Gönder</string>
+  <string name="pref_send_test_report_summary">Çökme kaydediciye bir test raporu gönderir</string>
+  <string name="pin_to_the_top">Üste sabitle</string>
+  <string name="unpin_from_the_top">Sabitlemeyi kaldır</string>
+  <string name="pin_to_drawer">Çekmeceye iğneleyin</string>
+  <string name="unpin_from_drawer">Çekmeceden sabitlemeyi kaldır</string>
+  <string name="shared_preferences_pinned_remotes" translatable="false">shared_references_pinned_remotes</string>
+  <string name="shared_preferences_drawer_pinned_remotes" translatable="false">paylaşılan_tercihler_çekmece_pimlenmiş_uzaklar</string>
+  <string name="shared_preferences_allow_sync_trigger_while_idle" translatable="false">shared_preferences_allow_sync_trigger_while_idle</string>
+  <string name="app_latest_release_url" translatable="false">https://github.com/newhinton/Round-Sync/releases/latest</string>
+  <string name="app_relase_api_url" translatable="false">https://api.github.com/repos/newhinton/Round-Sync/releases/latest</string>
+  <string name="app_pre_release_api_url" translatable="false">https://api.github.com/repos/newhinton/Round-Sync/releases</string>
+  <string name="pref_key_update_last_check" translatable="false">last_update_check</string>
+  <string name="show_thumbnails">Küçük resimleri göster</string>
+  <string name="pref_thumbnails_size_title">Küçük resimler için maksimum dosya boyutu</string>
+  <string name="pref_thumbnails_dlg_title">Boyut sınırı (MB)</string>
+  <string name="pref_thumbnails_size_summary">%1$.1f MB</string>
+  <string name="generate_password_title">Parola Oluştur</string>
+  <string name="set_password_button">Parola Belirle</string>
+  <string name="password_length_label">Uzunluk</string>
+  <string name="password_lower_case_checkbox">Küçük harf</string>
+  <string name="password_upper_case_checkbox">Büyük harf</string>
+  <string name="password_numbers_checkbox">Sayılar</string>
+  <string name="password_special_chars_checkbox">Özel karakterler</string>
+  <string name="password_refresh_content_description">Yenile düğmesi</string>
+  <string name="wrap_filenames">Dosya adlarını sar</string>
+  <string name="error_retrieving_remote">Uzak %1$s alınırken hata oluştu</string>
+  <string name="dialog_go_to_title">Git</string>
+  <string name="go_to">Git</string>
+  <string name="set_default_for_all_sftp_ssh_remotes">Tüm SFTP/SSH uzaktan kumandaları için varsayılanı ayarla</string>
+  <string name="sftp_home">ev</string>
+  <string name="sftp_root">kök</string>
+  <string name="pref_key_go_to_default_set" translatable="false">pref_key_go_to_default_set</string>
+  <string name="pref_key_start_at_root" translatable="false">pref_key_start_at_root</string>
+  <string name="menu_select_storage">Depolama</string>
+  <string name="select_storage">Depolama Alanını Seçin</string>
+  <string name="empty_trash_confirmation">Çöp kutusunu boşaltmak istediğinizden emin misiniz?</string>
+  <string name="app_shortcuts_settings_dialog_title">Uygulama Kısayolları</string>
+  <string name="settings_header_general">Genel</string>
+  <string name="app_shortcuts_settings">Uygulama Kısayolları</string>
+  <string name="shared_preferences_app_shortcuts" translatable="false">shared_preferences_app_shortcuts</string>
+  <string name="app_shortcuts_max_toast">En fazla 4 kısayola izin verilir</string>
+  <string name="remote_not_found">Uzaktan kumanda bulunamadı</string>
+  <string name="add_to_home_screen">Ana ekrana ekle</string>
+  <string name="pick_a_protocol">Bir protokol seçin</string>
+  <string name="sync">Eşitle…</string>
+  <string name="select_sync_direction">Senkronizasyon yönünü seç</string>
+  <string name="nav_drawer_pinned_header">Sabitlendi</string>
+  <string name="nav_header_options_header">Seçenekler</string>
+  <string name="worker_download_cancelled">İndirme iptal edildi</string>
+  <string name="wifi_connections_isnt_available">Wi - Fi bağlantısı mevcut değil</string>
+  <string name="worker_upload_cancelled">Yükleme iptal edildi</string>
+  <string name="logging_settings_header">Günlüğe kaydetme</string>
+  <string name="look_and_feel_settings_icon_content_description">Bak ve Hisset ayarları simgesi</string>
+  <string name="general_settings_icon_content_description">Genel ayarlar simgesi</string>
+  <string name="notification_settings_icon_content_description">Bildirim ayarları simgesi</string>
+  <string name="logging_settings_icon_content_description">Günlük ayarları simgesi</string>
+  <string name="file_access_settings_icon_content_description">Dosya erişim ayarları simgesi</string>
+  <string name="hidden_remotes">Gizli uzaktan kumandalar</string>
+  <string name="shared_preferences_hidden_remotes" translatable="false">shared_preferences_hidden_remotes</string>
+  <string name="select_remotes_to_hide">Gizlenecek uzaktan kumandaları seçin</string>
+  <string name="pref_key_renamed_remotes" translatable="false">renamed_remotes</string>
+  <string name="pref_key_renamed_remote_prefix" translatable="false">remote_name_ %1$s</string>
+  <string name="allow_remote_access">Diğer cihazlardan erişime izin ver</string>
+  <string name="pref_key_local_alias_remotes" translatable="false">local_alias_remotes</string>
+  <string name="pref_key_refresh_local_aliases" translatable="false">refresh_local_aliases</string>
+  <string name="refreshing_local_alias_remotes">Yerel takma ad uzaktan kumandaları yenileniyor…</string>
+  <string name="pref_enable_local_alias_title">Yerel sürücüleri yenileyin</string>
+  <string name="pref_enable_local_alias_summary">Başlangıçta yerel depolamayı otomatik olarak güncelle</string>
+  <string name="authentication">Kimlik Doğrulama</string>
+  <string name="optional">İsteğe bağlı</string>
+  <string name="serve_dialog_title">Uzaktan kumandaya servis yapın</string>
+  <string name="serve_dialog_remote_notice_enabled">Mevcut dizin, yerel ağda TV'ler ve medya oynatıcılar gibi cihazlar tarafından görülebilecektir.</string>
+  <string name="serve_dialog_remote_notice_disabled">Dosyalara ağdaki diğer cihazlar tarafından erişilemeyecektir.</string>
+  <string name="pref_choice_serve_dialog_allow_ext" translatable="false">choice_service_allow_ext</string>
+  <string name="config_use_external_question">Bulunan yapılandırma içe aktarılsın mı?</string>
+  <string name="config_import_external_explain">%1$s kaynağından otomatik olarak içe aktar</string>
+  <string name="pref_header_file_access">Dosya Erişimi</string>
+  <string name="pref_saf_enable">Saf İstemci Önizlemesini Etkinleştir</string>
+  <string name="pref_saf_summary">DENEYSEL: SD kartlara ve diğer harici depolama cihazlarına erişim</string>
+  <string name="pref_saf_add_permission">Depolama Alanı Ekle</string>
+  <string name="pref_saf_permission_label_primary">Dahili Depolama (%1$s)</string>
+  <string name="pref_saf_permission_label_external">Harici Depolama (%1$s)</string>
+  <string name="pref_saf_virtual_content_provider_enable">İçerik Sağlayıcı Önizlemesini Etkinleştir</string>
+  <string name="pref_saf_virtual_content_provider_summary">DENEYSEL: Diğer uygulamaların rclone uzaktan kumandalarla çalışmasına izin verir</string>
+  <string name="pref_saf_vcp_local_pretend_enable">Yerel sağlayıcı olarak bildir</string>
+  <string name="pref_saf_vcp_local_pretend_summary">Google Dokümanlar gibi bazı uygulamaların dosyalara erişmesine izin verir</string>
+  <string name="pref_saf_vcp_grant_all_enable">Tüm uygulamaların uzaktan kumandalarınıza erişmesine izin verin</string>
+  <string name="pref_saf_vcp_grant_all_summary">UYARI: Herhangi bir uygulamanın uzaktan kumandalarınıza erişmesine izin vermek, verilerinize yetkisiz erişime neden olabilir.</string>
+  <string name="saf_uri_permission_added">Depolama Alanı Eklendi</string>
+  <string name="saf_uri_permission_cancelled">İzin İptal Edildi</string>
+  <string name="saf_uri_permission_error">Geçersiz izin nedeniyle depoya erişilemiyor</string>
+  <string name="saf_uri_permission_already_added">Depolama veya bir alt klasör var</string>
+  <plurals name="virtual_content_provider_summary">
+    <item quantity="one">Bir Uzaktan Kumanda mevcut</item>
+    <item quantity="other">%1$d Uzaktan kumanda mevcut</item>
+  </plurals>
+  <string name="virtual_content_provider_exception_advice">Ağ bağlantınızı kontrol edin</string>
+  <string name="virtual_content_provider_exception_error">Destek bilgisi:\n%1$s</string>
+  <string name="virtual_content_provider_null_content">Uzak veya dizin içeriği alınamadı. Daha fazla ayrıntı için günlük dosyasını kontrol edin.</string>
+  <string name="virtual_content_provider_service_error">Rclone hizmetine bağlanılamadı. Uygulamayı zorla durdurun ve tekrar deneyin.</string>
+  <string name="virtual_content_provider_no_remotes">Yapılandırılmış uzaktan kumanda yok. Depolama konumu eklemek için Round Sync'i açın.</string>
+  <string name="remote_properties_remote_name">Uzak ad</string>
+  <string name="remote_properties_storage_usage">Depolama kullanımı</string>
+  <string name="remote_properties_storage_stats">%1$s / %2$s kullanıldı (%3$s ücretsiz)</string>
+  <string name="remote_properties_storage_used">%1$s kullanıldı</string>
+  <string name="remote_properties_about_failed">Yetkisiz veya desteklenmiyor</string>
+  <string name="remote_properties_authorization">Yetki</string>
+  <string name="remote_properties_authorize_tap">Yenilemek için dokunun</string>
+  <string-array name="serve_options" translatable="false">
+    <item>Http</item>
+    <item>WebDAV</item>
+  </string-array>
+  <string-array name="sync_direction_options">
+    <item>Yerel ile uzağı eşitle</item>
+    <item>Uzaktan kumandayı yerelle senkronize et</item>
+  </string-array>
+  <string name="name_will_be_deleted">%1$s silinecek</string>
+  <plurals name="delete_x_items">
+    <item quantity="one">%1$d öğeyi sil</item>
+    <item quantity="other">%1$d öğeyi sil</item>
+  </plurals>
+  <string name="move_operation_failed">Taşıma işlemi başarısız oldu</string>
+  <string name="pref_open_all_files_setting_label">MANAGE_EXTERNAL_STORAGE izni ver</string>
+  <string name="pref_open_all_files_setting_summary">DENEYSEL: Yalnızca Android R'de çalışır (Android 11)</string>
+  <string name="pref_key_accessible_storage_locations" translatable="false">accessible_storage_location</string>
+  <string name="no_app_found_for_this_link">Bu bağlantı için uygulama bulunamadı</string>
+  <string name="documentsui_missing">Dosyalar için sistem bileşeni (com.android.documentsui) eksik</string>
+  <string name="sync_direction_local_remote">Yerel ile uzağı eşitle</string>
+  <string name="sync_direction_remote_local">Uzaktan kumandayı yerelle senkronize et</string>
+  <string name="tasks">Görevler</string>
+  <string name="edit">Düzenle</string>
+  <string name="start_task">Görevi Başlat</string>
+  <string name="copy_taskid">Görev Kimliğini Kopyala</string>
+  <string name="task_copied_id_to_clipboard">Kimlik "%s" panoya kopyalandı!</string>
+  <string name="importer_unknown_error">Görev içe aktarılırken bilinmeyen hata oluştu!</string>
+  <string name="sync_direction_copy_local_remote">Yerel olanı uzaktan kumandaya kopyala</string>
+  <string name="sync_direction_copy_remote_local">Uzaktan kumandayı yerel ağa kopyala</string>
+  <string name="copy">Kopyala</string>
+  <string name="operation_success">%s eşitleme başarılı</string>
+  <string name="operation_success_description_zero">Yapacak bir şey yoktu.</string>
+  <plurals name="operation_success_description">
+    <item quantity="one">%3$d dosyasında %2$s başarıyla senkronize edildi.</item>
+    <item quantity="other">%3$d dosyada %2$s başarıyla senkronize edildi.</item>
+  </plurals>
+  <string name="operation_success_description_deletions_prefix">Ayrıca %d dosya ve klasör silindi.</string>
+  <string name="operation_report_success_title">Senkronizasyon Raporu Başarıları</string>
+  <string name="operation_report_success_short_content">%d Görev başarılı oldu</string>
+  <string name="operation_report_fail_title">Senkronizasyon Raporu Hataları</string>
+  <string name="operation_report_fail_short_content">%d Görev başarısız oldu</string>
+  <string name="pin_to_dektop">Ana Sayfaya Sabitle</string>
+  <string name="title_activity_task">Yeni bir Görev oluştur</string>
+  <!-- Strings used for fragments for navigation -->
+  <string name="task_edit_label_name">Genel Bilgiler</string>
+  <string name="task_edit_label_local">Yerel Depolama Yolu</string>
+  <string name="task_edit_label_remote">Uzak Depolama Yolu</string>
+  <string name="task_edit_label_direction">Yön</string>
+  <string name="task_edit_hint_title">Unvanı</string>
+  <string name="task_edit_hint_local">Yerel Yol</string>
+  <string name="task_edit_hint_remote">Uzak Yol</string>
+  <string name="rcd_service_notification_running_in_background">Rclone arka planda çalışır</string>
+  <string name="rcd_service_notification_no_active_jobs">Aktif iş yok.</string>
+  <string name="rcd_service_notification_btn_stop_all">Tümünü Durdur</string>
+  <string name="rcd_service_notification_stats_template">Çalışıyor: %1$d, Bitti: %2$d, Kaldı: %3$d</string>
+  <string name="report_collection_title">Hata raporu</string>
+  <string name="report_collection_collecting">Hata raporu için veri toplama</string>
+  <string name="report_collection_stop_collection">Toplamayı durdur</string>
+  <string name="pref_bugreport_start_title">Yerel hata raporu toplayın</string>
+  <string name="pref_bugreport_start_summary">Düğmeye dokunarak veri toplamaya başlayın ve sorunu yeniden oluşturmayı deneyin. İşiniz bittiğinde, veri toplamayı durdurun.</string>
+  <string name="pref_send_sigquit_title">Hata ayıklama: SIGQUIT ile durdur</string>
+  <string name="pref_send_sigquit_summary">Kill - SIGQUIT ile tüm rclone süreçlerini durdurur. Günlük kaydının etkinleştirilmesini gerektirir.</string>
+  <string name="sync_notification_transferred">Aktarılan %1$s/%2$s</string>
+  <string name="sync_notification_speed">"Hız:     %s"</string>
+  <string name="sync_notification_remaining">"Kalan: %s"</string>
+  <string name="sync_notification_errors">"Hatalar:    %s"</string>
+  <string name="sync_notification_deletions">"Silinenler: %s"</string>
+  <string name="sync_notification_file_syncing">Dosya: %14s</string>
+  <string name="sync_notification_file_checking">Kontrol ediliyor: %14s</string>
+  <string name="sync_notification_elapsed">Geçen süre: %14s</string>
+  <string name="sync_notification_short">%1$s/%2$s, %3$s kaldı</string>
+  <plurals name="modern_prettyprint_duration_d">
+    <item quantity="one">%s Gün</item>
+    <item quantity="other">%s Gün</item>
+  </plurals>
+  <plurals name="modern_prettyprint_duration_h">
+    <item quantity="one">%s Saat</item>
+    <item quantity="other">%s Saat</item>
+  </plurals>
+  <plurals name="modern_prettyprint_duration_m">
+    <item quantity="one">%s Dakika</item>
+    <item quantity="other">%s Dakika</item>
+  </plurals>
+  <plurals name="modern_prettyprint_duration_s">
+    <item quantity="one">%s Saniye</item>
+    <item quantity="other">%s Saniye</item>
+  </plurals>
+  <plurals name="worker_deleting_success_message">
+    <item quantity="zero">Hiçbir şey silinmedi.</item>
+    <item quantity="other">%s silindi!</item>
+  </plurals>
+  <plurals name="worker_move_success_message">
+    <item quantity="zero">Hiçbir şey kımıldamadı.</item>
+    <item quantity="other">%s taşındı!</item>
+  </plurals>
+  <plurals name="worker_download_success_message">
+    <item quantity="zero">Hiçbir şey indirilmedi.</item>
+    <item quantity="one">%s Dosya indirildi!</item>
+    <item quantity="other">%s Dosya indirildi!</item>
+  </plurals>
+  <plurals name="worker_upload_success_message">
+    <item quantity="zero">Hiçbir şey yüklenmedi.</item>
+    <item quantity="one">%s yüklendi!</item>
+    <item quantity="other">%s Dosya yüklendi!</item>
+  </plurals>
+  <string name="abi_not_supported_arm_downgrade">Ne yazık ki bu Round Sync sürümü cihazınızla uyumlu değil. Github.com/newhinton/Round-Sync/releases/latest adresinden armeabi - v7a APK'sını deneyin.</string>
+  <string name="abi_not_supported">Cihazınız Round Sync'in bu sürümünü desteklemiyor.</string>
+  <string name="trigger">Tetikleyiciler</string>
+  <string name="title_activity_trigger">Tetikleyiciler</string>
+  <string name="enabled">Etkin</string>
+  <string name="trigger_name">Açıklama</string>
+  <string name="monday">Pazartesi</string>
+  <string name="tuesday">Salı</string>
+  <string name="wednesday">Çarşamba</string>
+  <string name="thursday">Perşembe</string>
+  <string name="friday">Cuma</string>
+  <string name="saturday">Cumartesi</string>
+  <string name="sunday">Pazar</string>
+  <string name="time">Saat</string>
+  <string name="task_to_run">Çalıştırılacak görev</string>
+  <string name="notification_triggerservice_description">Bu bildirim, tetikleme mekanizmasının bir görevi başlatmasını sağlar.</string>
+  <string name="notification_triggerservice_title">Tetikleme hizmeti</string>
+  <string name="message_trigger_enabled">Etkin Tetikleyici</string>
+  <string name="message_trigger_disabled">Devre Dışı Tetikleyici</string>
+  <string name="trigger_time_label">Saat:</string>
+  <string name="weekday_shorthand_mon">PZT</string>
+  <string name="weekday_shorthand_tue">SALI</string>
+  <string name="weekday_shorthand_wed">ÇAR</string>
+  <string name="weekday_shorthand_thur">PER</string>
+  <string name="weekday_shorthand_fri">CUM</string>
+  <string name="weekday_shorthand_sat">CMT</string>
+  <string name="weekday_shorthand_sun">PAZ</string>
+  <string name="trigger_task_label">Görev:</string>
+  <string name="trigger_save_notasks">Görev yok!</string>
+  <string name="taskactivity_task_not_found">Belirtilen görev bulunamadı.</string>
+  <string name="triggeractivity_trigger_not_found">Tetikleyici bulunamadı.</string>
+  <string name="task_item_label_from">Gönderen:</string>
+  <string name="task_item_label_to">Kime:</string>
+  <string name="task_item_label_from_bisync">Path 1:</string>
+  <string name="task_item_label_to_bisync">2. Yol:</string>
+  <string name="no_tasks_warning">Henüz tanımlanmış bir görev yok.</string>
+  <string name="no_trigger_warning">Tetikleyici yok.</string>
+  <string name="add_trigger">Tetikleyici Ekle</string>
+  <string name="add_task">Görev Ekle</string>
+  <string name="retry_failed_sync">Tekrar dene</string>
+  <string name="taskfragment_no_tasks_warning">Hiçbir görev yok. Buraya bir tane ekleyin!</string>
+  <string name="auto_theme">Sistem Temasını Takip Et</string>
+  <string name="light_theme">Işık Modu</string>
+  <string name="theme_title">Tema</string>
+  <string name="remote_folder_picker_title">Klasör seçici</string>
+  <string name="logFragment">Günlükler</string>
+  <string name="alarm_while_idle">Cihaz boştayken görevlerin çalışmasına izin ver</string>
+  <string name="alarm_while_idle_summary">Daha fazla pil tüketebilir, ancak devre dışı bırakılması ağır gecikmelere neden olabilir.</string>
+  <string name="task_data_validation_error_no_local_path">Henüz bir yerel yol seçmediniz</string>
+  <string name="task_data_validation_error_no_remote_path">Henüz bir uzak yol seçmediniz</string>
+  <string name="bisync">Çift yönlü</string>
+  <string name="description_sync_direction">Bu, veri aktarımının kaynağını ve hedefini belirler.</string>
+  <string name="description_sync_direction_sync_tolocal">Dosyaları uzak depolamadan yerel depolamaya senkronize edin. Uzak depolama alanında bulunmayan dosyaları yerel depolama alanından da silebilir. Yalnızca yerel depolama alanı değişikliklerle güncellenir.</string>
+  <string name="description_sync_direction_sync_toremote">Dosyaları yerel depolamadan uzak depolamaya senkronize edin. Yerel olarak bulunmayan tüm dosyalar uzak depolama alanından silinecektir. Yalnızca uzak depolama alanındaki dosyaları etkiler.</string>
+  <string name="description_sync_direction_copy_toremote">Yeni veya değiştirilmiş dosyaları yerel depolamadan uzak depolamaya kopyalayın. Hiçbir dosya silinmez, uzaktan kumandadaki mevcut dosyaların üzerine yazılabilir.</string>
+  <string name="description_sync_direction_copy_tolocal">Yeni veya değiştirilmiş dosyaları uzak depolama alanından yerel depolamaya kopyalayın. Hiçbir dosya silinmez, yerel depodaki mevcut dosyaların üzerine yazılabilir.</string>
+  <string name="description_sync_direction_sync_bidirectional">Aynı klasör yapısını korumak için gerektiğinde dosyaları aktararak, indirerek ve silerek yerel ve uzak depolamanın aynı dosyalara sahip olduğundan emin olun.</string>
+  <string name="intro_success">Başarılı!</string>
+  <string name="intro_successful_setup">Artık başlamaya hazırsınız!</string>
+  <string name="intro_write_external_storage_denied">Dosya erişim izni verilmedi</string>
+  <string name="status_offendingfile">"Kusurlu Dosya :"</string>
+  <string name="use_md5checksum">Md5 sağlama toplamı kullan</string>
+  <string name="task_hint_wifi_ignore_defaults">Etkinleştirilirse, bu ayar yalnızca Wi - Fi üzerinden dosya aktarmak için genel ayarı geçersiz kılar</string>
+  <string name="task_hint_md5checksum">Bu, dosya boyutu yerine sağlama toplamını kullanacaktır. Daha uzun sürebilir veya daha fazla pil kullanabilir.</string>
+  <string name="shortcut_start_service">Eşitleme başlatıldı</string>
+  <string name="shortcut_missing_id">Eşitleme başlatılamadı</string>
+  <string name="task_copy_suffix">(Kopya)</string>
+  <string name="trigger_copy_suffix">(Kopya)</string>
+  <string name="trigger_label_weekdays">Hafta içi</string>
+  <string name="sync_service_notification_channel_title">Senkronizasyon hizmeti</string>
+  <string name="sync_service_notification_channel_success_title">Eşitleme hizmeti başarılı</string>
+  <string name="sync_service_notification_channel_fail_title">Senkronizasyon hizmeti başarısız</string>
+  <string name="sync_service_notification_channel_success_description">Başarılı eşitlemeler için bildirim</string>
+  <string name="sync_service_notification_channel_fail_description">Başarısız senkronizasyon bildirimi</string>
+  <string name="sync_service_notification_channel_report_title">Hizmet raporlarını senkronize et</string>
+  <string name="sync_service_notification_channel_report_description">Senkronizasyon raporları için bildirim</string>
+  <string name="dynamic_config_unknown_error">Bu Prodvider bilinmiyor!</string>
+  <string name="toggle_advanced_options">Gelişmiş Seçenekleri Aç/Kapat</string>
+  <string name="trigger_type_schedule">Planlandı</string>
+  <string name="trigger_type_interval">Aralık</string>
+  <string name="task_interval">Aralık Ayarları</string>
+  <string name="trigger_interval_15_min">Her 15 dakikada bir</string>
+  <string name="trigger_interval_30_min">Her 30 dakikada bir</string>
+  <string name="trigger_interval_60_min">Her 60 dakikada bir</string>
+  <string name="trigger_interval_120_min">Her 120 dakikada bir</string>
+  <string name="save_trigger_button_description">Tetikleyiciyi Kaydet</string>
+  <string name="trigger_save_notitle">Bir başlık belirlemeniz gerekiyor</string>
+  <string name="intro_notifications_title">Bildirim Alın!</string>
+  <string name="intro_notifications_description">Dosyalarınızı senkronize ettiğimizde size bildirimler göstermek istiyoruz, bu nedenle lütfen bize gönderi bildirimlerine erişim izni verin. Size spam göndermeyeceğiz!</string>
+  <string name="error_getting_config">Yapılandırmanızı yükleyemedik!</string>
+  <string name="notification_reports">Senkronizasyonlar için Raporlar Oluşturun. Tekil bildirimleri birleştirilmiş bildirimlerle değiştirir.</string>
+  <string name="back">Geri</string>
+  <string name="save">Kaydet</string>
+  <string name="dynamic_config_suffixselector_suffix_hint">Boyut Son Eki</string>
+  <string name="dynamic_config_suffixselector_value_hint">Değer</string>
+  <string name="operation_no_identical_title">Senkronizasyon iptal edildi</string>
+  <string name="operation_no_identical">Aynı görevi paralel olarak çalıştıramazsınız: %s</string>
+  <string name="intro_permission_changed_title">İzinler gerekli!</string>
+  <string name="intro_permission_changed_description">Rahatsız ettiğimiz için üzgünüz, ancak bize verilen izinleri hızlı bir şekilde güncellememiz gerekiyor. Bu mümkün olan en iyi deneyimi sağlar!</string>
+  <string name="intro_alarms_title">Alarmlar!</string>
+  <string name="intro_alarms_description">Senkronizasyonları planlamak için alarmları ayarlayabilmemiz gerekir. Merak etme, telefonunu asla çalmayacağız!</string>
+  <string name="operation_start_sync">Eşitleme başlatıldı</string>
+  <string name="operation_sync_cancelled">Senkronizasyon iptal edildi</string>
+  <string name="intro_notifications_denied">Bildirim almayacaksınız.</string>
+  <string name="intro_alarms_denied">Alarmları şu anda planlayamıyoruz.</string>
+  <string name="app_error_notification_channel_name">Uygulama Hataları</string>
+  <string name="app_error_notification_channel_description">Bu uygulamaya ve izinlerine özgü hatalar bu kanal üzerinden gösterilecektir</string>
+  <string name="permissionFragment">İzinler</string>
+  <string name="permissions_notifications_label">Bildirimler</string>
+  <string name="permissions_notifications_description">Bildirimler, hataların iletilmesinde ve uygulamanın durumunda faydalıdır. Herhangi bir sorun hakkında sizi bilgilendirebilmemiz için bunları etkinleştirmeyi düşünmelisiniz.</string>
+  <string name="permissions_alarms_label">Alarmlar</string>
+  <string name="permissions_alarms_description">Senkronizasyonlarınızın zamanında çalışması için alarmları zamanlamamız gerekiyor. Bu izin verilmezse senkronizasyonlarınız hiç başlamaz.</string>
+  <string name="permissions_storage_label">Depolama</string>
+  <string name="permissions_storage_description">Yerel cihazınıza erişmek için bu izin gereklidir. Uzaktan kumandalara hala erişebiliyor olsanız da cihazınıza erişime izin vermeniz önemle tavsiye edilir.</string>
+  <string name="permissions_button_request">İstek!</string>
+  <string name="app_error_notification_alarmpermission_missing">Alarm Zamanlama İzni eksik</string>
+  <string name="app_error_notification_alarmpermission_missing_description">Programların başlatılmasına izin vermek için lütfen bu izni verin. Bu olmadan, senkronizasyon çalışmaz!</string>
+  <string name="breadcrumb_home_description">Remote - Root</string>
+  <string name="breadcrumb_next_description">Sonraki breadcrumb ok göstergesi</string>
+  <string name="remote_creation_next_step">Sonraki Adım</string>
+  <string name="generalSettingsDescription">Dil, Ağ ve Önizlemeler</string>
+  <string name="fileAccessSettingsDescription">Diğer uygulamalar ve depolama ile entegrasyonu kontrol edin</string>
+  <string name="theminSettingsDescription">Görünümü değiştir</string>
+  <string name="notificationSettingsDescription">Ne zaman bilgilendirileceğinizi daha kesin olarak kontrol edin</string>
+  <string name="loggingSettingsDescription">Bu uygulama yanlış davrandığında daha fazla bilgi edinin</string>
+  <string name="importSettingsDescription">Mevcut yapılandırmanızı bir yedekle değiştirin</string>
+  <string name="exportSettingsDescription">Uzaktan kumandalarınızı, görevlerinizi ve tetikleyicilerinizi yedekleyin</string>
+  <string name="import_settings_icon_content_description">İçe Aktarma Simgesi</string>
+  <string name="export_settings_icon_content_description">Dışa Aktarma Simgesi</string>
+  <string name="intro_battery_optimizations_title">Pil Optimizasyonları</string>
+  <string name="intro_battery_optimizations_description">Bu uygulama pil tasarrufu için optimize edilmişse senkronizasyonlar zamanında çalışmayabilir. Senkronizasyonların zamanında yapılması gerekiyorsa lütfen bize bir istisna verin!</string>
+  <string name="permissions_batteryoptimizations_label">Pil Optimizasyonları</string>
+  <string name="permissions_batteryoptimizations_description">Cihaz uyku modundaysa, bu izin verilmediğinde görevleriniz gecikebilir.</string>
+  <string name="sync_service_notification_startingsync">Eşitleme Başlatılıyor...</string>
+  <string name="sync_service_notification_group">Eşitleme için Grup</string>
+  <string name="workernotification_group_description">Görev Bildirimleri</string>
+  <string name="download_service_ongoing_notification_title">Etkin İndirmeler</string>
+  <string name="download_service_ongoing_notification_description">Bu bildirim, mevcut indirmenin ilerlemesini gösterir</string>
+  <string name="download_service_success_notification_title">Başarılı İndirmeler</string>
+  <string name="download_service_success_notification_description">Başarılı İndirmeler bu Kanalda bir Mesaj gösterecek</string>
+  <string name="download_service_failed_notification_description">Başarısız İndirmeler bu Kanalda bir Mesaj gösterecektir</string>
+  <string name="download_service_failed_notification_title">Başarısız İndirmeler</string>
+  <string name="upload_service_ongoing_notification_title">Etkin Yüklemeler</string>
+  <string name="upload_service_ongoing_notification_description">Bu bildirim, geçerli yüklemenin ilerlemesini gösterir</string>
+  <string name="upload_service_success_notification_title">Başarılı Yüklemeler</string>
+  <string name="upload_service_success_notification_description">Başarılı Yüklemeler bu Kanalda bir Mesaj gösterecek</string>
+  <string name="upload_service_failed_notification_description">Başarısız Yüklemeler bu Kanalda bir Mesaj gösterecektir</string>
+  <string name="upload_service_failed_notification_title">Başarısız Yüklemeler</string>
+  <string name="delete_service_notification_title">Silme İşlemleri</string>
+  <string name="delete_service_notification_description">Bu bildirim silme işlemlerini gösterir</string>
+  <string name="move_service_notification_title">Hareketler</string>
+  <string name="move_service_notification_description">Bu bildirim hareketleri gösterir</string>
+  <string name="worker_deleting_initialtitle">Siliniyor...</string>
+  <string name="worker_deleting_success">Silindi!</string>
+  <string name="worker_deleting_failed">Dosya veya klasörler silinemedi!</string>
+  <string name="worker_move_initialtitle">Taşınıyor...</string>
+  <string name="worker_move_failed">Taşıma başarısız!</string>
+  <string name="worker_move_success">Taşıma başarılı!</string>
+  <string name="worker_download_initialtitle">İndiriliyor…</string>
+  <string name="worker_upload_initialtitle">Yükleniyor...</string>
+</resources>
