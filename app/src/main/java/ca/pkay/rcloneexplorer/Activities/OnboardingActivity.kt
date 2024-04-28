@@ -1,28 +1,35 @@
 package ca.pkay.rcloneexplorer.Activities
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import ca.pkay.rcloneexplorer.R
-import ca.pkay.rcloneexplorer.RuntimeConfiguration
 import ca.pkay.rcloneexplorer.util.PermissionManager
 import com.github.appintro.AppIntro2
 import de.felixnuesse.extract.onboarding.IdentifiableAppIntroFragment
-import es.dmoral.toasty.Toasty
+import de.felixnuesse.extract.onboarding.IdentifiableSwitchAppIntroFragment
+import de.felixnuesse.extract.onboarding.SlideLeaveInterface
+import de.felixnuesse.extract.onboarding.SlideSwitchCallback
+import de.felixnuesse.extract.updates.UpdateChecker
 
 
-class OnboardingActivity : AppIntro2() {
+class OnboardingActivity : AppIntro2(), SlideLeaveInterface, SlideSwitchCallback {
 
     companion object {
         private const val intro_v1_12_0_completed = "intro_v1_12_0_completed"
+        private const val intro_v2_5_2_completed = "intro_v2_5_2_completed"
+
+        // please add all intro versions to onDonePressed.
+        private const val latest_intro = intro_v2_5_2_completed
 
         private const val SLIDE_ID_WELCOME = "SLIDE_ID_WELCOME"
         private const val SLIDE_ID_COMMUNITY = "SLIDE_ID_COMMUNITY"
@@ -32,46 +39,36 @@ class OnboardingActivity : AppIntro2() {
         private const val SLIDE_ID_BATTERY_OPTIMIZATION = "SLIDE_ID_BATTERY_OPTIMIZATION"
         private const val SLIDE_ID_ALARMS = "SLIDE_ID_ALARMS"
         private const val SLIDE_ID_SUCCESS = "SLIDE_ID_SUCCESS"
+        private const val SLIDE_ID_UPDATECHECK = "SLIDE_ID_UPDATECHECK"
+
+        fun completedIntro(context: Context): Boolean {
+            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+            // if it is a managed installation, dont show the intro screen for updates.
+            return prefs.getBoolean(latest_intro, UpdateChecker(context).isManagedInstallation())
+        }
     }
 
-
+    private var mPermissions = PermissionManager(this)
     private lateinit var mPreferences: SharedPreferences
-    private lateinit var mPermissions: PermissionManager
-
-    private var isStorageSlide = false
-    private var isAlarmSlide = false
-    private var isBatteryOptimizationSlide = false
-
-    private var storageRequested = false
-    private var storageGranted = false
-    private var alarmRequested = false
-    private var alarmGranted = false
-    private var batteryOptimizationsRequested = false
-    private var batteryOptimizationsGranted = false
 
     private var color = R.color.intro_color1
 
-
-    private var welcomeSlide = 0
-    private var permissionChangedSlide = 0
-    private var communitySlide = 0
-    private var storageSlide = 0
-    private var notificationSlide = 0
-    private var batterySlide = 0
-    private var alarmSlide = 0
-    private var successSlide = 0
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onResume() {
+        enableEdgeToEdge()
+        super.onResume()
         setImmersiveMode()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
             WindowCompat.setDecorFitsSystemWindows(window, false)
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setImmersiveMode()
+        showStatusBar(true)
 
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        mPermissions = PermissionManager(this)
         isWizardMode = true
         isColorTransitionsEnabled = true
 
@@ -79,32 +76,38 @@ class OnboardingActivity : AppIntro2() {
         isSystemBackButtonLocked = true
 
 
-        var maxSlideId = 1
+        val v1_12_0 = mPreferences.getBoolean(intro_v1_12_0_completed, false)
+        val v2_5_2 = mPreferences.getBoolean(intro_v2_5_2_completed, false)
+        // fix Opt-In updatecheck in 2.5.1
+        // i forcefully reset the appupdate check, so that it will be off, going forward.
+        // later we ask for permission again.
 
-        if (!mPreferences.getBoolean(intro_v1_12_0_completed, false)) {
+        if(v1_12_0 && !v2_5_2) {
+            // only if the app has been set up, and before v2.5.2.
+            mPreferences.edit().putBoolean(getString(R.string.pref_key_app_updates), false).apply()
+        }
+
+        if (!v1_12_0) {
             addSlide(
                 IdentifiableAppIntroFragment.createInstance(
                     title = getString(R.string.intro_welcome_title),
                     description = getString(R.string.intro_welcome_description),
                     imageDrawable = R.drawable.undraw_hello,
                     backgroundColorRes = color,
-                    id = SLIDE_ID_WELCOME
+                    id = SLIDE_ID_WELCOME,
+                    callback = this
                 ))
             switchColor()
-            welcomeSlide = maxSlideId
-            maxSlideId++
-
             addSlide(
                 IdentifiableAppIntroFragment.createInstance(
                     title = getString(R.string.intro_community_title),
                     description = getString(R.string.intro_community_description),
                     imageDrawable = R.drawable.undraw_the_world_is_mine,
                     backgroundColorRes = color,
-                    id = SLIDE_ID_COMMUNITY
+                    id = SLIDE_ID_COMMUNITY,
+                    callback = this
                     ))
             switchColor()
-            communitySlide = maxSlideId
-            maxSlideId++
         } else {
             addSlide(
                 IdentifiableAppIntroFragment.createInstance(
@@ -112,11 +115,10 @@ class OnboardingActivity : AppIntro2() {
                     description = getString(R.string.intro_permission_changed_description),
                     imageDrawable = R.drawable.undraw_completion,
                     backgroundColorRes = color,
-                    id = SLIDE_ID_PERMCHANGE
+                    id = SLIDE_ID_PERMCHANGE,
+                    callback = this
                     ))
             switchColor()
-            permissionChangedSlide = maxSlideId
-            maxSlideId++
         }
 
 
@@ -127,11 +129,10 @@ class OnboardingActivity : AppIntro2() {
                     description = getString(R.string.intro_storage_description),
                     imageDrawable = R.drawable.ic_intro_storage,
                     backgroundColorRes = color,
-                    id = SLIDE_ID_STORAGE
+                    id = SLIDE_ID_STORAGE,
+                    callback = this
                 ))
             switchColor()
-            storageSlide = maxSlideId
-            maxSlideId++
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -142,15 +143,10 @@ class OnboardingActivity : AppIntro2() {
                         description = getString(R.string.intro_notifications_description),
                         imageDrawable = R.drawable.undraw_post_online,
                         backgroundColorRes = color,
-                        id = SLIDE_ID_NOTIFICATIONS
+                        id = SLIDE_ID_NOTIFICATIONS,
+                        callback = this
                     ))
                 switchColor()
-                notificationSlide = maxSlideId
-                maxSlideId++
-                askForPermissions(
-                    permissions = arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                    slideNumber = notificationSlide,
-                    required = false)
             }
         }
 
@@ -163,11 +159,10 @@ class OnboardingActivity : AppIntro2() {
                         description = getString(R.string.intro_alarms_description),
                         imageDrawable = R.drawable.undraw_time_management,
                         backgroundColorRes = color,
-                        id = SLIDE_ID_ALARMS
+                        id = SLIDE_ID_ALARMS,
+                        callback = this
                     ))
                 switchColor()
-                alarmSlide = maxSlideId
-                maxSlideId++
             }
         }
 
@@ -178,11 +173,25 @@ class OnboardingActivity : AppIntro2() {
                     description = getString(R.string.intro_battery_optimizations_description),
                     imageDrawable = R.drawable.undraw_electricity,
                     backgroundColorRes = color,
-                    id = SLIDE_ID_BATTERY_OPTIMIZATION
+                    id = SLIDE_ID_BATTERY_OPTIMIZATION,
+                    callback = this
                 ))
             switchColor()
-            batterySlide = maxSlideId
-            maxSlideId++
+        }
+
+        val updatesAlreadyEnabled = mPreferences.getBoolean(getString(R.string.pref_key_app_updates), false)
+        if(!UpdateChecker(this.applicationContext).isManagedInstallation() && !updatesAlreadyEnabled) {
+            addSlide(
+                IdentifiableSwitchAppIntroFragment.createInstance(
+                    title = getString(R.string.intro_update_checks_title),
+                    description = getString(R.string.intro_update_checks_description),
+                    imageDrawable = R.drawable.undraw_update,
+                    backgroundColorRes = color,
+                    id = SLIDE_ID_UPDATECHECK,
+                    callback = this,
+                    switchCallback = this
+                ))
+            switchColor()
         }
 
         addSlide(
@@ -191,194 +200,60 @@ class OnboardingActivity : AppIntro2() {
                 description = getString(R.string.intro_successful_setup),
                 imageDrawable = R.drawable.undraw_sync,
                 backgroundColorRes = color,
-                id = SLIDE_ID_SUCCESS
+                id = SLIDE_ID_SUCCESS,
+                callback = this
             ))
         switchColor()
-        successSlide = maxSlideId
-        maxSlideId++
-    }
-
-    override fun onSlideChanged(oldFragment: Fragment?, newFragment: Fragment?) {
-        super.onSlideChanged(oldFragment, newFragment)
-
-        isStorageSlide = false
-        isAlarmSlide = false
-        isBatteryOptimizationSlide = false
-
-        if(isFragment(newFragment, SLIDE_ID_STORAGE)){
-            isStorageSlide = true
-        }
-
-        if(isFragment(newFragment, SLIDE_ID_ALARMS)){
-            isAlarmSlide = true
-        }
-
-        if(isFragment(newFragment, SLIDE_ID_BATTERY_OPTIMIZATION)){
-            isBatteryOptimizationSlide = true
-        }
-    }
-
-    private fun isFragment(newFragment: Fragment?, slideIdStorage: String): Boolean {
-        if(newFragment is IdentifiableAppIntroFragment) {
-            return newFragment.slideId == slideIdStorage
-        }
-        return false
-    }
-
-    override fun onPageSelected(position: Int) {
-
-        isStorageSlide = if(storageSlide != 0) {
-            position+1 == storageSlide
-        } else {
-            false
-        }
-
-        isAlarmSlide = if(alarmSlide != 0) {
-            position+1 == alarmSlide
-        } else {
-            false
-        }
-
-        isBatteryOptimizationSlide = if(batterySlide != 0) {
-            position+1 == batterySlide
-        } else {
-            false
-        }
-    }
-
-    override fun onCanRequestNextPage(): Boolean {
-
-        if(isStorageSlide && storageGranted) {
-            return true
-        }
-
-        if (isAlarmSlide && alarmGranted) {
-            return true
-        }
-
-        if (isBatteryOptimizationSlide && batteryOptimizationsGranted) {
-            return true
-        }
-
-        if(isStorageSlide) {
-            if(mPermissions.grantedStorage()){
-                storageGranted = true
-                return true
-            }
-            requestStoragePermission()
-            // dont allow slide to continue, this is a hard requirement
-            return false
-        }
-
-        if(isAlarmSlide) {
-            if(mPermissions.grantedAlarms()){
-                alarmGranted = true
-                return true
-            }
-            requestAlarmPermission()
-            return false
-        }
-
-        if(isBatteryOptimizationSlide) {
-            if(mPermissions.grantedBatteryOptimizationExemption()){
-                batteryOptimizationsGranted = true
-                return true
-            }
-            requestOptimizationExemption()
-            return false
-        }
-
-        return super.onCanRequestNextPage()
-    }
-
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(RuntimeConfiguration.attach(this, newBase))
     }
 
     override fun onDonePressed(currentFragment: Fragment?) {
         PreferenceManager.getDefaultSharedPreferences(this)
             .edit()
             .putBoolean(intro_v1_12_0_completed, true)
+            .putBoolean(intro_v2_5_2_completed, true)
             .apply()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 
-    private fun requestStoragePermission() {
-        if(storageRequested) {
-            return
+    private var mAlarmsRequested = false
+    private var mOptimizationRequested = false
+    private var mNotificationsRequested = false
+
+    override fun allowSlideLeave(id: String): Boolean {
+        return when(id) {
+            SLIDE_ID_BATTERY_OPTIMIZATION -> mOptimizationRequested
+            SLIDE_ID_ALARMS -> mAlarmsRequested
+            SLIDE_ID_NOTIFICATIONS -> mNotificationsRequested
+            SLIDE_ID_STORAGE -> mPermissions.grantedStorage()
+            else -> true
         }
-        mPermissions.requestStorage(this)
-        storageRequested = true
     }
 
-    private fun requestAlarmPermission(){
-        if (alarmRequested) {
-            return
-        }
-        mPermissions.requestAlarms()
-        alarmRequested = true
-    }
-
-    private fun requestOptimizationExemption(){
-        if (batteryOptimizationsRequested) {
-            return
-        }
-        mPermissions.requestBatteryOptimizationException()
-        batteryOptimizationsRequested = true
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        if(isStorageSlide) {
-            if(mPermissions.grantedStorage()){
-                storageGranted = true
-                goToNextSlide()
-            } else {
-                denied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                storageRequested = false
+    @SuppressLint("InlinedApi") // If the permission is not reqired, notificationPermission is null anyway.
+    override fun onSlideLeavePrevented(id: String) {
+        when(id) {
+            SLIDE_ID_STORAGE -> mPermissions.requestStorage(this)
+            SLIDE_ID_BATTERY_OPTIMIZATION -> {
+                mPermissions.requestBatteryOptimizationException()
+                mOptimizationRequested = true
             }
-        }
-
-        if(isAlarmSlide) {
-            if(mPermissions.grantedAlarms()){
-                alarmGranted = true
-                goToNextSlide()
-            } else {
-                denied(Manifest.permission.SCHEDULE_EXACT_ALARM)
-                // allow slide to continue
+            SLIDE_ID_ALARMS -> {
+                mPermissions.requestAlarms()
+                mAlarmsRequested = true
             }
-        }
-
-        if(isBatteryOptimizationSlide) {
-            if(mPermissions.grantedBatteryOptimizationExemption()){
-                batteryOptimizationsGranted = true
-                goToNextSlide()
+            SLIDE_ID_NOTIFICATIONS -> {
+                notificationPermission?.launch(Manifest.permission.POST_NOTIFICATIONS)
+                mNotificationsRequested = true
             }
-            // allow slide to continue
+            else -> {}
         }
     }
 
-    override fun onUserDeniedPermission(permissionName: String) {
-        super.onUserDeniedPermission(permissionName)
-        denied(permissionName)
-    }
-
-    override fun onUserDisabledPermission(permissionName: String) {
-        super.onUserDisabledPermission(permissionName)
-        denied(permissionName)
-    }
-    private fun denied(permissionName: String){
-        if(permissionName == Manifest.permission.POST_NOTIFICATIONS) {
-            Toasty.info(this, getString(R.string.intro_notifications_denied), Toast.LENGTH_SHORT, true).show()
-        }
-        if(permissionName == Manifest.permission.WRITE_EXTERNAL_STORAGE) {
-            Toasty.info(this, getString(R.string.intro_write_external_storage_denied), Toast.LENGTH_LONG, true).show()
-        }
-        //if(permissionName == Manifest.permission.SCHEDULE_EXACT_ALARM) {
-        //    Toasty.info(this, getString(R.string.intro_alarms_denied), Toast.LENGTH_SHORT, true).show()
-        //}
+    private var notificationPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        mPermissions.registerInitialRequestNotificationPermission(this)
+    } else {
+        null
     }
 
     private fun switchColor() {
@@ -387,7 +262,14 @@ class OnboardingActivity : AppIntro2() {
         } else {
             color = R.color.intro_color1
         }
+    }
 
-
+    override fun switchChanged(id: String, isChecked: Boolean) {
+        when(id) {
+            SLIDE_ID_UPDATECHECK -> {
+                mPreferences.edit().putBoolean(getString(R.string.pref_key_app_updates), isChecked).apply()
+            }
+            else -> {}
+        }
     }
 }

@@ -6,15 +6,12 @@ import android.util.Log
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import androidx.work.WorkRequest
 import ca.pkay.rcloneexplorer.Items.FileItem
 import ca.pkay.rcloneexplorer.Items.RemoteItem
 import de.felixnuesse.extract.notifications.implementations.DeleteWorkerNotification
 import de.felixnuesse.extract.notifications.implementations.DownloadWorkerNotification
 import de.felixnuesse.extract.notifications.implementations.MoveWorkerNotification
 import de.felixnuesse.extract.notifications.implementations.UploadWorkerNotification
-import java.util.Random
-
 
 class EphemeralTaskManager(private var mContext: Context) {
 

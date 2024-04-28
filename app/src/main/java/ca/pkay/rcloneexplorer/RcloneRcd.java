@@ -147,12 +147,18 @@ public class RcloneRcd {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
 
         boolean proxyEnabled = pref.getBoolean(context.getString(R.string.pref_key_use_proxy), false);
-        if (proxyEnabled) {
+        if(proxyEnabled) {
             String noProxy = pref.getString(context.getString(R.string.pref_key_no_proxy_hosts), "localhost");
             String protocol = pref.getString(context.getString(R.string.pref_key_proxy_protocol), "http");
             String host = pref.getString(context.getString(R.string.pref_key_proxy_host), "localhost");
+            String user = pref.getString(context.getString(R.string.pref_key_proxy_username), "user");
+            String pass = pref.getString(context.getString(R.string.pref_key_proxy_password), "pass");
             int port = pref.getInt(context.getString(R.string.pref_key_proxy_port), 8080);
-            String url = protocol + "://" + host + ":" + port;
+            String auth = "";
+            if(!(user + pass).isEmpty()) {
+                auth = user+":"+pass+"@";
+            }
+            String url = protocol + "://" + auth + host + ":" + port;
             // per https://golang.org/pkg/net/http/#ProxyFromEnvironment
             environmentValues.add("http_proxy=" + url);
             environmentValues.add("https_proxy=" + url);

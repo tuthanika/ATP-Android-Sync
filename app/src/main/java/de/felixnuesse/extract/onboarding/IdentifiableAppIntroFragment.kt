@@ -1,16 +1,27 @@
 package de.felixnuesse.extract.onboarding
 
+import android.util.Log
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
-import ca.pkay.rcloneexplorer.R
 import com.github.appintro.AppIntroBaseFragment
 import com.github.appintro.AppIntroFragment
+import com.github.appintro.SlidePolicy
 import com.github.appintro.model.SliderPage
 
-class IdentifiableAppIntroFragment : AppIntroBaseFragment() {
+class IdentifiableAppIntroFragment : AppIntroBaseFragment(), SlidePolicy {
 
-    override val layoutId: Int get() = R.layout.appintro_fragment_intro
+    private var slideLeaveCallback: SlideLeaveInterface? = null
+
+    // If user should be allowed to leave this slide. This fails open
+    override val isPolicyRespected: Boolean
+        get() = slideLeaveCallback?.allowSlideLeave(slideId) ?: true
+
+    override fun onUserIllegallyRequestedNextPage() {
+        slideLeaveCallback?.onSlideLeavePrevented(slideId)
+    }
+
+    override val layoutId: Int get() = com.github.appintro.R.layout.appintro_fragment_intro
 
     var slideId: String = ""
 
@@ -47,7 +58,8 @@ class IdentifiableAppIntroFragment : AppIntroBaseFragment() {
             @FontRes titleTypefaceFontRes: Int = 0,
             @FontRes descriptionTypefaceFontRes: Int = 0,
             @DrawableRes backgroundDrawable: Int = 0,
-            id: String
+            id: String,
+            callback: SlideLeaveInterface
         ): IdentifiableAppIntroFragment {
             return createInstance(
                 SliderPage(
@@ -60,7 +72,7 @@ class IdentifiableAppIntroFragment : AppIntroBaseFragment() {
                     titleTypefaceFontRes = titleTypefaceFontRes,
                     descriptionTypefaceFontRes = descriptionTypefaceFontRes,
                     backgroundDrawable = backgroundDrawable
-                ), id
+                ), id, callback
             )
         }
 
@@ -73,10 +85,11 @@ class IdentifiableAppIntroFragment : AppIntroBaseFragment() {
          * @return An [AppIntroFragment] created instance
          */
         @JvmStatic
-        fun createInstance(sliderPage: SliderPage, id: String): IdentifiableAppIntroFragment {
+        fun createInstance(sliderPage: SliderPage, id: String, callback: SlideLeaveInterface): IdentifiableAppIntroFragment {
             val slide = IdentifiableAppIntroFragment()
             slide.arguments = sliderPage.toBundle()
             slide.slideId = id
+            slide.slideLeaveCallback = callback
             return slide
         }
     }

@@ -132,9 +132,8 @@
     <string name="pref_locale_dlg_title">选择语言</string>
     <string name="pref_locale_restart_notice">语言更改将在重新启动应用后生效</string>
     <string name="use_logs">记录 Rclone 错误</string>
-    <string name="use_logs_summary">错误日志将会保存到本地文件夹 \'Android/data/de.felixnuesse.extract/files/logs\'</string>
+    <string name="use_logs_summary">错误日志将会保存到本地文件夹 (Android/data/de.felixnuesse.extract/files/logs)</string>
     <string name="notifications_pref_title">消息通知</string>
-    <string name="open_system_settings">打开系统设置</string>
     <string name="content_description_circle">圈</string>
     <string name="loading">加载中</string>
     <string name="app_not_configured">Round Sync 尚未配置</string>
@@ -172,7 +171,6 @@
     <string name="error_exporting_config_file">导出配置文件时出错</string>
     <string name="app_update_notification_title">应用更新现已发布在 Github 上</string>
     <string name="app_updates_notifications">获得有关应用更新的通知</string>
-    <string name="beta_app_updates_notifications">获得有关预发布版本的通知</string>
     <string name="delete_remote_title">是否删除远端？</string>
     <string name="rename_remote">重命名远端</string>
     <string name="empty_trash">清空回收站</string>
@@ -184,10 +182,6 @@
     <string name="generating_public_link">正在生成公共链接</string>
     <string name="public_link">公共链接</string>
     <string name="link_copied_to_clipboard">链接已复制到剪贴板</string>
-    <string name="send_anonymous_crash_reports">发送匿名崩溃报告</string>
-    <string name="pref_crash_report_summary">通过发送错误和崩溃报告来帮助开发人员。详情见 https://x0b.github.io/rcx-privacy. \nID: %1$s.</string>
-    <string name="pref_send_test_report_title">发送测试报告</string>
-    <string name="pref_send_test_report_summary">向崩溃记录器发送测试报告</string>
     <string name="pin_to_the_top">置顶</string>
     <string name="unpin_from_the_top">取消置顶</string>
     <string name="pin_to_drawer">收藏</string>

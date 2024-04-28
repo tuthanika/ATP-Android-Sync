@@ -104,39 +104,34 @@ public class ActivityHelper {
     }
 
     public static boolean isDarkTheme(Context context) {
-        int mode = PreferenceManager.getDefaultSharedPreferences(context).getInt(context.getString(R.string.pref_key_dark_theme), FOLLOW_SYSTEM);
-        switch(mode) {
-            case LIGHT:
-                return false;
-            case DARK:
-                return true;
-            case FOLLOW_SYSTEM:
-            default:
-                Configuration config = context.getApplicationContext().getResources().getConfiguration();
-                int currentNightMode = config.uiMode & Configuration.UI_MODE_NIGHT_MASK;
-                switch (currentNightMode) {
-                    case Configuration.UI_MODE_NIGHT_NO:
-                        return false;
-                    case Configuration.UI_MODE_NIGHT_YES:
-                        return true;
-                }
+        String mode = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_theme), String.valueOf(FOLLOW_SYSTEM));
+
+        if(mode.equals(String.valueOf(LIGHT))) {
+            return false;
+        } else if(mode.equals(String.valueOf(DARK))) {
+            return true;
+        } else {
+            Configuration config = context.getApplicationContext().getResources().getConfiguration();
+            int currentNightMode = config.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            switch (currentNightMode) {
+                case Configuration.UI_MODE_NIGHT_NO:
+                    return false;
+                case Configuration.UI_MODE_NIGHT_YES:
+                    return true;
+            }
         }
-        return true;
+        return false;
     }
 
     public static void applyDarkMode(Activity activity) {
-        int mode = PreferenceManager.getDefaultSharedPreferences(activity).getInt(activity.getString(R.string.pref_key_dark_theme), FOLLOW_SYSTEM);
-        switch(mode) {
-            case LIGHT:
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                break;
-            case DARK:
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                break;
-            case FOLLOW_SYSTEM:
-            default:
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                break;
+        String mode = PreferenceManager.getDefaultSharedPreferences(activity).getString(activity.getString(R.string.pref_key_theme), String.valueOf(FOLLOW_SYSTEM));
+
+        if(mode.equals(String.valueOf(LIGHT))) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else if(mode.equals(String.valueOf(DARK))) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         }
     }
 }
