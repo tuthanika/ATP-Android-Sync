@@ -291,6 +291,7 @@ class EphemeralWorker (private var mContext: Context, workerParams: WorkerParame
         }
         showFailNotification(notificationId, content)
         endNotificationAlreadyPosted = true
+        finishWork()
     }
 
     private fun showCancelledNotification(notificationId: Int) {
@@ -353,8 +354,9 @@ class EphemeralWorker (private var mContext: Context, workerParams: WorkerParame
     }
 
     private fun preconditionsMet(): Boolean {
+        val wifiOnly = mPreferences.getBoolean(mContext.getString(R.string.pref_key_wifi_only_transfers), false)
         val connection = WifiConnectivitiyUtil.dataConnection(this.applicationContext)
-        if (connection === WifiConnectivitiyUtil.Connection.METERED) {
+        if (wifiOnly && connection === WifiConnectivitiyUtil.Connection.METERED) {
             failureReason = FAILURE_REASON.NO_UNMETERED
             return false
         } else if (connection === WifiConnectivitiyUtil.Connection.DISCONNECTED || connection === WifiConnectivitiyUtil.Connection.NOT_AVAILABLE) {
@@ -406,9 +408,11 @@ class EphemeralWorker (private var mContext: Context, workerParams: WorkerParame
     private val connectivityChangeBroadcastReceiver: BroadcastReceiver =
         object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
+                if(endNotificationAlreadyPosted){
+                    return
+                }
                 sConnectivityChanged = true
                 failureReason = FAILURE_REASON.CONNECTIVITY_CHANGED
-                finishWork()
             }
         }
 
