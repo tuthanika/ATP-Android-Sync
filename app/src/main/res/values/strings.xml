@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Round Sync</string>
+    <string name="app_name" translatable="false">Round Sync</string>
     <string name="app_description">Rclone for Android</string>
-    <string name="app_short_name">Round Sync</string>
+    <string name="app_short_name" translatable="false">Round Sync</string>
 
     <string name="title_activity_about">About</string>
     <string name="title_activity_changelog">Changelog</string>
@@ -180,10 +180,10 @@
     <string name="remote_name_hint">Name (a–z, 0-9 only)</string>
     <string name="waiting_for_code">Waiting for code</string>
     <string name="open_browser">Open browser</string>
-    <string name="provider_ftp">FTP</string>
-    <string name="provider_http">HTTP</string>
-    <string name="serve_dlna">DLNA</string>
-    <string name="provider_webdav">Webdav</string>
+    <string name="provider_ftp" translatable="false">FTP</string>
+    <string name="provider_http" translatable="false">HTTP</string>
+    <string name="serve_dlna" translatable="false">DLNA</string>
+    <string name="provider_webdav" translatable="false">Webdav</string>
     <string name="error_creating_remote">Error creating remote</string>
     <string name="remote_creation_success">Remote created successfully</string>
     <string name="next">Next</string>
