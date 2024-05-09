@@ -27,6 +27,7 @@ public class SharedPreferencesBackup {
         String proxyProtocol = sharedPreferences.getString(context.getString(R.string.pref_key_proxy_protocol), "http");
         String proxyHost = sharedPreferences.getString(context.getString(R.string.pref_key_proxy_host), "localhost");
         int proxyPort = sharedPreferences.getInt(context.getString(R.string.pref_key_proxy_port), 8080);
+        String proxyUser = sharedPreferences.getString(context.getString(R.string.pref_key_proxy_username), "");
 
         // File Access
         boolean safEnabled = sharedPreferences.getBoolean(context.getString(R.string.pref_key_enable_saf), false);
@@ -36,17 +37,15 @@ public class SharedPreferencesBackup {
         boolean vcpGrantAll = sharedPreferences.getBoolean(context.getString(R.string.pref_key_vcp_grant_all), false);
 
         // Look and Feel
-        int darkTheme = sharedPreferences.getInt(context.getString(R.string.pref_key_dark_theme), FOLLOW_SYSTEM);
+        int oldTheme = sharedPreferences.getInt(context.getString(R.string.pref_key_theme_old), FOLLOW_SYSTEM);
+        String newTheme = sharedPreferences.getString(context.getString(R.string.pref_key_theme), String.valueOf(oldTheme));
         boolean isWrapFilenames = sharedPreferences.getBoolean(context.getString(R.string.pref_key_wrap_filenames), true);
 
         // Notifications
-        boolean appUpdates = sharedPreferences.getBoolean(context.getString(R.string.pref_key_app_updates), true);
-        boolean betaUpdates = sharedPreferences.getBoolean(context.getString(R.string.pref_key_app_updates_beta), false);
+        boolean appUpdates = sharedPreferences.getBoolean(context.getString(R.string.pref_key_app_updates), false);
 
         // Logging
         boolean useLogs = sharedPreferences.getBoolean(context.getString(R.string.pref_key_logs), false);
-        boolean crashReports = sharedPreferences.getBoolean(context.getString(R.string.pref_key_crash_reports),
-                context.getResources().getBoolean(R.bool.default_crash_log_enable));
 
 
         JSONObject main = new JSONObject();
@@ -58,17 +57,16 @@ public class SharedPreferencesBackup {
         main.put("proxyProtocol", proxyProtocol);
         main.put("proxyHost", proxyHost);
         main.put("proxyPort", proxyPort);
+        main.put("proxyUser", proxyUser);
         main.put("safEnabled", safEnabled);
         main.put("refreshLaEnabled", refreshLaEnabled);
         main.put("vcpEnabled", vcpEnabled);
         main.put("vcpDeclareLocal", vcpDeclareLocal);
         main.put("vcpGrantAll", vcpGrantAll);
-        main.put("isDarkTheme", darkTheme);
+        main.put("isDarkTheme", newTheme);
         main.put("isWrapFilenames", isWrapFilenames);
         main.put("appUpdates", appUpdates);
-        main.put("betaUpdates", betaUpdates);
         main.put("useLogs", useLogs);
-        main.put("crashReports", crashReports);
 
         return main.toString();
     }
@@ -80,13 +78,14 @@ public class SharedPreferencesBackup {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         //General Settings
-        editor.putBoolean(context.getString(R.string.pref_key_app_updates_beta), jsonObject.getBoolean("showThumbnails"));
+        editor.putBoolean(context.getString(R.string.pref_key_show_thumbnails), jsonObject.getBoolean("showThumbnails"));
         editor.putBoolean(context.getString(R.string.pref_key_wifi_only_transfers), jsonObject.getBoolean("isWifiOnly"));
         editor.putBoolean(context.getString(R.string.pref_key_use_proxy), jsonObject.getBoolean("useProxy"));
         editor.putBoolean(context.getString(R.string.shared_preferences_allow_sync_trigger_while_idle), jsonObject.optBoolean("allowWhileIdle", false));
         editor.putString(context.getString(R.string.pref_key_proxy_protocol), jsonObject.getString("proxyProtocol"));
         editor.putString(context.getString(R.string.pref_key_proxy_host), jsonObject.getString("proxyHost"));
         editor.putInt(context.getString(R.string.pref_key_proxy_port), jsonObject.getInt("proxyPort"));
+        editor.putString(context.getString(R.string.pref_key_proxy_username), jsonObject.getString("proxyUser"));
 
         // File Access
         editor.putBoolean(context.getString(R.string.pref_key_enable_saf), jsonObject.getBoolean("safEnabled"));
@@ -107,20 +106,18 @@ public class SharedPreferencesBackup {
            } else {
                valueForTheme = LIGHT;
            }
-            editor.putInt(context.getString(R.string.pref_key_dark_theme), valueForTheme);
+            editor.putString(context.getString(R.string.pref_key_theme), String.valueOf(valueForTheme));
         }
 
-        editor.putInt(context.getString(R.string.pref_key_dark_theme), valueForTheme);
+        editor.putString(context.getString(R.string.pref_key_theme), String.valueOf(valueForTheme));
 
         editor.putBoolean(context.getString(R.string.pref_key_wrap_filenames), jsonObject.getBoolean("isWrapFilenames"));
 
         // Notifications
         editor.putBoolean(context.getString(R.string.pref_key_app_updates), jsonObject.getBoolean("appUpdates"));
-        editor.putBoolean(context.getString(R.string.pref_key_app_updates_beta), jsonObject.getBoolean("betaUpdates"));
 
         // Logging
         editor.putBoolean(context.getString(R.string.pref_key_logs), jsonObject.getBoolean("useLogs"));
-        editor.putBoolean(context.getString(R.string.pref_key_crash_reports), jsonObject.getBoolean("crashReports"));
 
         editor.apply();
     }

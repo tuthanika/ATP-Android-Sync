@@ -73,7 +73,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="00:00"
                 app:layout_constraintStart_toEndOf="@+id/text_label_time"
                 app:layout_constraintTop_toTopOf="@+id/text_label_time" />
 
@@ -153,7 +152,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="TextView"
                 app:layout_constraintStart_toEndOf="@+id/trigger_target_label"
                 app:layout_constraintTop_toTopOf="@+id/trigger_target_label" />
 

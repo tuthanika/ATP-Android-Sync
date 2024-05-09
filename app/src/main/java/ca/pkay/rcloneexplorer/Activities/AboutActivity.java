@@ -106,9 +106,4 @@ public class AboutActivity extends AppCompatActivity {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.github_maintainer_url)));
         tryStartActivity(this, browserIntent);
     }
-
-    private void openReleaseLink() {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.app_latest_release_url)));
-        tryStartActivity(this, browserIntent);
-    }
 }

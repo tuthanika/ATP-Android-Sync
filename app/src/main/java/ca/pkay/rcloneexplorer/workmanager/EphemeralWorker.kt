@@ -107,71 +107,73 @@ class EphemeralWorker (private var mContext: Context, workerParams: WorkerParame
                 return Result.failure()
             }
 
-            when(type){
-                Type.DOWNLOAD -> {
-                    val target = inputData.getString(DOWNLOAD_TARGETPATH)
-                    val fileItem = getFileitemFromParcel(DOWNLOAD_SOURCE)
-
-                    if(fileItem == null){
-                        log("$DOWNLOAD_SOURCE: No valid target was passed!")
-                        return Result.failure()
-                    }
-
-                    sRcloneProcess = Rclone(mContext).downloadFile(
-                        remoteItem,
-                        fileItem,
-                        target
-                    )
-                }
-                Type.UPLOAD -> {
-                    val target = inputData.getString(UPLOAD_TARGETPATH)
-                    val file = inputData.getString(UPLOAD_FILE)
-
-                    sRcloneProcess = Rclone(mContext).uploadFile(
-                        remoteItem,
-                        target,
-                        file
-                    )
-                }
-                Type.MOVE -> {
-                    val target = inputData.getString(MOVE_TARGETPATH)
-                    val fileItem = getFileitemFromParcel(MOVE_FILE)
-
-                    if(fileItem == null){
-                        log("$MOVE_FILE: No valid target was passed!")
-                        return Result.failure()
-                    }
-
-                    sRcloneProcess = Rclone(mContext).moveTo(
-                        remoteItem,
-                        fileItem,
-                        target
-                    )
-                }
-                Type.DELETE -> {
-                    val fileItem = getFileitemFromParcel(DELETE_FILE)
-
-                    if(fileItem == null){
-                        log("$DELETE_FILE: No valid target was passed!")
-                        return Result.failure()
-                    }
-
-                    sRcloneProcess = Rclone(mContext).deleteItems(
-                        remoteItem,
-                        fileItem
-                    )
-                }
-            }
-
             mNotificationManager?.setCancelId(id)
             if(preconditionsMet()) {
+                // do not instantiate rclone when you dont want it to run.
+                // It will immediately run!
+                when(type){
+                    Type.DOWNLOAD -> {
+                        val target = inputData.getString(DOWNLOAD_TARGETPATH)
+                        val fileItem = getFileitemFromParcel(DOWNLOAD_SOURCE)
+
+                        if(fileItem == null){
+                            log("$DOWNLOAD_SOURCE: No valid target was passed!")
+                            return Result.failure()
+                        }
+
+                        sRcloneProcess = Rclone(mContext).downloadFile(
+                            remoteItem,
+                            fileItem,
+                            target
+                        )
+                    }
+                    Type.UPLOAD -> {
+                        val target = inputData.getString(UPLOAD_TARGETPATH)
+                        val file = inputData.getString(UPLOAD_FILE)
+
+                        sRcloneProcess = Rclone(mContext).uploadFile(
+                            remoteItem,
+                            target,
+                            file
+                        )
+                    }
+                    Type.MOVE -> {
+                        val target = inputData.getString(MOVE_TARGETPATH)
+                        val fileItem = getFileitemFromParcel(MOVE_FILE)
+
+                        if(fileItem == null){
+                            log("$MOVE_FILE: No valid target was passed!")
+                            return Result.failure()
+                        }
+
+                        sRcloneProcess = Rclone(mContext).moveTo(
+                            remoteItem,
+                            fileItem,
+                            target
+                        )
+                    }
+                    Type.DELETE -> {
+                        val fileItem = getFileitemFromParcel(DELETE_FILE)
+
+                        if(fileItem == null){
+                            log("$DELETE_FILE: No valid target was passed!")
+                            return Result.failure()
+                        }
+
+                        sRcloneProcess = Rclone(mContext).deleteItems(
+                            remoteItem,
+                            fileItem
+                        )
+                    }
+                }
                 handleSync(mTitle)
-                postSync()
             } else {
                 log("Preconditions are not met!")
+                postSync()
                 return Result.failure()
             }
 
+            postSync()
             // Indicate whether the work finished successfully with the Result
             return Result.success()
         }

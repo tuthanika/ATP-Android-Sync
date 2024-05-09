@@ -120,9 +120,8 @@
     <string name="pref_locale_dlg_title">Sprache auswählen</string>
     <string name="pref_locale_restart_notice">Sprache wird beim nächsten neustart der App geändert.</string>
     <string name="use_logs">Rclone-Fehler protokollieren</string>
-    <string name="use_logs_summary">Fehler werden in einer lokalen Datei protokolliert (Android/data/io.github.rcx/files/logs)</string>
+    <string name="use_logs_summary">Fehler werden in einer lokalen Datei protokolliert (Android/data/de.felixnuesse.extract/files/logs)</string>
     <string name="notifications_pref_title">Benachrichtigungen</string>
-    <string name="open_system_settings">Systemeinstellungen öffnen</string>
     <string name="content_description_circle">Kreis</string>
     <string name="loading">Lade</string>
     <string name="app_not_configured">Rclone Explorer ist nicht konfiguriert</string>
@@ -159,7 +158,6 @@
     <string name="error_exporting_config_file">Fehler beim Exportieren der Konfigurationsdatei</string>
     <string name="app_update_notification_title">App-Update auf GitHub verfügbar</string>
     <string name="app_updates_notifications">Über App-Aktualisierungen benachrichtigen</string>
-    <string name="beta_app_updates_notifications">Über Beta-Versionen benachrichtigen</string>
     <string name="delete_remote_title">Remote löschen?</string>
     <string name="rename_remote">Remote umbenennen</string>
     <string name="empty_trash">Papierkorb leeren</string>
@@ -171,9 +169,6 @@
     <string name="generating_public_link">Erstelle öffentlichen Link</string>
     <string name="public_link">Öffentlicher Link</string>
     <string name="link_copied_to_clipboard">Link in Zwischenablage kopiert</string>
-    <string name="send_anonymous_crash_reports">Anonyme Absturzberichte senden</string>
-    <string name="pref_send_test_report_title">Test-Fehlerbericht senden</string>
-    <string name="pref_send_test_report_summary">Testet die Fehlerberichterstattung</string>
     <string name="pin_to_the_top">Oben anheften</string>
     <string name="unpin_from_the_top">Nicht mehr anheften</string>
     <string name="pin_to_drawer">Im Menü anheften</string>
@@ -280,7 +275,6 @@
     <string name="rcd_service_notification_channel_description">Hintergrunddienst</string>
     <string name="serve_dialog_remote_notice_enabled">Der aktuelle Ordner wird im Netzwerk sichtbar (für TVs, Media Player)</string>
     <string name="serve_dialog_remote_notice_disabled">Datein sind nur für andere Apps auf diesem Gerät sichtbar.</string>
-    <string name="pref_crash_report_summary">Hilf uns bei der Weiterenwicklung, indem du automatisch Fehlerberichte sendest. Details unter https://x0b.github.io/rcx-privacy. \nID: %1$s.</string>
     <string name="report_collection_title">Fehlerbericht</string>
     <string name="report_collection_collecting">Erfasse Daten für Fehlerbericht</string>
     <string name="report_collection_stop_collection">Erfassung beenden</string>
@@ -404,7 +398,6 @@
     <string name="bisync">Bidirektional</string>
     <string name="description_sync_direction">Dies bestimmt die Quelle und das Ziel für den Datentransfer.</string>
     <string name="intro_successful_setup">Du kannst nun loslegen!</string>
-    <string name="intro_write_external_storage_denied">Dateizugriff nicht erlaubt.</string>
     <string name="status_offendingfile">Die problematische Datei:</string>
     <string name="use_md5checksum">Benutze md5-Prüfsummen</string>
     <string name="task_hint_wifi_ignore_defaults">Wenn eingeschaltet überschreibt diese die globale Einstellung bezüglich des Datentransfers über WLan</string>
@@ -461,8 +454,6 @@
     <string name="intro_alarms_description">Wir möchten in der Lage sein Alarme einzurichten um Synchronisierung zu starten. Keine Sorge, wir klingeln nicht durch!</string>
     <string name="operation_start_sync">Synchronisierung gestartet!</string>
     <string name="operation_sync_cancelled">Synchronisierung gestoppt!</string>
-    <string name="intro_notifications_denied">Wir benachrichtigen dich nicht.</string>
-    <string name="intro_alarms_denied">Wir können jetzt keine Alarme einrichten</string>
     <string name="app_error_notification_channel_name">App-Fehler</string>
     <string name="app_error_notification_channel_description">Fehler die spezifisch für diese App sind erscheinen in diesem Kanal</string>
     <string name="permissionFragment">Berechtigungen</string>

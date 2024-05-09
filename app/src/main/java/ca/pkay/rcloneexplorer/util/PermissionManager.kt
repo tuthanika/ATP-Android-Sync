@@ -12,9 +12,15 @@ import android.os.Build
 import android.os.Environment
 import android.os.PowerManager
 import android.provider.Settings
+import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.core.app.NotificationManagerCompat
 import ca.pkay.rcloneexplorer.BuildConfig
+import de.felixnuesse.extract.extensions.tag
 
 
 class PermissionManager(private var mContext: Context) {
@@ -77,7 +83,7 @@ class PermissionManager(private var mContext: Context) {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
            ActivityCompat.checkSelfPermission(mContext, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
         } else {
-            true
+            NotificationManagerCompat.from(mContext).areNotificationsEnabled()
         }
     }
 
@@ -110,5 +116,13 @@ class PermissionManager(private var mContext: Context) {
         val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
         intent.data = Uri.parse("package:" + mContext.packageName)
         mContext.startActivity(intent)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    fun registerInitialRequestNotificationPermission(activity: AppCompatActivity): ActivityResultLauncher<String> {
+        return activity.registerForActivityResult(
+            ActivityResultContracts.RequestPermission()) { granted ->
+            Log.e(tag(), "granted")
+        }
     }
 }

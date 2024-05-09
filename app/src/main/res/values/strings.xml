@@ -126,32 +126,12 @@
     <string name="intro_storage_description">Round Sync relies on rclone and needs your permission to access all files. Please grant storage access when prompted, otherwise the application will not work properly.</string>
     <string name="intro_community_title">Community</string>
     <string name="intro_community_description">Round Sync is a community driven project. To contribute and improve the application, you can enable anonymous bug reporting. For more information, please visit felixnuesse.de/privacy-roundsync.</string>
-    <string name="pref_key_logs" translatable="false">pref_key_logs</string>
-    <string name="pref_key_dark_theme" translatable="false">pref_key_theme_mode</string>
-    <string name="pref_key_wrap_filenames" translatable="false">pref_key_wrap_filenames</string>
-    <string name="pref_key_app_updates" translatable="false">pref_key_app_updates</string>
-    <string name="pref_key_app_updates_beta" translatable="false">pref_key_app_updates_beta</string>
-    <string name="pref_key_app_notification_reports" translatable="false">pref_key_app_notification_reports</string>
-    <string name="pref_key_crash_reports" translatable="false">pref_key_crash_reports</string>
-    <string name="pref_key_show_thumbnails" translatable="false">pref_key_show_thumbnails</string>
-    <string name="pref_key_thumbnail_size_limit" translatable="false">thumbnail_max_size</string>
-    <string name="pref_key_wifi_only_transfers" translatable="false">pref_key_wifi_only_transfers</string>
-    <string name="pref_key_version_code" translatable="false">pref_key_version_code</string>
-    <string name="pref_key_version_name" translatable="false">pref_key_version_name</string>
-    <string name="pref_key_enable_saf" translatable="false">pref_key_enable_saf</string>
-    <string name="pref_key_enable_vcp" translatable="false">vcp_enable</string>
-    <string name="pref_key_vcp_declare_local" translatable="false">vcp_declare_local</string>
-    <string name="pref_key_vcp_grant_all" translatable="false">vcp_grant_all</string>
+
     <string name="file_access">File Access</string>
     <string name="look_and_feel">Look and Feel</string>
     <string name="dark_theme">Dark theme</string>
     <string name="transfer_only_on_wifi">Transfer files only over Wi-Fi</string>
     <string name="transfer_only_on_wifi_summary">Require Wi-Fi connection for file transfers</string>
-    <string name="pref_key_use_proxy" translatable="false">use_proxy</string>
-    <string name="pref_key_proxy_host" translatable="false">proxy_host</string>
-    <string name="pref_key_proxy_port" translatable="false">proxy_port</string>
-    <string name="pref_key_proxy_protocol" translatable="false">proxy_protocol</string>
-    <string name="pref_key_no_proxy_hosts" translatable="false">no_proxy_hosts</string>
     <string name="pref_use_proxy_title">Use Proxy</string>
     <string name="pref_use_proxy_summary">Use proxy for all supported data transfers (HTTP, HTTPS)</string>
     <string name="pref_proxy_protocol">Proxy Protocol</string>
@@ -163,11 +143,12 @@
     <string name="pref_locale">Language</string>
     <string name="pref_locale_dlg_title">Select Language</string>
     <string name="pref_locale_restart_notice">Changing the language will take effect after restarting the app</string>
-    <string name="pref_key_locale" translatable="false">locale</string>
     <string name="use_logs">Log rclone errors</string>
-    <string name="use_logs_summary">Error logs will be saved to a local file at \'Android/data/de.felixnuesse.extract/files/logs\'</string>
+    <string name="use_logs_summary">Error logs will be saved to a local file at (Android/data/de.felixnuesse.extract/files/logs)</string>
     <string name="notifications_pref_title">Notifications</string>
-    <string name="open_system_settings">Open system settings</string>
+    <string name="open_notification_settings_title">More notification settings</string>
+    <string name="open_notification_settings_summary">Open the settings to further change how we notify you!</string>
+    <string name="open_notification_settings_button">Open!</string>
     <string name="content_description_circle">circle</string>
     <string name="loading">Loading</string>
     <string name="app_not_configured">Round Sync is not configured</string>
@@ -208,9 +189,13 @@
     <string name="next">Next</string>
     <string name="title_activity_remote_config">Select type</string>
     <string name="error_exporting_config_file">Error exporting config file</string>
-    <string name="app_update_notification_title">App update available on Github</string>
+    <string name="app_update_notification_title">App update available!</string>
+    <string name="app_update_notification_description">Version %1$s was found! Do you want to apply it?</string>
+    <string name="app_updates_notification_action_ignore">Ignore Update</string>
+    <string name="app_updates_notification_action_apply">Apply Update</string>
     <string name="app_updates_notifications">Get notified about app updates</string>
-    <string name="beta_app_updates_notifications">Get notified about pre-release versions</string>
+    <string name="app_update_notification_channel_name">Update Notifications</string>
+    <string name="app_update_notification_channel_description">Shows notifications related to app updates</string>
     <string name="delete_remote_title">Delete remote?</string>
     <string name="rename_remote">Rename Remote</string>
     <string name="empty_trash">Empty trash</string>
@@ -222,10 +207,6 @@
     <string name="generating_public_link">Generating public link</string>
     <string name="public_link">Public link</string>
     <string name="link_copied_to_clipboard">Link copied to clipboard</string>
-    <string name="send_anonymous_crash_reports">Send anonymous crash reports</string>
-    <string name="pref_crash_report_summary">Help the devs by sending error and crash reports. See https://x0b.github.io/rcx-privacy. \nID: %1$s.</string>
-    <string name="pref_send_test_report_title">Send Test Report</string>
-    <string name="pref_send_test_report_summary">Sends a test report to the crash logger</string>
     <string name="pin_to_the_top">Pin to the top</string>
     <string name="unpin_from_the_top">Unpin</string>
     <string name="pin_to_drawer">Pin to drawer</string>
@@ -233,10 +214,6 @@
     <string name="shared_preferences_pinned_remotes" translatable="false">shared_preferences_pinned_remotes</string>
     <string name="shared_preferences_drawer_pinned_remotes" translatable="false">shared_preferences_drawer_pinned_remotes</string>
     <string name="shared_preferences_allow_sync_trigger_while_idle" translatable="false">shared_preferences_allow_sync_trigger_while_idle</string>
-    <string name="app_latest_release_url" translatable="false">https://github.com/newhinton/Round-Sync/releases/latest</string>
-    <string name="app_relase_api_url" translatable="false">https://api.github.com/repos/newhinton/Round-Sync/releases/latest</string>
-    <string name="app_pre_release_api_url" translatable="false">https://api.github.com/repos/newhinton/Round-Sync/releases</string>
-    <string name="pref_key_update_last_check" translatable="false">last_update_check</string>
     <string name="show_thumbnails">Show thumbnails</string>
     <string name="pref_thumbnails_size_title">Maximum file size for thumbnails</string>
     <string name="pref_thumbnails_dlg_title">Size limit (MB)</string>
@@ -256,14 +233,13 @@
     <string name="set_default_for_all_sftp_ssh_remotes">Set default for all SFTP/SSH remotes</string>
     <string name="sftp_home">home</string>
     <string name="sftp_root">root</string>
-    <string name="pref_key_go_to_default_set" translatable="false">pref_key_go_to_default_set</string>
-    <string name="pref_key_start_at_root" translatable="false">pref_key_start_at_root</string>
     <string name="menu_select_storage">Storage</string>
     <string name="select_storage">Select Storage</string>
     <string name="empty_trash_confirmation">Are you sure you want to empty the trash?</string>
     <string name="app_shortcuts_settings_dialog_title">Application Shortcuts</string>
     <string name="settings_header_general">General</string>
     <string name="app_shortcuts_settings">Application Shortcuts</string>
+    <string name="settings_general_appshortcut_icon_description">Application Shortcuts</string>
     <string name="shared_preferences_app_shortcuts" translatable="false">shared_preferences_app_shortcuts</string>
     <string name="app_shortcuts_max_toast">Maximum of 4 shortcuts allowed</string>
     <string name="remote_not_found">Remote not found</string>
@@ -285,11 +261,7 @@
     <string name="hidden_remotes">Hidden remotes</string>
     <string name="shared_preferences_hidden_remotes" translatable="false">shared_preferences_hidden_remotes</string>
     <string name="select_remotes_to_hide">Select remotes to hide</string>
-    <string name="pref_key_renamed_remotes" translatable="false">renamed_remotes</string>
-    <string name="pref_key_renamed_remote_prefix" translatable="false">remote_name_%1$s</string>
     <string name="allow_remote_access">Allow access from other devices</string>
-    <string name="pref_key_local_alias_remotes" translatable="false">local_alias_remotes</string>
-    <string name="pref_key_refresh_local_aliases" translatable="false">refresh_local_aliases</string>
     <string name="refreshing_local_alias_remotes">Refreshing local alias remotes…</string>
     <string name="pref_enable_local_alias_title">Refresh local drives</string>
     <string name="pref_enable_local_alias_summary">Automatically update local storage at startup</string>
@@ -349,7 +321,6 @@
     <string name="move_operation_failed">Move operation failed</string>
     <string name="pref_open_all_files_setting_label">Grant MANAGE_EXTERNAL_STORAGE permission</string>
     <string name="pref_open_all_files_setting_summary">EXPERIMENTAL: Works only on Android R (Android 11)</string>
-    <string name="pref_key_accessible_storage_locations" translatable="false">accessible_storage_locations</string>
     <string name="no_app_found_for_this_link">No app found for this link</string>
     <string name="documentsui_missing">System component for files (com.android.documentsui) missing</string>
 
@@ -500,7 +471,6 @@
     <string name="description_sync_direction_sync_bidirectional">Make sure local and remote storage have the same files by transferring, downloading, and deleting files as needed to maintain an identical folder structure.</string>
     <string name="intro_success">Success!</string>
     <string name="intro_successful_setup">You are now ready to start!</string>
-    <string name="intro_write_external_storage_denied">File access permission not granted</string>
     <string name="status_offendingfile">"The offending File: "</string>
     <string name="use_md5checksum">Use md5 checksum</string>
     <string name="task_hint_wifi_ignore_defaults">If enabled, this setting overrides the global setting to only transfer files over Wi-Fi</string>
@@ -544,8 +514,6 @@
     <string name="intro_alarms_description">We need to be able to set alarms to schedule sync\'s. Dont worry, we will never ring your phone!</string>
     <string name="operation_start_sync">Started Sync</string>
     <string name="operation_sync_cancelled">Sync was cancelled</string>
-    <string name="intro_notifications_denied">You wont get notifications.</string>
-    <string name="intro_alarms_denied">We can\'t schedule alarms now.</string>
     <string name="app_error_notification_channel_name">App Errors</string>
     <string name="app_error_notification_channel_description">Errors that are specific to this app and its permissions will be shown via this channel</string>
     <string name="permissionFragment">Permissions</string>
@@ -601,4 +569,38 @@
     <string name="worker_move_success">Move was successful!</string>
     <string name="worker_download_initialtitle">Downloading…</string>
     <string name="worker_upload_initialtitle">Uploading…</string>
+    <string name="appupdate_incompatible">This update is incompatible with your device!</string>
+    <string name="appupdate_outofstorage">You do not have sufficient free space to install this app!</string>
+    <string name="appupdate_corrupted">The downloaded apk was damaged!</string>
+    <string name="appupdate_conflicting">The newer version does not match your installed app!</string>
+    <string name="is_this_trigger_enabled">Is this trigger enabled?</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="wrap_filenames_summary">Filenames will be trunkated in the middle if they are too long. Otherwise they are shown in multiple lines.</string>
+    <string name="pref_send_sigquit_button">Kill!</string>
+    <string name="app_update_title">Updates</string>
+    <string name="preference_dialog_filesize_label">Filesize</string>
+    <string name="preference_category_header_thumbnails">Thumbnails</string>
+    <string name="preference_category_header_proxy">Proxy</string>
+    <string name="preference_category_header_background_work">Background Work</string>
+    <string name="preference_category_header_logging">Logging</string>
+    <string name="preference_category_header_rclone">Rclone</string>
+    <string name="preference_category_header_updates">Updates</string>
+    <string name="preference_category_header_reports">Reports</string>
+    <string name="pref_proxy_user">Username</string>
+    <string name="pref_proxy_password">Password</string>
+    <string name="intro_update_checks_title">Update Notifications</string>
+    <string name="intro_update_checks_description">If you want to recieve updates, you can enable the switch below! We will notify if an update is available, and you can then choose to apply it.</string>
 </resources>

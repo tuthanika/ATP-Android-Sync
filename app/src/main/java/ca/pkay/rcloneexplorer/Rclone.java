@@ -159,8 +159,14 @@ public class Rclone {
             String noProxy = pref.getString(context.getString(R.string.pref_key_no_proxy_hosts), "localhost");
             String protocol = pref.getString(context.getString(R.string.pref_key_proxy_protocol), "http");
             String host = pref.getString(context.getString(R.string.pref_key_proxy_host), "localhost");
+            String user = pref.getString(context.getString(R.string.pref_key_proxy_username), "");
+            String pass = pref.getString(context.getString(R.string.pref_key_proxy_password), "");
             int port = pref.getInt(context.getString(R.string.pref_key_proxy_port), 8080);
-            String url = protocol + "://" + host + ":" + port;
+            String auth = "";
+            if(!(user + pass).isEmpty()) {
+                auth = user+":"+pass+"@";
+            }
+            String url = protocol + "://" + auth + host + ":" + port;
             // per https://golang.org/pkg/net/http/#ProxyFromEnvironment
             environmentValues.add("http_proxy=" + url);
             environmentValues.add("https_proxy=" + url);
@@ -1511,7 +1517,7 @@ public class Rclone {
             Process process;
 
             try {
-                process = getRuntimeProcess(command);
+                process = getRuntimeProcess(command, getRcloneEnv());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line;
                 while ((line = reader.readLine()) != null) {

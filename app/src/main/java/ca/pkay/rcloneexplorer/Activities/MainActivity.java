@@ -1,6 +1,5 @@
 package ca.pkay.rcloneexplorer.Activities;
 
-import static android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM;
 import static ca.pkay.rcloneexplorer.util.ActivityHelper.tryStartActivityForResult;
 
 import android.Manifest;
@@ -10,7 +9,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -20,7 +18,6 @@ import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -29,12 +26,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -49,7 +44,6 @@ import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -81,11 +75,11 @@ import ca.pkay.rcloneexplorer.RemoteConfig.RemoteConfigHelper;
 import ca.pkay.rcloneexplorer.RuntimeConfiguration;
 import ca.pkay.rcloneexplorer.Services.StreamingService;
 import ca.pkay.rcloneexplorer.Services.TriggerService;
-import ca.pkay.rcloneexplorer.pkg.PackageUpdate;
 import ca.pkay.rcloneexplorer.util.ActivityHelper;
 import ca.pkay.rcloneexplorer.util.FLog;
 import ca.pkay.rcloneexplorer.util.PermissionManager;
 import ca.pkay.rcloneexplorer.util.SharedPreferencesUtil;
+import de.felixnuesse.extract.updates.UpdateChecker;
 import es.dmoral.toasty.Toasty;
 import java9.util.stream.Stream;
 
@@ -119,12 +113,14 @@ public class MainActivity extends AppCompatActivity
 
         ActivityHelper.applyTheme(this);
 
-        if(!(new PermissionManager(this)).hasAllRequiredPermissions()) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean allPermissionsGranted = (new PermissionManager(this)).hasAllRequiredPermissions();
+        boolean completedIntroOnce = OnboardingActivity.Companion.completedIntro(this);
+        if(!allPermissionsGranted || !completedIntroOnce) {
             startActivity(new Intent(this, OnboardingActivity.class));
             finish();
         }
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         context = this;
         drawerPinnedRemoteIds = new HashMap<>();
@@ -145,22 +141,6 @@ public class MainActivity extends AppCompatActivity
         rclone = new Rclone(this);
 
         findViewById(R.id.locked_config_btn).setOnClickListener(v -> askForConfigPassword());
-
-        boolean appUpdates = sharedPreferences.getBoolean(getString(R.string.pref_key_app_updates), true);
-        if (appUpdates) {
-            // Google Play and F-Droid have their own update mechanisms
-            // => do not check for updates
-            PackageManager packageManager = getPackageManager();
-            if ("com.android.vending".equals(packageManager.getInstallerPackageName(getPackageName()))
-                    || BuildConfig.DEBUG) {
-                FLog.d(TAG, "Installed via Google Play, not checking for updates");
-            } else if ("oss".equals(BuildConfig.FLAVOR)){
-                FLog.d(TAG, "OSS flavor, not checking for updates");
-            } else {
-                PackageUpdate packageUpdate = new PackageUpdate(this);
-                packageUpdate.checkForUpdate(false);
-            }
-        }
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -235,6 +215,8 @@ public class MainActivity extends AppCompatActivity
         updatePermissionFragmentVisibility();
         TriggerService triggerService = new TriggerService(context);
         triggerService.queueTrigger();
+
+        (new UpdateChecker(this)).schedule();
     }
 
     @Override
