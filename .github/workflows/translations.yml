@@ -23,7 +23,7 @@ jobs:
           SEARCH='strings.xml'
           CHANGEDFILES=''
           for file in ${ALL_CHANGED_FILES}; do
-            if [[ "$file" == *"$SEARCH" ]]; then
+            if [[ "$file" == *values-*"$SEARCH" ]]; then
               echo "$file was changed"
               CHANGEDFILES="${CHANGEDFILES} $file"
               echo "should-run=true" >> $GITHUB_OUTPUT 

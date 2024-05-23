@@ -256,6 +256,7 @@ class SyncWorker (private var mContext: Context, workerParams: WorkerParameters)
         }
         showFailNotification(notificationId, content)
         endNotificationAlreadyPosted = true
+        finishWork()
     }
 
     private fun showCancelledNotification(notificationId: Int) {
@@ -419,9 +420,11 @@ class SyncWorker (private var mContext: Context, workerParams: WorkerParameters)
     private val connectivityChangeBroadcastReceiver: BroadcastReceiver =
         object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
+                if(endNotificationAlreadyPosted){
+                    return
+                }
                 sConnectivityChanged = true
                 failureReason = FAILURE_REASON.CONNECTIVITY_CHANGED
-                finishWork()
             }
         }
 
