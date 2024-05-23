@@ -317,8 +317,8 @@
     <string name="saf_uri_permission_error">Geçersiz izin nedeniyle depoya erişilemiyor</string>
     <string name="saf_uri_permission_already_added">Depolama veya bir alt klasör var</string>
     <plurals name="virtual_content_provider_summary">
-      <item quantity="one">Bir Uzaktan Kumanda mevcut</item>
-      <item quantity="other">%1$d Uzaktan kumanda mevcut</item>
+        <item quantity="one">Bir Uzaktan Kumanda mevcut</item>
+        <item quantity="other">%1$d Uzaktan kumanda mevcut</item>
     </plurals>
     <string name="virtual_content_provider_exception_advice">Ağ bağlantınızı kontrol edin</string>
     <string name="virtual_content_provider_exception_error">Destek bilgisi:\n%1$s</string>
@@ -333,17 +333,17 @@
     <string name="remote_properties_authorization">Yetki</string>
     <string name="remote_properties_authorize_tap">Yenilemek için dokunun</string>
     <string-array name="serve_options" translatable="false">
-      <item>Http</item>
-      <item>WebDAV</item>
+        <item>Http</item>
+        <item>WebDAV</item>
     </string-array>
     <string-array name="sync_direction_options">
-      <item>Yerel ile uzağı eşitle</item>
-      <item>Uzaktan kumandayı yerelle senkronize et</item>
+        <item>Yerel ile uzağı eşitle</item>
+        <item>Uzaktan kumandayı yerelle senkronize et</item>
     </string-array>
     <string name="name_will_be_deleted">%1$s silinecek</string>
     <plurals name="delete_x_items">
-      <item quantity="one">%1$d öğeyi sil</item>
-      <item quantity="other">%1$d öğeyi sil</item>
+        <item quantity="one">%1$d öğeyi sil</item>
+        <item quantity="other">%1$d öğeyi sil</item>
     </plurals>
     <string name="move_operation_failed">Taşıma işlemi başarısız oldu</string>
     <string name="pref_open_all_files_setting_label">MANAGE_EXTERNAL_STORAGE izni ver</string>
@@ -365,8 +365,8 @@
     <string name="operation_success">%s eşitleme başarılı</string>
     <string name="operation_success_description_zero">Yapacak bir şey yoktu.</string>
     <plurals name="operation_success_description">
-      <item quantity="one">%3$d dosyasında %2$s başarıyla senkronize edildi.</item>
-      <item quantity="other">%3$d dosyada %2$s başarıyla senkronize edildi.</item>
+        <item quantity="one">%3$d dosyasında %2$s başarıyla senkronize edildi.</item>
+        <item quantity="other">%3$d dosyada %2$s başarıyla senkronize edildi.</item>
     </plurals>
     <string name="operation_success_description_deletions_prefix">Ayrıca %d dosya ve klasör silindi.</string>
     <string name="operation_report_success_title">Senkronizasyon Raporu Başarıları</string>
@@ -404,38 +404,38 @@
     <string name="sync_notification_elapsed">Geçen süre: %14s</string>
     <string name="sync_notification_short">%1$s/%2$s, %3$s kaldı</string>
     <plurals name="modern_prettyprint_duration_d">
-      <item quantity="one">%s Gün</item>
-      <item quantity="other">%s Gün</item>
+        <item quantity="one">%s Gün</item>
+        <item quantity="other">%s Gün</item>
     </plurals>
     <plurals name="modern_prettyprint_duration_h">
-      <item quantity="one">%s Saat</item>
-      <item quantity="other">%s Saat</item>
+        <item quantity="one">%s Saat</item>
+        <item quantity="other">%s Saat</item>
     </plurals>
     <plurals name="modern_prettyprint_duration_m">
-      <item quantity="one">%s Dakika</item>
-      <item quantity="other">%s Dakika</item>
+        <item quantity="one">%s Dakika</item>
+        <item quantity="other">%s Dakika</item>
     </plurals>
     <plurals name="modern_prettyprint_duration_s">
-      <item quantity="one">%s Saniye</item>
-      <item quantity="other">%s Saniye</item>
+        <item quantity="one">%s Saniye</item>
+        <item quantity="other">%s Saniye</item>
     </plurals>
     <plurals name="worker_deleting_success_message">
-      <item quantity="zero">Hiçbir şey silinmedi.</item>
-      <item quantity="other">%s silindi!</item>
+        <item quantity="zero">Hiçbir şey silinmedi.</item>
+        <item quantity="other">%s silindi!</item>
     </plurals>
     <plurals name="worker_move_success_message">
-      <item quantity="zero">Hiçbir şey kımıldamadı.</item>
-      <item quantity="other">%s taşındı!</item>
+        <item quantity="zero">Hiçbir şey kımıldamadı.</item>
+        <item quantity="other">%s taşındı!</item>
     </plurals>
     <plurals name="worker_download_success_message">
-      <item quantity="zero">Hiçbir şey indirilmedi.</item>
-      <item quantity="one">%s Dosya indirildi!</item>
-      <item quantity="other">%s Dosya indirildi!</item>
+        <item quantity="zero">Hiçbir şey indirilmedi.</item>
+        <item quantity="one">%s Dosya indirildi!</item>
+        <item quantity="other">%s Dosya indirildi!</item>
     </plurals>
     <plurals name="worker_upload_success_message">
-      <item quantity="zero">Hiçbir şey yüklenmedi.</item>
-      <item quantity="one">%s yüklendi!</item>
-      <item quantity="other">%s Dosya yüklendi!</item>
+        <item quantity="zero">Hiçbir şey yüklenmedi.</item>
+        <item quantity="one">%s yüklendi!</item>
+        <item quantity="other">%s Dosya yüklendi!</item>
     </plurals>
     <string name="abi_not_supported_arm_downgrade">Ne yazık ki bu Round Sync sürümü cihazınızla uyumlu değil. Github.com/newhinton/Round-Sync/releases/latest adresinden armeabi - v7a APK\'sını deneyin.</string>
     <string name="abi_not_supported">Cihazınız Round Sync\'in bu sürümünü desteklemiyor.</string>
