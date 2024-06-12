@@ -41,15 +41,15 @@
     <string name="cancel">取消</string>
     <string name="select">选择</string>
     <string name="app_icon">应用图标</string>
-    <string name="replace_config_file_question">替换当前的配置文件?</string>
-    <string name="config_file_lost_statement">您当前的配置将丢失</string>
+    <string name="replace_config_file_question">您确认替换当前的配置？</string>
+    <string name="config_file_lost_statement">当前的配置将会丢失！</string>
     <string name="continue_statement">继续</string>
     <string name="worker_download_complete">下载完成</string>
     <string name="streaming_service_notification_title">串流服务</string>
     <string name="streaming_service_notification_content">服务打开在端口 %1$d</string>
-    <string name="streaming_service_notification_channel_description">串流服务通知</string>
+    <string name="streaming_service_notification_channel_description">串流服务常驻</string>
     <string name="streaming_task_failed">无法流式传输文件</string>
-    <string name="rcd_service_notification_channel_description">后台服务通知</string>
+    <string name="rcd_service_notification_channel_description">后台服务常驻</string>
     <string name="worker_upload_complete">上传完成</string>
     <string name="remotes_toolbar_title">Remote</string>
     <string name="fab_upload_files">上传文件</string>
@@ -149,7 +149,7 @@
     <string name="appupdate_outofstorage">您的设备没有足够的可用空间来安装此应用！</string>
     <string name="appupdate_corrupted">下载的 APK 文件已损坏！</string>
     <string name="appupdate_conflicting">新版本与已安装的应用不匹配！</string>
-    <string name="is_this_trigger_enabled">此触发器是否已启用？</string>
+    <string name="is_this_trigger_enabled">勾选以启用此触发器</string>
     <string name="messages_header">消息</string>
     <string name="sync_header">同步</string>
     <string name="signature_title">您的签名</string>
@@ -169,7 +169,7 @@
     <string name="preference_category_header_updates">更新</string>
     <string name="preference_category_header_reports">报告</string>
     <string name="intro_update_checks_title">更新通知</string>
-    <string name="intro_update_checks_description">如果您想接收更新，可以启用下面的开关！如果更新可用，我们会通知您，然后您可以选择是否安装更新。</string>
+    <string name="intro_update_checks_description">如果您想接收更新，请启用下面的开关！如果更新可用，我们会通知您，然后您可以选择是否安装更新。</string>
     <string name="loading">加载中</string>
     <string name="app_not_configured">Round Sync 尚未配置</string>
     <string name="open_app_to_configure">请先打开应用进行设置</string>
@@ -205,7 +205,7 @@
     <string name="next">下一步</string>
     <string name="title_activity_remote_config">选择类型</string>
     <string name="error_exporting_config_file">导出配置文件时出错</string>
-    <string name="app_update_notification_title">应用更新现已发布在 Github 上</string>
+    <string name="app_update_notification_title">应用更新现已发布！</string>
     <string name="app_updates_notifications">获得有关应用更新的通知</string>
     <string name="delete_remote_title">是否删除 Remote ？</string>
     <string name="rename_remote">重命名 Remote</string>
@@ -215,8 +215,8 @@
     <string name="file_options_content_description">文件选项</string>
     <string name="link">链接</string>
     <string name="error_generating_link">生成链接时出错</string>
-    <string name="generating_public_link">正在生成公共链接</string>
-    <string name="public_link">公共链接</string>
+    <string name="generating_public_link">正在生成公开链接</string>
+    <string name="public_link">公开链接</string>
     <string name="link_copied_to_clipboard">链接已复制到剪贴板</string>
     <string name="pin_to_the_top">置顶</string>
     <string name="unpin_from_the_top">取消置顶</string>
@@ -242,14 +242,14 @@
     <string name="menu_select_storage">存储</string>
     <string name="select_storage">选择存储</string>
     <string name="empty_trash_confirmation">您确定要清空回收站吗？</string>
-    <string name="app_shortcuts_settings_dialog_title">桌面长按操作</string>
+    <string name="app_shortcuts_settings_dialog_title">快捷方式</string>
     <string name="settings_header_general">常规设置</string>
     <string name="app_shortcuts_settings">快捷方式</string>
     <string name="app_shortcuts_max_toast">最多允许4个快捷方式</string>
     <string name="remote_not_found">找不到 Remote</string>
     <string name="add_to_home_screen">添加到桌面</string>
     <string name="pick_a_protocol">选择协议</string>
-    <string name="sync">同步到…</string>
+    <string name="sync">同步</string>
     <string name="select_sync_direction">选择同步方向</string>
     <string name="nav_drawer_pinned_header">收藏</string>
     <string name="nav_header_options_header">选项</string>
@@ -273,7 +273,7 @@
     <string name="serve_dialog_title">建立 Remote 访问服务</string>
     <string name="serve_dialog_remote_notice_enabled">当前目录将在本地网络上对电视和媒体播放器等设备可见。</string>
     <string name="serve_dialog_remote_notice_disabled">网络上的其他设备将无法访问文件。</string>
-    <string name="config_use_external_question">导入找到的配置?</string>
+    <string name="config_use_external_question">导入找到的配置？</string>
     <string name="config_import_external_explain">从 %1$s 自动导入</string>
     <string name="pref_header_file_access">文件访问</string>
     <string name="pref_saf_enable">启用 SAF 客户端（实验性）</string>
@@ -286,14 +286,14 @@
     <string name="pref_saf_vcp_local_pretend_enable">声明为本地提供者</string>
     <string name="pref_saf_vcp_local_pretend_summary">允许某些应用（如 Google 文档）访问文件</string>
     <string name="pref_saf_vcp_grant_all_enable">允许所有应用访问您的 Remote</string>
-    <string name="pref_saf_vcp_grant_all_summary">警告：允许任何应用访问您的 Remote 会导致您的数据被未经授权访问。</string>
+    <string name="pref_saf_vcp_grant_all_summary">安全警告：允许任何应用访问您的 Remote 会导致您的数据被未经授权访问。</string>
     <string name="saf_uri_permission_added">已添加存储</string>
     <string name="saf_uri_permission_cancelled">权限已取消</string>
     <string name="saf_uri_permission_error">由于权限无效，无法访问存储</string>
     <string name="saf_uri_permission_already_added">存储或子文件夹已存在</string>
     <plurals name="virtual_content_provider_summary">
-        <item quantity="one">1 个远程可用</item>
-        <item quantity="other">%1$d 个远程可用</item>
+        <item quantity="one">1 个 Remote</item>
+        <item quantity="other">%1$d 个 Remote</item>
     </plurals>
     <string name="virtual_content_provider_exception_advice">检查您的网络连接</string>
     <string name="virtual_content_provider_exception_error">支持信息: \n%1$s</string>
@@ -321,8 +321,8 @@
         <item quantity="other">删除 %1$d 项目</item>
     </plurals>
     <string name="move_operation_failed">移动操作失败</string>
-    <string name="pref_open_all_files_setting_label">授予管理所有文件的权限（实验性）</string>
-    <string name="pref_open_all_files_setting_summary">仅适用于 Android 11 及以上</string>
+    <string name="pref_open_all_files_setting_label">授予 MANAGE_EXTERNAL_STORAGE 权限</string>
+    <string name="pref_open_all_files_setting_summary">实验性：仅适用于Android R（Android 11）及以上</string>
     <string name="no_app_found_for_this_link">未找到此链接的应用</string>
     <string name="documentsui_missing">名为 文件(com.android.documentsui) 的系统组件丢失</string>
 
@@ -340,8 +340,8 @@
     <string name="operation_success">%s 同步成功</string>
     <string name="operation_success_description_zero">无事可做。</string>
     <plurals name="operation_success_description">
-        <item quantity="one">已成功同步 %3$d 文件中的 %2$s。</item>
-        <item quantity="other">已成功同步 %3$d 文件中的 %2$s。</item>
+        <item quantity="one">已成功同步 %3$d 文件，共 %2$s。</item>
+        <item quantity="other">已成功同步 %3$d 文件，共 %2$s。</item>
     </plurals>
     <string name="operation_success_description_deletions_prefix">还删除了 %d 个文件和文件夹。</string>
     <string name="operation_report_success_title">Sync-Report 成功</string>
@@ -370,14 +370,15 @@
     <string name="pref_bugreport_start_summary">点击按钮开始数据收集，然后尝试重新创建问题。完成后停止数据收集。</string>
     <string name="pref_send_sigquit_title">调试：使用 SIGQUIT 停止</string>
     <string name="pref_send_sigquit_summary">使用 kill-SIGQUIT 停止所有 Rclone 进程。需要启用日志记录。</string>
-    <string name="sync_notification_transferred">已转移 %s 共 %s</string>
+    <string name="sync_notification_transferred">已传输 %s 共 %s</string>
     <string name="sync_notification_speed">速度: %s</string>
     <string name="sync_notification_remaining">剩余: %s</string>
     <string name="sync_notification_errors">错误: %s</string>
     <string name="sync_notification_deletions">删除: %s</string>
     <string name="sync_notification_file_syncing">文件: %14s</string>
     <string name="sync_notification_file_checking">检查: %14s</string>
-    <string name="sync_notification_elapsed">经过: %14s</string>
+    <string name="sync_notification_elapsed">用时: %14s</string>
+    <string name="sync_notification_short">%s 共 %s ，剩余 %s</string>
     <plurals name="modern_prettyprint_duration_d">
         <item quantity="one">%s 天</item>
         <item quantity="other">%s 天</item>
@@ -394,9 +395,26 @@
         <item quantity="one">%s 秒</item>
         <item quantity="other">%s 秒</item>
     </plurals>
+    <plurals name="worker_deleting_success_message">
+        <item quantity="zero">未删除任何内容</item>
+        <item quantity="other">%s 删除完成！</item>
+    </plurals>
+    <plurals name="worker_move_success_message">
+        <item quantity="zero">未移动任何内容</item>
+        <item quantity="other">%s 移动完成！</item>
+    </plurals>
+    <plurals name="worker_download_success_message">
+        <item quantity="zero">未下载任何内容</item>
+        <item quantity="one">%s 文件已下载！</item>
+        <item quantity="other">%s 文件已下载！</item>
+    </plurals>
+    <plurals name="worker_upload_success_message">
+        <item quantity="zero">未上传任何内容</item>
+        <item quantity="one">%s 文件已上传！</item>
+        <item quantity="other">%s 文件已上传！</item>
+    </plurals>
 
-    <string name="sync_notification_short">%s 共 %s ，剩余 %s</string>
-    <string name="abi_not_supported_arm_downgrade">不幸的是，此 Round Sync 版本与您的设备不兼容。试试 armeabi-v7a 的 APK， 从 github.com/newhinton/Round-Sync/releases/latest 下载。</string>
+    <string name="abi_not_supported_arm_downgrade">此 Round Sync 版本与您的设备不兼容。请试试 armeabi-v7a 的 APK， 从 github.com/newhinton/Round-Sync/releases/latest 下载。</string>
     <string name="abi_not_supported">您的设备不支持此版本的 Round Sync。</string>
     <string name="trigger">触发器</string>
     <string name="title_activity_trigger">触发器</string>
@@ -410,7 +428,7 @@
     <string name="saturday">星期六</string>
     <string name="sunday">星期日</string>
     <string name="time">时间</string>
-    <string name="task_to_run">要运行的任务</string>
+    <string name="task_to_run">要执行的任务</string>
     <string name="notification_triggerservice_description">此通知使触发机制能够启动任务。</string>
     <string name="notification_triggerservice_title">触发器服务</string>
     <string name="message_trigger_enabled">已启用触发器</string>
@@ -447,7 +465,7 @@
     <string name="task_data_validation_error_no_local_path">您尚未选择本地路径</string>
     <string name="task_data_validation_error_no_remote_path">您尚未选择 Remote 路径</string>
     <string name="bisync">双向</string>
-    <string name="description_sync_direction">这确定了数据传输的源和目标。</string>
+    <string name="description_sync_direction">这里会说明传输的数据源和目标。</string>
     <string name="description_sync_direction_sync_tolocal">将文件从 Remote 存储同步到本地存储。如果 Remote 存储中不存在文件，它还会从本地存储中删除这些文件。只有本地存储会随更改而更新。</string>
     <string name="description_sync_direction_sync_toremote">将文件从本地存储同步到 Remote 存储。本地不存在的任何文件都将从 Remote 存储中删除。仅影响 Remote 存储上的文件。</string>
     <string name="description_sync_direction_copy_toremote">将新文件或修改过的文件从本地存储复制到 Remote 存储。不会删除任何文件，Remote 上的现有文件可能会被覆盖。</string>
@@ -467,8 +485,8 @@
     <string name="sync_service_notification_channel_fail_title">同步失败</string>
     <string name="sync_service_notification_channel_success_description">同步成功的通知</string>
     <string name="sync_service_notification_channel_fail_description">同步失败的通知</string>
-    <string name="sync_service_notification_channel_report_title">同步服务报告</string>
-    <string name="sync_service_notification_channel_report_description">发布同步报告的通知</string>
+    <string name="sync_service_notification_channel_report_title">同步报告</string>
+    <string name="sync_service_notification_channel_report_description">同步报告的通知</string>
     <string name="dynamic_config_unknown_error">此 Prodvider 未知！</string>
     <string name="toggle_advanced_options">切换高级选项</string>
     <string name="trigger_type_schedule">定时</string>
@@ -504,7 +522,7 @@
     <string name="permissions_alarms_label">闹钟</string>
     <string name="permissions_alarms_description">我们需要安排闹钟，以便您的同步按时运行。如果未授予此权限，则您的同步将根本不会开始。</string>
     <string name="permissions_storage_label">存储</string>
-    <string name="permissions_storage_description">访问本地存储需要此权限。虽然这不影响您继续访问 Remote，但强烈建议您允许此权限。</string>
+    <string name="permissions_storage_description">访问本地存储需要此权限。虽然您仍然可以访问 Remote，但强烈建议您允许访问您的设备。</string>
     <string name="permissions_button_request">请求！</string>
     <string name="app_error_notification_alarmpermission_missing">闹钟调度权限缺失</string>
     <string name="app_error_notification_alarmpermission_missing_description">请授予此权限以允许启动计划。没有它，同步将无法运行！</string>
@@ -525,11 +543,11 @@
     <string name="permissions_batteryoptimizations_description">在未授予此权限时，如果设备处于睡眠状态，则您的任务可能会延迟。</string>
     <string name="sync_service_notification_startingsync">正在开始同步…</string>
     <string name="sync_service_notification_group">同步组</string>
-    <string name="workernotification_group_description">任务通知</string>
+    <string name="workernotification_group_description">任务组</string>
     <string name="download_service_ongoing_notification_title">活动下载</string>
     <string name="download_service_ongoing_notification_description">此通知显示当前下载的进度</string>
     <string name="download_service_success_notification_title">下载成功</string>
-    <string name="download_service_success_notification_description">此通知显示成功信息</string>
+    <string name="download_service_success_notification_description">此通知显示下载成功信息</string>
     <string name="download_service_failed_notification_description">此通知显示下载失败信息</string>
     <string name="download_service_failed_notification_title">下载失败</string>
     <string name="upload_service_ongoing_notification_title">活动上传</string>
