@@ -17,10 +17,10 @@ class Provider(val name: String) {
             item.prefix = data.optString("Prefix")
             item.commandHelp = data.optString("CommandHelp")
 
-            val options = data.getJSONArray("Options")
+            val options = data.optJSONArray("Options")
 
-            for (i in 0 until options.length()) {
-                item.options.add(ProviderOption.newInstance(options.getJSONObject(i)))
+            for (i in 0 until (options?.length() ?: 0)) {
+                ProviderOption.newInstance(options.getJSONObject(i))?.let { item.options.add(it) }
             }
 
             return item
