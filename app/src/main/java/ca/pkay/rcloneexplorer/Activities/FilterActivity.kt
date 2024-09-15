@@ -24,7 +24,6 @@ import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 class FilterActivity : AppCompatActivity() {
 
-
     private lateinit var rcloneInstance: Rclone
     private lateinit var dbHandler: DatabaseHandler
 
@@ -79,9 +78,12 @@ class FilterActivity : AppCompatActivity() {
             }
         }
 
-        if(existingFilter != null) {
-            filters = existingFilter!!.getFilters()
+        filters = existingFilter?.getFilters() ?: filters
+        if(filters.size == 0) {
+            filters.add(FilterEntry(FilterEntry.FILTER_EXCLUDE, ""))
         }
+        filterList.adapter?.notifyItemInserted(filterList.size)
+
         filterTitle.setText(existingFilter?.title)
         prepareFilterList()
     }

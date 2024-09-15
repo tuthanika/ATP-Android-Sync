@@ -24,7 +24,6 @@ class FilterEntryRecyclerViewAdapter(
 ) : RecyclerView.Adapter<FilterEntryRecyclerViewAdapter.ViewHolder>() {
     private var view: View? = null
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_filter_item, parent, false)
@@ -44,10 +43,9 @@ class FilterEntryRecyclerViewAdapter(
             override fun afterTextChanged(s: Editable) {}
         })
 
-
         val spinnerAdapter = ArrayAdapter(
             holder.itemView.context,
-            android.R.layout.simple_spinner_item,
+            android.R.layout.simple_spinner_dropdown_item,
             arrayOf(
                 mContext.getString(R.string.filter_type_include),
                 mContext.getString(R.string.filter_type_exclude)
@@ -69,8 +67,8 @@ class FilterEntryRecyclerViewAdapter(
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
 
-        holder.fileOptions.setOnClickListener { v: View ->
-            showFileMenu(v, selectedFilterEntry)
+        holder.filterOptions.setOnClickListener { v: View ->
+            showOptionsMenu(v, selectedFilterEntry)
         }
     }
 
@@ -86,10 +84,8 @@ class FilterEntryRecyclerViewAdapter(
         return mFilterEntries.size
     }
 
-    private fun showFileMenu(view: View, filterEntry: FilterEntry) {
-        val popupMenu = PopupMenu(
-            mContext, view
-        )
+    private fun showOptionsMenu(view: View, filterEntry: FilterEntry) {
+        val popupMenu = PopupMenu(mContext, view)
         popupMenu.menuInflater.inflate(R.menu.filter_entry_item_menu, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { item: MenuItem ->
             when (item.itemId) {
@@ -106,6 +102,6 @@ class FilterEntryRecyclerViewAdapter(
     ) {
         val filterTypeSpinner: Spinner = view!!.findViewById(R.id.filter_entry_filter_type)
         val filterText: EditText = view!!.findViewById(R.id.filter_entry_filter_text)
-        val fileOptions: ImageButton = view!!.findViewById(R.id.filter_entry_filter_options)
+        val filterOptions: ImageButton = view!!.findViewById(R.id.filter_entry_filter_options)
     }
 }

@@ -325,7 +325,6 @@
     <!-- Strings used for fragments for navigation -->
 
     <string name="task_edit_label_name">基本信息</string>
-    <string name="task_edit_label_local">本地存储路径</string>
     <string name="task_edit_label_remote">远端存储路径</string>
     <string name="task_edit_label_direction">方向</string>
     <string name="task_edit_hint_title">标题</string>

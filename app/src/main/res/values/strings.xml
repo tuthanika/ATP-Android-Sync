@@ -381,8 +381,8 @@
     <!-- Strings used for fragments for navigation -->
 
     <string name="task_edit_label_name">General Information</string>
-    <string name="task_edit_label_local">Local Storage Path</string>
-    <string name="task_edit_label_remote">Remote Storage Path</string>
+    <string name="task_edit_path_section">Paths</string>
+    <string name="task_edit_label_remote">Remote Storage Path:</string>
     <string name="task_edit_label_direction">Direction</string>
     <string name="task_edit_hint_title">Title</string>
     <string name="task_edit_hint_local">Local Path</string>

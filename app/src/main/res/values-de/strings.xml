@@ -319,12 +319,11 @@
     <string name="pin_to_dektop">Auf Startbildschirm anpinnen</string>
     <string name="title_activity_task">Neue Aufgabe anlegen</string>
     <string name="task_edit_label_name">Name:</string>
-    <string name="task_edit_label_local">Lokaler Pfad:</string>
     <string name="task_edit_label_remote">Entfernter Pfad:</string>
     <string name="task_edit_label_direction">Richtung:</string>
     <string name="task_edit_hint_title">Aufgabentitel</string>
     <string name="task_edit_hint_local">Lokaler Pfad</string>
-    <string name="task_edit_hint_remote">Entfernter Pfad</string>
+    <string name="task_edit_hint_remote">Entfernter Pfad:</string>
     <string name="trigger">Auslöser</string>
     <string name="title_activity_trigger">Auslöser</string>
     <string name="enabled">Aktiv</string>

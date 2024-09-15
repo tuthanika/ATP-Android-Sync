@@ -27,11 +27,12 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                style="@style/MainViewToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:theme="@style/MainViewToolbar"
-                style="@style/MainViewToolbar"
-                android:orientation="horizontal" />
+                app:navigationIcon="@drawable/ic_close" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -39,17 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp">
-
-            <de.felixnuesse.ui.BreadcrumbView
-                android:id="@+id/breadcrumb_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:scrollbars="none"
-                android:visibility="gone" />
-        </FrameLayout>
+            android:paddingEnd="16dp"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_filter" />
