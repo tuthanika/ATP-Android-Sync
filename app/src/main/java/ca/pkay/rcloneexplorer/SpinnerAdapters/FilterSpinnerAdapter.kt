@@ -19,10 +19,9 @@ class FilterSpinnerAdapter(context: Context, resource: Int, objects: List<String
 
         // Set special styling for "No Filter" option
         if (getItem(position) == context.getString(R.string.task_edit_filter_nofilter)) {
-            textView.setTextColor(ContextCompat.getColor(context, android.R.color.white))
-            textView.setTypeface(null, Typeface.BOLD)
+            textView.setTextColor(ContextCompat.getColor(context, R.color.textColorTertiary))
+            textView.setTypeface(null, Typeface.ITALIC)
         } else {
-            textView.setTextColor(ContextCompat.getColor(context, android.R.color.white))
             textView.setTypeface(null, Typeface.NORMAL)
         }
 
