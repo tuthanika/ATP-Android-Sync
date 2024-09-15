@@ -103,7 +103,12 @@ class DatabaseHandler(context: Context?) :
 
     fun createTask(taskToStore: Task, withId: Boolean = false): Task {
         val db = writableDatabase
-        val newRowId = db.insert(Task.TABLE_NAME, null, if(withId) getTaskContentValuesWithID(taskToStore) else getTaskContentValues(taskToStore))
+        val values = if(withId) {
+            getTaskContentValuesWithID(taskToStore)
+        } else {
+            getTaskContentValues(taskToStore)
+        }
+        val newRowId = db.insert(Task.TABLE_NAME, null, values)
         db.close()
         taskToStore.id = newRowId
         return taskToStore
@@ -233,7 +238,12 @@ class DatabaseHandler(context: Context?) :
 
     fun createTrigger(triggerToStore: Trigger, withId: Boolean = false): Trigger {
         val db = writableDatabase
-        val newRowId = db.insert(Trigger.TABLE_NAME, null, if(withId) getTriggerContentValuesWithID(triggerToStore) else getTriggerContentValues(triggerToStore))
+        val values = if(withId) {
+            getTriggerContentValuesWithID(triggerToStore)
+        } else {
+            getTriggerContentValues(triggerToStore)
+        }
+        val newRowId = db.insert(Trigger.TABLE_NAME, null, values)
         db.close()
         triggerToStore.id = newRowId
         return triggerToStore
