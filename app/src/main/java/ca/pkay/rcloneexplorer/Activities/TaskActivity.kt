@@ -6,18 +6,17 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.ImageButton
-import android.widget.LinearLayout
 import android.widget.Spinner
-import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.appcompat.widget.SwitchCompat
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import ca.pkay.rcloneexplorer.Database.DatabaseHandler
@@ -33,6 +32,8 @@ import ca.pkay.rcloneexplorer.Rclone
 import ca.pkay.rcloneexplorer.SpinnerAdapters.FilterSpinnerAdapter
 import ca.pkay.rcloneexplorer.util.ActivityHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import de.felixnuesse.extract.extensions.tag
 import es.dmoral.toasty.Toasty
 import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
@@ -46,17 +47,17 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
     private lateinit var syncDescription: TextView
     private lateinit var remotePath: EditText
     private lateinit var localPath: EditText
-    private lateinit var remoteDropdown: Spinner
-    private lateinit var syncDirection: Spinner
+    private lateinit var remoteDropdown: MaterialAutoCompleteTextView
+    private lateinit var syncDirection: MaterialAutoCompleteTextView
     private lateinit var fab: FloatingActionButton
 
-    private lateinit var switchWifi: Switch
-    private lateinit var switchMD5sum: Switch
+    private lateinit var switchWifi: SwitchCompat
+    private lateinit var switchMD5sum: SwitchCompat
 
 
     private lateinit var filterDropdown: Spinner
     private lateinit var createNewFilterButton: Button
-    private lateinit var switchDeleteExcluded: Switch
+    private lateinit var switchDeleteExcluded: SwitchCompat
 
 
     private lateinit var filterOptionsButton: ImageButton
@@ -163,7 +164,7 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
             val filter = if(filterDropdown.selectedItemPosition > 0 && filterDropdown.selectedItemPosition < filterDropdown.count) filterItems[filterDropdown.selectedItemPosition - 1] else null
             showFilterMenu(filterOptionsButton, filter)
         }
-        createNewFilterButton = findViewById<Button>(R.id.task_edit_filter_add_button)
+        createNewFilterButton = findViewById(R.id.task_edit_filter_add_button)
         createNewFilterButton.setOnClickListener {
             openFilterActivity()
         }
@@ -216,9 +217,8 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
     private fun getTaskValues(id: Long): Task? {
         val taskToPopulate = Task(id)
         taskToPopulate.title = findViewById<EditText>(R.id.filter_title_textfield).text.toString()
-        val remotename = remoteDropdown.selectedItem.toString()
-        taskToPopulate.remoteId = remotename
-        val direction = syncDirection.selectedItemPosition + 1
+        taskToPopulate.remoteId = remoteDropdown.text.toString()
+
         for (ri in rcloneInstance.remotes) {
             if (ri.name == taskToPopulate.remoteId) {
                 taskToPopulate.remoteType = ri.type
@@ -226,7 +226,7 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
         }
         taskToPopulate.remotePath = remotePath.text.toString()
         taskToPopulate.localPath = localPath.text.toString()
-        taskToPopulate.direction = direction
+        taskToPopulate.direction = SyncDirectionObject.getIdToString(applicationContext, syncDirection.text.toString())
 
         taskToPopulate.wifionly = switchWifi.isChecked
         taskToPopulate.md5sum = switchMD5sum.isChecked
@@ -295,35 +295,42 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
     private fun prepareRemote() {
 
         remotePathHolder = existingTask?.remotePath.toString()
-        remoteDropdown.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, remoteItems)
+        val adapter =  ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, remoteItems)
+        remoteDropdown.setAdapter(adapter)
 
         if (existingTask != null) {
             for ((i, remote) in remoteItems.withIndex()) {
                 if (remote == existingTask!!.remoteId) {
-                    remoteDropdown.setSelection(i)
+                    remoteDropdown.setText(existingTask!!.remoteId, false)
+                    remotePath.setText(remotePathHolder)
                 }
             }
         }
 
-        remoteDropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
-                remotePath.setText("")
-                val remotename = remoteDropdown.selectedItem.toString()
-                if(existingTask?.remoteId.equals(remotename)) {
-                    remotePath.setText(remotePathHolder)
-                }
-
+        remoteDropdown.onItemClickListener = OnItemClickListener { adapterView, view, position, id ->
+            remotePath.setText("")
+            val remotename = remoteDropdown.text.toString()
+            if(existingTask?.remoteId.equals(remotename)) {
+                remotePath.setText(remotePathHolder)
             }
-
-            override fun onNothingSelected(parentView: AdapterView<*>?) {}
         }
 
         // Todo: This will break if the remote changed, but the path did not.
         //       Catch this issue by forcing the path to be emtpy
         remotePath.onFocusChangeListener = object : View.OnFocusChangeListener {
             override fun onFocusChange(p0: View?, p1: Boolean) {
+                if (remoteDropdown.text.toString() == "") {
+                    Toasty.error(
+                        applicationContext,
+                        getString(R.string.task_data_validation_error_no_remote_path),
+                        Toast.LENGTH_SHORT,
+                        true
+                    ).show()
+                    return
+                }
+
                 startRemotePicker(
-                    rcloneInstance.getRemoteItemFromName(remoteDropdown.selectedItem.toString()), "/"
+                    rcloneInstance.getRemoteItemFromName(remoteDropdown.text.toString()), "/"
                 )
                 remotePath.clearFocus()
             }
@@ -332,9 +339,11 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
     private fun prepareFilterDropdown() {
         val filterList = filterItems.toMutableList()
 
+        val options = findViewById<ImageButton>(R.id.task_edit_filter_options_button)
         if(filterList.isEmpty()) {
             createNewFilterButton.visibility = View.VISIBLE
             filterDropdown.visibility = View.INVISIBLE
+            options.visibility = View.INVISIBLE
         }
         else {
             val titles = mutableListOf<String?>().apply {
@@ -346,6 +355,7 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
             filterDropdown.adapter = adapter
             createNewFilterButton.visibility = View.INVISIBLE
             filterDropdown.visibility = View.VISIBLE
+            options.visibility = View.VISIBLE
 
             if (existingTask != null) {
                 for ((i, filter) in filterList.withIndex()) {
@@ -404,22 +414,19 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
 
     private fun prepareSyncDirectionDropdown() {
         val options = SyncDirectionObject.getOptionsArray(this)
-        val directionAdapter =
-            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options)
-        syncDirection.adapter = directionAdapter
-        syncDirection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parentView: AdapterView<*>?,
-                selectedItemView: View,
-                position: Int,
-                id: Long
-            ) {
-                updateSpinnerDescription(position + 1)
-            }
+        val directionAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options)
+        syncDirection.setAdapter(directionAdapter)
 
-            override fun onNothingSelected(adapterView: AdapterView<*>?) {}
+        syncDirection.onItemClickListener = OnItemClickListener { adapterView, view, position, id ->
+            val item = directionAdapter.getItem(position)
+            updateSpinnerDescription(SyncDirectionObject.getIdToString(applicationContext, item))
         }
-        syncDirection.setSelection((((existingTask?.direction?.minus(1)) ?: 0)) )
+
+        val a = existingTask?.direction?: 0
+        Log.e(tag(), "sync dir: $a")
+        val selection = SyncDirectionObject.getStringToId(applicationContext, a)
+        syncDirection.setText(selection, false)
+        //syncDirection.setText()
     }
 
     private fun updateSpinnerDescription(value: Int) {

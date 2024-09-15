@@ -40,4 +40,28 @@ public class SyncDirectionObject {
     public static String[] getOptionsArray(Context context) {
         return context.getResources().getStringArray(R.array.sync_direction_array);
     }
+
+    public static int getIdToString(Context context, String value) {
+        String[] array = getOptionsArray(context);
+
+        if(array[0].equals(value))
+            return SYNC_LOCAL_TO_REMOTE;
+        if(array[1].equals(value))
+            return SYNC_REMOTE_TO_LOCAL;
+        if(array[2].equals(value))
+            return COPY_LOCAL_TO_REMOTE;
+        if(array[3].equals(value))
+            return COPY_REMOTE_TO_LOCAL;
+
+        return SYNC_LOCAL_TO_REMOTE;
+    }
+
+    public static String getStringToId(Context context, int id) {
+        String[] array = getOptionsArray(context);
+
+        if(id > 4) {
+            return array[0];
+        }
+        return array[id-1];
+    }
 }

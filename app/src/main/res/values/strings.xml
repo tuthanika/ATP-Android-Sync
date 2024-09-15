@@ -396,7 +396,7 @@
     <string name="filter_edit_label_name">General Information</string>
     <string name="filter_edit_label_filters">Filters</string>
     <string name="filter_edit_hint_title">Title</string>
-    <string name="filter_edit_add_filter_button">Add filter</string>
+    <string name="filter_edit_add_rule">Add rule</string>
     <string name="filter_data_validation_error_no_title">Please give your filter a name</string>
     <string name="filter_entry_filter_text">**/.thumbnails/**</string>
     <string name="rcd_service_notification_running_in_background">Rclone runs in the background</string>

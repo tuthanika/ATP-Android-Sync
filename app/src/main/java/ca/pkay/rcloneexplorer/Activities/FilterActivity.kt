@@ -24,15 +24,14 @@ import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 class FilterActivity : AppCompatActivity() {
 
-    private lateinit var rcloneInstance: Rclone
-    private lateinit var dbHandler: DatabaseHandler
+    private lateinit var mRclone: Rclone
+    private lateinit var mDBHandler: DatabaseHandler
 
-    private lateinit var filterTitle: EditText
-    private lateinit var filterList: RecyclerView
+    private lateinit var mFilterTitle: EditText
+    private lateinit var mFilterList: RecyclerView
 
-
-    private var existingFilter: Filter? = null
-    private var filters: ArrayList<FilterEntry> = arrayListOf()
+    private var mExistingFilter: Filter? = null
+    private var mFilters: ArrayList<FilterEntry> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,24 +42,24 @@ class FilterActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
-        filterTitle = findViewById(R.id.filter_title_textfield)
-        filterList = findViewById(R.id.filter_filterlist)
+        mFilterTitle = findViewById(R.id.filter_title_textfield)
+        mFilterList = findViewById(R.id.filter_filterlist)
         val newFilterEntry = findViewById<Button>(R.id.filter_add_filterentry_button)
         newFilterEntry.setOnClickListener {
-            filters.add(FilterEntry(FilterEntry.FILTER_EXCLUDE, ""))
-            filterList.adapter?.notifyItemInserted(filterList.size)
+            mFilters.add(FilterEntry(FilterEntry.FILTER_EXCLUDE, ""))
+            mFilterList.adapter?.notifyItemInserted(mFilterList.size)
         }
 
 
-        rcloneInstance = Rclone(this)
-        dbHandler = DatabaseHandler(this)
+        mRclone = Rclone(this)
+        mDBHandler = DatabaseHandler(this)
         val extras = intent.extras
         val filterId: Long
         if (extras != null) {
             filterId = extras.getLong(ID_EXTRA)
             if (filterId != 0L) {
-                existingFilter = dbHandler.getFilter(filterId)
-                if (existingFilter == null) {
+                mExistingFilter = mDBHandler.getFilter(filterId)
+                if (mExistingFilter == null) {
                     Toasty.error(
                             this,
                             this.resources.getString(R.string.filteractivity_filter_not_found)
@@ -71,20 +70,20 @@ class FilterActivity : AppCompatActivity() {
         }
         val fab = findViewById<FloatingActionButton>(R.id.saveButton)
         fab.setOnClickListener {
-            if (existingFilter == null) {
+            if (mExistingFilter == null) {
                 saveFilter()
             } else {
                 persistFilterChanges()
             }
         }
 
-        filters = existingFilter?.getFilters() ?: filters
-        if(filters.size == 0) {
-            filters.add(FilterEntry(FilterEntry.FILTER_EXCLUDE, ""))
+        mFilters = mExistingFilter?.getFilters() ?: mFilters
+        if(mFilters.size == 0) {
+            mFilters.add(FilterEntry(FilterEntry.FILTER_EXCLUDE, ""))
         }
-        filterList.adapter?.notifyItemInserted(filterList.size)
+        mFilterList.adapter?.notifyItemInserted(mFilterList.size)
 
-        filterTitle.setText(existingFilter?.title)
+        mFilterTitle.setText(mExistingFilter?.title)
         prepareFilterList()
     }
 
@@ -94,9 +93,9 @@ class FilterActivity : AppCompatActivity() {
     }
 
     private fun persistFilterChanges() {
-        val updatedFilter = getFilterValues(existingFilter!!.id)
+        val updatedFilter = getFilterValues(mExistingFilter!!.id)
         if (updatedFilter != null) {
-            dbHandler.updateFilter(updatedFilter)
+            mDBHandler.updateFilter(updatedFilter)
             val resultIntent = Intent()
             resultIntent.putExtra("filterId", updatedFilter.id)
             setResult(Activity.RESULT_OK, resultIntent)
@@ -107,7 +106,7 @@ class FilterActivity : AppCompatActivity() {
     private fun saveFilter() {
         val newFilter = getFilterValues(0)
         if (newFilter != null) {
-            val filter = dbHandler.createFilter(newFilter)
+            val filter = mDBHandler.createFilter(newFilter)
             val resultIntent = Intent()
             resultIntent.putExtra("filterId", filter.id)
             setResult(Activity.RESULT_OK, resultIntent)
@@ -117,9 +116,9 @@ class FilterActivity : AppCompatActivity() {
 
     private fun getFilterValues(id: Long): Filter? {
         val filterToPopulate = Filter(id)
-        filterToPopulate.title = filterTitle.text.toString()
-        filterToPopulate.setFilters(filters)
-        if (filterTitle.text.toString() == "") {
+        filterToPopulate.title = mFilterTitle.text.toString()
+        filterToPopulate.setFilters(mFilters)
+        if (mFilterTitle.text.toString() == "") {
             Toasty.error(
                     this.applicationContext,
                     getString(R.string.filter_data_validation_error_no_title),
@@ -131,10 +130,10 @@ class FilterActivity : AppCompatActivity() {
         return filterToPopulate
     }
     private fun prepareFilterList() {
-        val adapter = FilterEntryRecyclerViewAdapter(filters, this)
-        filterList.layoutManager = LinearLayoutManager(this)
-        filterList.itemAnimator = LandingAnimator()
-        filterList.adapter = adapter
+        val adapter = FilterEntryRecyclerViewAdapter(mFilters, this)
+        mFilterList.layoutManager = LinearLayoutManager(this)
+        mFilterList.itemAnimator = LandingAnimator()
+        mFilterList.adapter = adapter
     }
     companion object {
         const val ID_EXTRA = "FILTER_EDIT_ID"

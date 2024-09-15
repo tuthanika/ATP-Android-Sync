@@ -93,7 +93,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="@string/filter_edit_add_filter_button"
+                            android:text="@string/filter_edit_add_rule"
                             app:icon="@drawable/ic_add" />
 
                         <Space

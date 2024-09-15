@@ -21,7 +21,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
+                android:layout_marginBottom="16dp"
                 style="@style/SecondaryCardStyle"
                 app:cardCornerRadius="@dimen/cardCornerRadius"
                 app:contentPadding="@dimen/cardPadding">
@@ -29,7 +29,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="8dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -95,7 +94,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
+                android:layout_marginBottom="16dp"
                 style="@style/SecondaryCardStyle"
                 app:cardCornerRadius="@dimen/cardCornerRadius"
                 app:contentPadding="@dimen/cardPadding">
@@ -110,22 +109,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/task_edit_label_direction"
-                        android:layout_margin="8dp"
+                        android:layout_marginBottom="8dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                         android:textSize="24sp" />
 
-                    <Spinner
-                        android:id="@+id/task_direction_spinner"
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:minHeight="48dp" />
+                        android:layout_marginBottom="4dp">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/task_direction_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:editable="false"
+                            android:hint="@string/task_edit_label_direction"
+                            android:minHeight="48dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
                         android:id="@+id/descriptionSyncDirection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
                         android:minHeight="48dp"
                         android:text="@string/description_sync_direction_sync_toremote" />
 
@@ -135,7 +144,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
+                android:layout_marginBottom="16dp"
                 style="@style/SecondaryCardStyle"
                 app:cardCornerRadius="@dimen/cardCornerRadius"
                 app:contentPadding="@dimen/cardPadding">
@@ -149,11 +158,10 @@
                         android:id="@+id/label_local"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
                         android:text="@string/task_edit_path_section"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:layout_marginBottom="8dp"
                         android:textSize="24sp" />
-
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -174,28 +182,43 @@
                         android:id="@+id/label_remote"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
                         android:text="@string/task_edit_label_remote"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                         android:textSize="16sp" />
 
-                    <Spinner
-                        android:id="@+id/task_remote_spinner"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:contentDescription="@string/description_sync_direction"
-                        android:minHeight="48dp" />
+                        android:layout_marginBottom="4dp">
 
-                    <EditText
-                        android:id="@+id/task_remote_path_textfield"
+                        <AutoCompleteTextView
+                            android:id="@+id/task_remote_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/description_sync_direction"
+                            android:editable="false"
+                            android:hint="@string/remotes"
+                            android:minHeight="48dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:autofillHints=""
-                        android:hint="@string/task_edit_hint_remote"
-                        android:inputType=""
-                        android:minHeight="48dp" />
+                        android:layout_marginBottom="8dp">
+
+                        <EditText
+                            android:id="@+id/task_remote_path_textfield"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/task_edit_hint_remote"
+                            android:inputType=""
+                            android:importantForAutofill="no" />
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -204,7 +227,7 @@
                 android:theme="@style/SecondaryCardStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
+                android:layout_marginBottom="16dp"
                 app:cardCornerRadius="@dimen/cardCornerRadius"
                 app:contentPadding="@dimen/cardPadding">
 
@@ -217,21 +240,32 @@
                         android:id="@+id/label_filter"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
                         android:text="@string/task_edit_label_filter"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:layout_marginBottom="8dp"
                         android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/description_exclude"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/task_edit_description_filter" />
 
                     <FrameLayout
                         android:id="@+id/task_edit_filter_holder"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp">
 
                         <Button
                             android:id="@+id/task_edit_filter_add_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/add_filter" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:text="@string/add_filter"
+                            app:icon="@drawable/ic_add" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -263,12 +297,6 @@
                         </LinearLayout>
 
                     </FrameLayout>
-
-                    <TextView
-                        android:id="@+id/description_exclude"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/task_edit_description_filter" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/task_exclude_delete_toggle"
