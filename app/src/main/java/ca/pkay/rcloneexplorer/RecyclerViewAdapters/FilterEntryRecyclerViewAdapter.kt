@@ -3,8 +3,8 @@ package ca.pkay.rcloneexplorer.RecyclerViewAdapters
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -12,10 +12,10 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Spinner
-import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import ca.pkay.rcloneexplorer.Items.FilterEntry
 import ca.pkay.rcloneexplorer.R
+import de.felixnuesse.extract.extensions.tag
 
 
 class FilterEntryRecyclerViewAdapter(
@@ -67,15 +67,15 @@ class FilterEntryRecyclerViewAdapter(
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
 
-        holder.filterOptions.setOnClickListener { v: View ->
-            showOptionsMenu(v, selectedFilterEntry)
+        holder.filterDelete.setOnClickListener { v: View ->
+            removeItem(selectedFilterEntry)
         }
     }
 
     private fun removeItem(filterEntry: FilterEntry) {
         val index = mFilterEntries.indexOf(filterEntry)
         if (index >= 0) {
-            mFilterEntries.removeAt(0)
+            mFilterEntries.removeAt(index)
             notifyItemRemoved(index)
         }
     }
@@ -84,24 +84,11 @@ class FilterEntryRecyclerViewAdapter(
         return mFilterEntries.size
     }
 
-    private fun showOptionsMenu(view: View, filterEntry: FilterEntry) {
-        val popupMenu = PopupMenu(mContext, view)
-        popupMenu.menuInflater.inflate(R.menu.filter_entry_item_menu, popupMenu.menu)
-        popupMenu.setOnMenuItemClickListener { item: MenuItem ->
-            when (item.itemId) {
-                R.id.action_delete_filter_entry -> removeItem(filterEntry)
-                else -> return@setOnMenuItemClickListener false
-            }
-            true
-        }
-        popupMenu.show()
-    }
-
     class ViewHolder internal constructor(val view: View?) : RecyclerView.ViewHolder(
         view!!
     ) {
         val filterTypeSpinner: Spinner = view!!.findViewById(R.id.filter_entry_filter_type)
         val filterText: EditText = view!!.findViewById(R.id.filter_entry_filter_text)
-        val filterOptions: ImageButton = view!!.findViewById(R.id.filter_entry_filter_options)
+        val filterDelete: ImageButton = view!!.findViewById(R.id.filter_entry_delete)
     }
 }

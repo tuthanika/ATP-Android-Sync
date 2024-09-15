@@ -17,4 +17,11 @@ class FilterEntry(filterType: Int, filter: String) {
         const val FILTER_INCLUDE: Int = 0
         const val FILTER_EXCLUDE: Int = 1
     }
+
+    override fun toString(): String {
+        if(filterType == FILTER_EXCLUDE) {
+            return "FILTER_EXCLUDE: $filter"
+        }
+        return "FILTER_INCLUDE: $filter"
+    }
 }
