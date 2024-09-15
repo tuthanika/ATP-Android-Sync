@@ -61,7 +61,7 @@ public class FilterEntryRecyclerViewAdapter extends RecyclerView.Adapter<FilterE
 
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(holder.itemView.getContext(),
-                android.R.layout.simple_spinner_item, new String[]{ context.getString(R.string.filter_entry_filtertype_include), context.getString(R.string.filter_entry_filtertype_exclude) });
+                android.R.layout.simple_spinner_item, new String[]{ context.getString(R.string.filter_type_include), context.getString(R.string.filter_type_exclude) });
         holder.filterTypeSpinner.setAdapter(spinnerAdapter);
         holder.filterTypeSpinner.setSelection(selectedFilterEntry.filterType);
         holder.filterTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

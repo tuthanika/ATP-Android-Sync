@@ -399,8 +399,6 @@
     <string name="filter_edit_add_filter_button">Add filter</string>
     <string name="filter_data_validation_error_no_title">Please give your filter a name</string>
     <string name="filter_entry_filter_text">**/.thumbnails/**</string>
-    <string name="filter_entry_filtertype_include">Include</string>
-    <string name="filter_entry_filtertype_exclude">Exclude</string>
     <string name="rcd_service_notification_running_in_background">Rclone runs in the background</string>
     <string name="rcd_service_notification_no_active_jobs">No active jobs.</string>
     <string name="rcd_service_notification_btn_stop_all">Stop All</string>
