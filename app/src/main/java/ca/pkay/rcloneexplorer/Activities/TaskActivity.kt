@@ -423,10 +423,8 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
         }
 
         val a = existingTask?.direction?: 0
-        Log.e(tag(), "sync dir: $a")
         val selection = SyncDirectionObject.getStringToId(applicationContext, a)
         syncDirection.setText(selection, false)
-        //syncDirection.setText()
     }
 
     private fun updateSpinnerDescription(value: Int) {
