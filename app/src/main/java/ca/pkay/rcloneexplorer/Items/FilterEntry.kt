@@ -1,21 +1,20 @@
-package ca.pkay.rcloneexplorer.Items;
+package ca.pkay.rcloneexplorer.Items
 
-import android.content.Context;
+class FilterEntry(filterType: Int, filter: String) {
+    @JvmField
+    var filterType: Int = FILTER_EXCLUDE
 
-import ca.pkay.rcloneexplorer.R;
-
-public class FilterEntry {
-
-    public static final int FILTER_INCLUDE = 0;
-    public static final int FILTER_EXCLUDE = 1;
-
-    public int filterType = FILTER_EXCLUDE;
-
-    public String filter;
+    @JvmField
+    var filter: String
 
 
-    public FilterEntry(int filterType, String filter) {
-        this.filterType = filterType;
-        this.filter = filter;
+    init {
+        this.filterType = filterType
+        this.filter = filter
+    }
+
+    companion object {
+        const val FILTER_INCLUDE: Int = 0
+        const val FILTER_EXCLUDE: Int = 1
     }
 }

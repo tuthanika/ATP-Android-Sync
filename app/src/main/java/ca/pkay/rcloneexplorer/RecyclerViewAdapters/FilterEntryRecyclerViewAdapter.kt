@@ -1,127 +1,111 @@
-package ca.pkay.rcloneexplorer.RecyclerViewAdapters;
+package ca.pkay.rcloneexplorer.RecyclerViewAdapters
+
+import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.Spinner
+import androidx.appcompat.widget.PopupMenu
+import androidx.recyclerview.widget.RecyclerView
+import ca.pkay.rcloneexplorer.Items.FilterEntry
+import ca.pkay.rcloneexplorer.R
 
 
-import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Spinner;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.PopupMenu;
-import androidx.recyclerview.widget.RecyclerView;
+class FilterEntryRecyclerViewAdapter(
+    private val mFilterEntries: ArrayList<FilterEntry>,
+    private val mContext: Context
+) : RecyclerView.Adapter<FilterEntryRecyclerViewAdapter.ViewHolder>() {
+    private var view: View? = null
 
 
-import java.util.List;
-
-import ca.pkay.rcloneexplorer.Items.FilterEntry;
-import ca.pkay.rcloneexplorer.R;
-
-public class FilterEntryRecyclerViewAdapter extends RecyclerView.Adapter<FilterEntryRecyclerViewAdapter.ViewHolder> {
-    private List<FilterEntry> filterEntries;
-    private View view;
-    private final Context context;
-
-
-    public FilterEntryRecyclerViewAdapter(List<FilterEntry> filterEntries, Context context) {
-        this.filterEntries = filterEntries;
-        this.context = context;
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.fragment_filter_item, parent, false)
+        return ViewHolder(view)
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_filter_item, parent, false);
-        return new ViewHolder(view);
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val selectedFilterEntry = mFilterEntries[position]
 
-    @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        final FilterEntry selectedFilterEntry = filterEntries.get(position);
-
-        holder.filterText.setText(selectedFilterEntry.filter);
-        holder.filterText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                selectedFilterEntry.filter = s.toString();
-            }
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
-
-
-
-
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(holder.itemView.getContext(),
-                android.R.layout.simple_spinner_item, new String[]{ context.getString(R.string.filter_type_include), context.getString(R.string.filter_type_exclude) });
-        holder.filterTypeSpinner.setAdapter(spinnerAdapter);
-        holder.filterTypeSpinner.setSelection(selectedFilterEntry.filterType);
-        holder.filterTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                selectedFilterEntry.filterType = pos;
+        holder.filterText.setText(selectedFilterEntry.filter)
+        holder.filterText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                selectedFilterEntry.filter = s.toString()
             }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
-        });
+            override fun afterTextChanged(s: Editable) {}
+        })
 
-        holder.fileOptions.setOnClickListener(v-> {
-            showFileMenu(v, selectedFilterEntry);
-        });
 
+        val spinnerAdapter = ArrayAdapter(
+            holder.itemView.context,
+            android.R.layout.simple_spinner_item,
+            arrayOf(
+                mContext.getString(R.string.filter_type_include),
+                mContext.getString(R.string.filter_type_exclude)
+            )
+        )
+        holder.filterTypeSpinner.adapter = spinnerAdapter
+        holder.filterTypeSpinner.setSelection(selectedFilterEntry.filterType)
+        holder.filterTypeSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View,
+                    pos: Int,
+                    id: Long
+                ) {
+                    selectedFilterEntry.filterType = pos
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
+
+        holder.fileOptions.setOnClickListener { v: View ->
+            showFileMenu(v, selectedFilterEntry)
+        }
     }
 
-    public void removeItem(FilterEntry filterEntry) {
-        int index = filterEntries.indexOf(filterEntry);
+    private fun removeItem(filterEntry: FilterEntry) {
+        val index = mFilterEntries.indexOf(filterEntry)
         if (index >= 0) {
-            filterEntries.remove(index);
-            notifyItemRemoved(index);
+            mFilterEntries.removeAt(0)
+            notifyItemRemoved(index)
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return filterEntries.size();
+    override fun getItemCount(): Int {
+        return mFilterEntries.size
     }
 
-    private void showFileMenu(View view, final FilterEntry filterEntry) {
-        PopupMenu popupMenu = new PopupMenu(context, view);
-        popupMenu.getMenuInflater().inflate(R.menu.filter_entry_item_menu, popupMenu.getMenu());
-        popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.action_delete_filter_entry:
-                    removeItem(filterEntry);
-                    break;
-                default:
-                    return false;
+    private fun showFileMenu(view: View, filterEntry: FilterEntry) {
+        val popupMenu = PopupMenu(
+            mContext, view
+        )
+        popupMenu.menuInflater.inflate(R.menu.filter_entry_item_menu, popupMenu.menu)
+        popupMenu.setOnMenuItemClickListener { item: MenuItem ->
+            when (item.itemId) {
+                R.id.action_delete_filter_entry -> removeItem(filterEntry)
+                else -> return@setOnMenuItemClickListener false
             }
-            return true;
-        });
-        popupMenu.show();
+            true
+        }
+        popupMenu.show()
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        final View view;
-        final Spinner filterTypeSpinner;
-        final EditText filterText;
-        final ImageButton fileOptions;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            this.view = itemView;
-            this.filterTypeSpinner = view.findViewById(R.id.filter_entry_filter_type);
-            this.filterText = view.findViewById(R.id.filter_entry_filter_text);
-            this.fileOptions = view.findViewById(R.id.filter_entry_filter_options);
-        }
+    class ViewHolder internal constructor(val view: View?) : RecyclerView.ViewHolder(
+        view!!
+    ) {
+        val filterTypeSpinner: Spinner = view!!.findViewById(R.id.filter_entry_filter_type)
+        val filterText: EditText = view!!.findViewById(R.id.filter_entry_filter_text)
+        val fileOptions: ImageButton = view!!.findViewById(R.id.filter_entry_filter_options)
     }
 }
