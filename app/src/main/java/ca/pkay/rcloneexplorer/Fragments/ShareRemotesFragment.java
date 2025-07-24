@@ -1,19 +1,24 @@
 package ca.pkay.rcloneexplorer.Fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import ca.pkay.rcloneexplorer.Items.RemoteItem;
 import ca.pkay.rcloneexplorer.R;
@@ -52,7 +57,15 @@ public class ShareRemotesFragment extends Fragment {
 
         ((FragmentActivity) context).setTitle(getString(R.string.remotes_toolbar_title));
         Rclone rclone = new Rclone(getContext());
-        remotes = rclone.getRemotes();
+        List<RemoteItem> allRemotes = rclone.getRemotes();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        Set<String> hiddenRemotesIds = sharedPreferences.getStringSet(getString(R.string.shared_preferences_hidden_remotes), new HashSet<>());
+        remotes = new ArrayList<>();
+        for (RemoteItem remote : allRemotes) {
+            if (!hiddenRemotesIds.contains(remote.getName())) {
+                remotes.add(remote);
+            }
+        }
         RemoteItem.prepareDisplay(getContext(), remotes);
         Collections.sort(remotes);
     }
