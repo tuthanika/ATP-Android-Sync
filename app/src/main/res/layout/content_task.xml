@@ -1,177 +1,777 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_task_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                style="@style/SecondaryCardStyle"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:contentPadding="@dimen/cardPadding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/label_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/task_edit_label_name"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/task_title_textfield"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:autofillHints=""
+                        android:hint="@string/task_edit_hint_title"
+                        android:inputType="text"
+                        android:minHeight="48dp" />
+
+                    <Switch
+                        android:id="@+id/task_md5sum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="@string/use_md5checksum" />
+
+                    <TextView
+                        android:id="@+id/task_md5_hint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/task_hint_md5checksum" />
+
+                    <Switch
+                        android:id="@+id/task_wifionly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="@string/transfer_only_on_wifi" />
+
+                    <TextView
+                        android:id="@+id/task_wifi_hint_cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/transfer_only_on_wifi_summary" />
+
+                    <TextView
+                        android:id="@+id/task_wifi_hint_ignore_defaults"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/task_hint_wifi_ignore_defaults" />
+                
+    <TextView
+        android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinner
+        android:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinner
+        android:id="@+id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_source_path_textfield"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:hint="@string/task_edit_hint_source"/>
 
-        <!-- Task Name -->
-        <TextView
-            android:id="@+id/label_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_name" />
+    <TextView
+        android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
 
-        <EditText
-            android:id="@+id/task_name_textfield"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/task_edit_hint_title" />
+    <Spinner
+        android:id="@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-        <!-- MD5 -->
-        <CheckBox
-            android:id="@+id/task_md5_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_md5" />
+    <EditText
+        android:id="@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
 
-        <!-- Wifi -->
-        <CheckBox
-            android:id="@+id/task_wifi_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_wifi" />
+    <TextView
+        android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
 
-        <!-- Mode -->
-        <TextView
-            android:id="@+id/label_mode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_mode" />
+    <EditText
+        android:id="@+id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
 
-        <Spinner
-            android:id="@+id/task_mode_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            </androidx.cardview.widget.CardView>
 
-        <!-- Source -->
-        <TextView
-            android:id="@+id/label_source"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_source" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                style="@style/SecondaryCardStyle"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:contentPadding="@dimen/cardPadding">
 
-        <Spinner
-            android:id="@+id/task_source_remote_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/task_source_path_textfield"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/task_edit_hint_source" />
+                    <TextView
+                        android:id="@+id/label_direction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/task_edit_label_direction"
+                        android:layout_margin="8dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="24sp" />
 
-        <!-- Destination -->
-        <TextView
-            android:id="@+id/label_dest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_dest" />
+                    <Spinner
+                        android:id="@+id/task_direction_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:minHeight="48dp" />
 
-        <Spinner
-            android:id="@+id/task_dest_remote_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/descriptionSyncDirection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:minHeight="48dp"
+                        android:text="@string/description_sync_direction_sync_toremote" />
 
-        <EditText
-            android:id="@+id/task_dest_path_textfield"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/task_edit_hint_dest" />
+                
+    <TextView
+        android:id="@+id/label_mode_dup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
 
-        <!-- Extra Flags -->
-        <TextView
-            android:id="@+id/label_extra_flags"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_extra_flags" />
+    <Spinner
+        android:id="@+id/task_mode_spinner_dup2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/task_extra_flags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/task_edit_hint_extra_flags"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:layout_margin="8dp"/>
+    <TextView
+        android:id="@+id/label_source_dup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
 
-        <!-- Direction -->
-        <TextView
-            android:id="@+id/label_direction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_direction" />
+    <Spinner
+        android:id="@+id/task_source_remote_spinner_dup2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-        <Spinner
-            android:id="@+id/task_direction_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/task_source_path_textfield_dup2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
 
-        <!-- Filter -->
-        <TextView
-            android:id="@+id/label_filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_filter" />
+    <TextView
+        android:id="@+id/label_dest_dup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
 
-        <Spinner
-            android:id="@+id/task_filter_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <Spinner
+        android:id="@+id/task_dest_remote_spinner_dup2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-        <!-- Local -->
-        <TextView
-            android:id="@+id/label_local"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_local" />
+    <EditText
+        android:id="@+id/task_dest_path_textfield_dup2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
 
-        <EditText
-            android:id="@+id/task_local_path_textfield"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/task_edit_hint_local" />
+    <TextView
+        android:id="@+id/label_extra_flags_dup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
 
-        <!-- Remote -->
-        <TextView
-            android:id="@+id/label_remote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_remote" />
+    <EditText
+        android:id="@+id/task_extra_flags_textfield_dup2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        <EditText
-            android:id="@+id/task_remote_path_textfield"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/task_edit_hint_remote" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                style="@style/SecondaryCardStyle"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:contentPadding="@dimen/cardPadding">
 
-        <!-- On Fail -->
-        <TextView
-            android:id="@+id/label_on_fail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_on_fail" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/task_on_fail_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/label_local"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="@string/task_edit_label_local"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="24sp" />
 
-        <!-- On Success -->
-        <TextView
-            android:id="@+id/label_on_success"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/task_edit_label_on_success" />
+                    <EditText
+                        android:id="@+id/task_local_path_textfield"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:autofillHints=""
+                        android:hint="@string/task_edit_hint_local"
+                        android:inputType=""
+                        android:minHeight="48dp" />
 
-        <Spinner
-            android:id="@+id/task_on_success_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-</ScrollView>
+                
+    <TextView
+    <TextView
+        android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_extra_flags"/>
+
+    <EditText
+        android:id="@+id/task_extra_flags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_hint_extra_flags"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:layout_margin="8dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+   android:id="@+id/label_source_dup3"urce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinner
+   android:id="@+id/task_source_remote_spinner_dup3"nner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+   android:id="@+id/task_source_path_textfield_dup3"ield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <TextView
+   android:id="@+id/label_dest_dup3"dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Spinner
+   android:id="@+id/task_dest_remote_spinner_dup3"nner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+   android:id="@+id/task_dest_path_textfield_dup3"ield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <TextView
+   android:id="@+id/label_extra_flags_dup3"lags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <EditText
+   android:id="@+id/task_extra_flags_textfield_dup3"ield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                style="@style/SecondaryCardStyle"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:contentPadding="@dimen/cardPadding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/label_remote"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="@string/task_edit_label_remote"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="24sp" />
+
+                    <Spinner
+                        android:id="@+id/task_remote_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:contentDescription="@string/description_sync_direction"
+                        android:minHeight="48dp" />
+
+                    <EditText
+                        android:id="@+id/task_remote_path_textfield"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:autofillHints=""
+                        android:hint="@string/task_edit_hint_remote"
+                        android:inputType=""
+                        android:minHeight="48dp" />
+                
+    <TextVieandroid:id="@+id/label_mode_dup4"abel_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinneandroid:id="@+id/task_mode_spinner_dup4"e_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextVieandroid:id="@+id/label_source_dup4"el_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinneandroid:id="@+id/task_source_remote_spinner_dup4"e_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditTexandroid:id="@+id/task_source_path_textfield_dup4"textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <TextVieandroid:id="@+id/label_dest_dup4"abel_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Spinneandroid:id="@+id/task_dest_remote_spinner_dup4"e_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditTexandroid:id="@+id/task_dest_path_textfield_dup4"textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <TextVieandroid:id="@+id/label_extra_flags_dup4"tra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <EditTexandroid:id="@+id/task_extra_flags_textfield_dup4"textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/SecondaryCardStyle"
+                android:theme="@style/SecondaryCardStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:contentPadding="@dimen/cardPadding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/label_filter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="@string/task_edit_label_filter"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="24sp" />
+
+                    <FrameLayout
+                        android:id="@+id/task_edit_filter_holder"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:id="@+id/task_edit_filter_add_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/add_filter" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <Spinner
+                                android:id="@+id/task_filter_spinner"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:minHeight="48dp" />
+
+                            <ImageButton
+                                android:id="@+id/task_edit_filter_options_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/task_edit_filter_options_button"
+                                android:minWidth="48dp"
+                                android:minHeight="48dp"
+                                android:padding="4dp"
+                                android:src="@drawable/ic_more_vert"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        
+    <Teandroid:id="@+id/label_mode_dup5"+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Sandroid:id="@+id/task_mode_spinner_dup5"k_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Teandroid:id="@+id/label_source_dup5"d/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Sandroid:id="@+id/task_source_remote_spinner_dup5"remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Edandroid:id="@+id/task_source_path_textfield_dup5"path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <Teandroid:id="@+id/label_dest_dup5"+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Sandroid:id="@+id/task_dest_remote_spinner_dup5"remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Edandroid:id="@+id/task_dest_path_textfield_dup5"path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <Teandroid:id="@+id/label_extra_flags_dup5"el_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <Edandroid:id="@+id/task_extra_flags_textfield_dup5"lags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/description_exclude"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/task_edit_description_filter" />
+
+                    <Switch
+                        android:id="@+id/task_exclude_delete_toggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="@string/task_edit_exclude_delete_toggle_text" />
+
+                
+  android:id="@+id/label_mode_dup6"id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+ android:id="@+id/task_mode_spinner_dup6"d/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+  android:id="@+id/label_source_dup6"="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+ android:id="@+id/task_source_remote_spinner_dup6"urce_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+  android:id="@+id/task_source_path_textfield_dup6"urce_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+  android:id="@+id/label_dest_dup6"id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+ android:id="@+id/task_dest_remote_spinner_dup6"dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+  android:id="@+id/task_dest_path_textfield_dup6"dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+  android:id="@+id/label_extra_flags_dup6"d/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+  android:id="@+id/task_extra_flags_textfield_dup6"tra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                style="@style/SecondaryCardStyle"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:contentPadding="@dimen/cardPadding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/label_onFail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Run on Failure"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="24sp" />
+
+                    <Spinner
+                        android:id="@+id/task_onFail_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:minHeight="48dp" />
+
+              android:id="@+id/label_mode_dup7"roid:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"android:id="@+id/task_mode_spinner_dup7"="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" /android:id="@+id/label_source_dup7"id:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"android:id="@+id/task_source_remote_spinner_dup7"sk_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/android:id="@+id/task_source_path_textfield_dup7"sk_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/android:id="@+id/label_dest_dup7"roid:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"android:id="@+id/task_dest_remote_spinner_dup7"task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/android:id="@+id/task_dest_path_textfield_dup7"task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/android:id="@+id/label_extra_flags_dup7"="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/android:id="@+id/task_extra_flags_textfield_dup7"sk_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                style="@style/SecondaryCardStyle"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:contentPadding="@dimen/cardPadding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/label_onSuccess"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Run on Success"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="24sp" />
+
+                    <Spinner
+                        android:id="@+id/task_onSuccess_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:minHeight="48dp" />
+
+         android:id="@+id/label_mode_dup8"  android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_android:id="@+id/task_mode_spinner_dup8"id:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_conteandroid:id="@+id/label_source_dup8"android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_soandroid:id="@+id/task_source_remote_spinner_dup8"id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_contandroid:id="@+id/task_source_path_textfield_dup8"id/task_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_souandroid:id="@+id/label_dest_dup8"  android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_android:id="@+id/task_dest_remote_spinner_dup8"@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_contandroid:id="@+id/task_dest_path_textfield_dup8"@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dandroid:id="@+id/label_extra_flags_dup8"id:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_laandroid:id="@+id/task_extra_flags_textfield_dup8"id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:minHeight="48dp"
+                android:layout_height="wrap_content" android:id="@+id/label_mode_dup9"       android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_landroid:id="@+id/task_mode_spinner_dup9"android:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_android:id="@+id/label_source_dup9"     android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_labandroid:id="@+id/task_source_remote_spinner_dup9"d="@+id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrapandroid:id="@+id/task_source_path_textfield_dup9"d="@+id/task_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hinandroid:id="@+id/label_dest_dup9"       android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_landroid:id="@+id/task_dest_remote_spinner_dup9":id="@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrapandroid:id="@+id/task_dest_path_textfield_dup9":id="@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_handroid:id="@+id/label_extra_flags_dup9"android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flaandroid:id="@+id/task_extra_flags_textfield_dup9"d="@+id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

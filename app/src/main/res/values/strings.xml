@@ -634,4 +634,7 @@
     <string name="dry_run">Dry-run</string>
     
     <string name="task_dryrun_started">Dry-run started</string>
+
+    <string name="task_label_local_storage">Local storage</string>
+    <string name="task_label_remote_storage">Remote storage</string>
 </resources>
