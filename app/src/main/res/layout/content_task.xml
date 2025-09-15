@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activities.TaskActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:padding="16dp">
 
         <!-- Task Name -->
@@ -16,34 +14,34 @@
             android:id="@+id/label_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_name" />
+            android:text="@string/task_edit_label_name" />
 
         <EditText
             android:id="@+id/task_name_textfield"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/task_hint_name" />
+            android:hint="@string/task_edit_hint_title" />
 
         <!-- MD5 -->
         <CheckBox
             android:id="@+id/task_md5_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_md5" />
+            android:text="@string/task_edit_label_md5" />
 
         <!-- Wifi -->
         <CheckBox
             android:id="@+id/task_wifi_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_wifi" />
+            android:text="@string/task_edit_label_wifi" />
 
         <!-- Mode -->
         <TextView
             android:id="@+id/label_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_mode" />
+            android:text="@string/task_edit_label_mode" />
 
         <Spinner
             android:id="@+id/task_mode_spinner"
@@ -55,7 +53,7 @@
             android:id="@+id/label_source"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_source" />
+            android:text="@string/task_edit_label_source" />
 
         <Spinner
             android:id="@+id/task_source_remote_spinner"
@@ -73,7 +71,7 @@
             android:id="@+id/label_dest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_dest" />
+            android:text="@string/task_edit_label_dest" />
 
         <Spinner
             android:id="@+id/task_dest_remote_spinner"
@@ -91,13 +89,13 @@
             android:id="@+id/label_extra_flags"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_extra_flags" />
+            android:text="@string/task_edit_label_extra_flags" />
 
         <EditText
             android:id="@+id/task_extra_flags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/task_hint_extra_flags"
+            android:hint="@string/task_edit_hint_extra_flags"
             android:inputType="text"
             android:minHeight="48dp"
             android:layout_margin="8dp"/>
@@ -107,7 +105,7 @@
             android:id="@+id/label_direction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_direction" />
+            android:text="@string/task_edit_label_direction" />
 
         <Spinner
             android:id="@+id/task_direction_spinner"
@@ -119,7 +117,7 @@
             android:id="@+id/label_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_filter" />
+            android:text="@string/task_edit_label_filter" />
 
         <Spinner
             android:id="@+id/task_filter_spinner"
@@ -131,7 +129,7 @@
             android:id="@+id/label_local"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_local" />
+            android:text="@string/task_edit_label_local" />
 
         <EditText
             android:id="@+id/task_local_path_textfield"
@@ -144,12 +142,7 @@
             android:id="@+id/label_remote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_remote" />
-
-        <Spinner
-            android:id="@+id/task_remote_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:text="@string/task_edit_label_remote" />
 
         <EditText
             android:id="@+id/task_remote_path_textfield"
@@ -162,10 +155,10 @@
             android:id="@+id/label_on_fail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_on_fail" />
+            android:text="@string/task_edit_label_on_fail" />
 
         <Spinner
-            android:id="@+id/task_followup_fail_spinner"
+            android:id="@+id/task_on_fail_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -174,12 +167,11 @@
             android:id="@+id/label_on_success"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_label_on_success" />
+            android:text="@string/task_edit_label_on_success" />
 
         <Spinner
-            android:id="@+id/task_followup_success_spinner"
+            android:id="@+id/task_on_success_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
     </LinearLayout>
 </ScrollView>
