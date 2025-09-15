@@ -53,4 +53,25 @@ data class Task(var id: Long) {
     fun asJSON(): JSONObject {
         return JSONObject(Json.encodeToString(this))
     }
+
+    // NEW: extra flags for rclone and source/dest alias
+    var extraFlags: String = ""
+    // Transfer mode (SYNC or COPY)
+    enum class TransferMode { SYNC, COPY }
+    var mode: TransferMode = TransferMode.SYNC
+
+    // Aliases (safe wrappers) - do not break older storage
+    var sourceRemoteId: String
+        get() = remoteId
+        set(value) { remoteId = value }
+    var sourcePath: String
+        get() = remotePath
+        set(value) { remotePath = value }
+    var destRemoteId: String
+        get() = remoteId
+        set(value) { remoteId = value }
+    var destPath: String
+        get() = localPath
+        set(value) { localPath = value }
+    
 }

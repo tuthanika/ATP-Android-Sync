@@ -724,6 +724,96 @@ public class Rclone {
         }
     }
 
+public Process sync(RemoteItem remoteItem, String localPath, String remotePath, int syncDirection, boolean useMD5Sum, ArrayList<FilterEntry> filters, boolean deleteExcluded, String extraFlags, boolean dryRun) {
+        String[] command;
+        String remoteName = remoteItem.getName();
+        String localRemotePath = (remoteItem.isRemoteType(RemoteItem.LOCAL)) ? getLocalRemotePathPrefix(remoteItem, context)  + "/" : "";
+        String remoteSection = (remotePath.compareTo("//" + remoteName) == 0) ? remoteName + ":" + localRemotePath : remoteName + ":" + localRemotePath + remotePath;
+
+        ArrayList<String> defaultParameter = new ArrayList<>(Arrays.asList("--transfers", "1", "--stats=1s", "--stats-log-level", "NOTICE", "--use-json-log"));
+        ArrayList<String> directionParameter = new ArrayList<>();
+
+        if(useMD5Sum){
+            defaultParameter.add("--checksum");
+        }
+        if(deleteExcluded){
+            defaultParameter.add("--delete-excluded");
+        }
+
+        for (FilterEntry filter : filters) {
+            defaultParameter.add("--filter");
+            defaultParameter.add((filter.filterType == FilterEntry.FILTER_INCLUDE ? "+ " : "- ") + filter.filter);
+        }
+
+        if (syncDirection == SyncDirectionObject.SYNC_LOCAL_TO_REMOTE) {
+            Collections.addAll(directionParameter, "sync", localPath, remoteSection);
+            directionParameter.addAll(defaultParameter);
+            // append extraFlags if provided
+            if(extraFlags != null && extraFlags.trim().length() > 0){
+                String[] parts = extraFlags.trim().split("\\s+");
+                for(String p : parts) {
+                    directionParameter.add(p);
+                }
+            }
+            if(dryRun){
+                directionParameter.add("--dry-run");
+            }
+            command = createCommandWithOptions(directionParameter);
+        } else if (syncDirection == SyncDirectionObject.SYNC_REMOTE_TO_LOCAL) {
+            Collections.addAll(directionParameter, "sync", remoteSection, localPath);
+            directionParameter.addAll(defaultParameter);
+            // append extraFlags if provided
+            if(extraFlags != null && extraFlags.trim().length() > 0){
+                String[] parts = extraFlags.trim().split("\\s+");
+                for(String p : parts) {
+                    directionParameter.add(p);
+                }
+            }
+            if(dryRun){
+                directionParameter.add("--dry-run");
+            }
+            command = createCommandWithOptions(directionParameter);
+        } else if (syncDirection == SyncDirectionObject.COPY_LOCAL_TO_REMOTE) {
+            Collections.addAll(directionParameter, "copy", localPath, remoteSection);
+            directionParameter.addAll(defaultParameter);
+            // append extraFlags if provided
+            if(extraFlags != null && extraFlags.trim().length() > 0){
+                String[] parts = extraFlags.trim().split("\\s+");
+                for(String p : parts) {
+                    directionParameter.add(p);
+                }
+            }
+            if(dryRun){
+                directionParameter.add("--dry-run");
+            }
+            command = createCommandWithOptions(directionParameter);
+        }else if (syncDirection == SyncDirectionObject.COPY_REMOTE_TO_LOCAL) {
+            Collections.addAll(directionParameter, "copy", remoteSection, localPath);
+            directionParameter.addAll(defaultParameter);
+            // append extraFlags if provided
+            if(extraFlags != null && extraFlags.trim().length() > 0){
+                String[] parts = extraFlags.trim().split("\\s+");
+                for(String p : parts) {
+                    directionParameter.add(p);
+                }
+            }
+            if(dryRun){
+                directionParameter.add("--dry-run");
+            }
+            command = createCommandWithOptions(directionParameter);
+        }else {
+            return null;
+        }
+
+        String[] env = getRcloneEnv();
+        try {
+            return getRuntimeProcess(command, env);
+        } catch (IOException e) {
+            FLog.e(TAG, "sync: error starting rclone", e);
+            return null;
+        }
+    }
+
     public Process downloadFile(RemoteItem remote, FileItem downloadItem, String downloadPath) {
         String[] command;
         String remoteFilePath;

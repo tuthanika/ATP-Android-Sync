@@ -23,4 +23,9 @@
         android:title="@string/pin_to_dektop" />
 
 
+
+    <item
+        android:id="@+id/action_dryrun_task"
+        android:title="@string/dry_run"/>
+    
 </menu>

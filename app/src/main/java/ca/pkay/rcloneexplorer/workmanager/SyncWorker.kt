@@ -41,6 +41,7 @@ class SyncWorker (private var mContext: Context, workerParams: WorkerParameters)
     companion object {
         const val TASK_ID = "TASK_ID"
         const val TASK_EPHEMERAL = "TASK_EPHEMERAL"
+        const val TASK_DRYRUN = "TASK_DRYRUN"
         private const val TAG = "SyncWorker"
 
         //those Extras do not follow the above schema, because they are exposed to external applications
@@ -165,7 +166,9 @@ class SyncWorker (private var mContext: Context, workerParams: WorkerParameters)
                 mTask.direction,
                 mTask.md5sum,
                 taskFilterList,
-                mTask.deleteExcluded
+                mTask.deleteExcluded,
+                mTask.extraFlags,
+                inputData.getBoolean(TASK_DRYRUN, false)
             )
             handleSync(mTitle)
             sendUploadFinishedBroadcast(remoteItem.name, mTask.remotePath)

@@ -84,7 +84,65 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/task_hint_wifi_ignore_defaults" />
-                </LinearLayout>
+                
+    <TextView
+        android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinner
+        android:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinner
+        android:id="@+id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <TextView
+        android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Spinner
+        android:id="@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <TextView
+        android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <EditText
+        android:id="@+id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
@@ -125,7 +183,65 @@
                         android:minHeight="48dp"
                         android:text="@string/description_sync_direction_sync_toremote" />
 
-                </LinearLayout>
+                
+    <TextView
+        android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinner
+        android:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinner
+        android:id="@+id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <TextView
+        android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Spinner
+        android:id="@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <TextView
+        android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <EditText
+        android:id="@+id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -160,7 +276,65 @@
                         android:inputType=""
                         android:minHeight="48dp" />
 
-                </LinearLayout>
+                
+    <TextView
+        android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinner
+        android:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinner
+        android:id="@+id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <TextView
+        android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Spinner
+        android:id="@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <TextView
+        android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <EditText
+        android:id="@+id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -202,7 +376,65 @@
                         android:hint="@string/task_edit_hint_remote"
                         android:inputType=""
                         android:minHeight="48dp" />
-                </LinearLayout>
+                
+    <TextView
+        android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinner
+        android:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinner
+        android:id="@+id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <TextView
+        android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Spinner
+        android:id="@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <TextView
+        android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <EditText
+        android:id="@+id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -264,7 +496,65 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                        </LinearLayout>
+                        
+    <TextView
+        android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinner
+        android:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinner
+        android:id="@+id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <TextView
+        android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Spinner
+        android:id="@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <TextView
+        android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <EditText
+        android:id="@+id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
 
                     </FrameLayout>
 
@@ -282,7 +572,65 @@
                         android:minHeight="48dp"
                         android:text="@string/task_edit_exclude_delete_toggle_text" />
 
-                </LinearLayout>
+                
+    <TextView
+        android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinner
+        android:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinner
+        android:id="@+id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <TextView
+        android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Spinner
+        android:id="@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <TextView
+        android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <EditText
+        android:id="@+id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
@@ -315,7 +663,65 @@
                         android:layout_margin="8dp"
                         android:minHeight="48dp" />
 
-                </LinearLayout>
+                
+    <TextView
+        android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinner
+        android:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinner
+        android:id="@+id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <TextView
+        android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Spinner
+        android:id="@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <TextView
+        android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <EditText
+        android:id="@+id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -347,7 +753,65 @@
                         android:layout_margin="8dp"
                         android:minHeight="48dp" />
 
-                </LinearLayout>
+                
+    <TextView
+        android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinner
+        android:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinner
+        android:id="@+id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <TextView
+        android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Spinner
+        android:id="@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <TextView
+        android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <EditText
+        android:id="@+id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <Space
@@ -355,7 +819,65 @@
                 android:minHeight="48dp"
                 android:layout_height="wrap_content" />
 
-        </LinearLayout>
+        
+    <TextView
+        android:id="@+id/label_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_mode"/>
+
+    <Spinner
+        android:id="@+id/task_mode_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/label_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_source"/>
+
+    <Spinner
+        android:id="@+id/task_source_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_source_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_source"/>
+
+    <TextView
+        android:id="@+id/label_dest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_label_dest"/>
+
+    <Spinner
+        android:id="@+id/task_dest_remote_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/task_dest_path_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_edit_hint_dest"/>
+
+    <TextView
+        android:id="@+id/label_extra_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/task_extra_flags_label"/>
+
+    <EditText
+        android:id="@+id/task_extra_flags_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="--exclude *.tmp --transfers 4"/>
+    
+</LinearLayout>
 
     </ScrollView>
 

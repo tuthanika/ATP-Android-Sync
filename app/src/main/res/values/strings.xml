@@ -622,4 +622,13 @@
     <string name="pref_proxy_password">Password</string>
     <string name="intro_update_checks_title">Update Notifications</string>
     <string name="intro_update_checks_description">If you want to recieve updates, you can enable the switch below! We will notify if an update is available, and you can then choose to apply it.</string>
+
+    <string name="task_label_mode">Chế độ</string>
+    <string name="task_label_source">Nguồn</string>
+    <string name="task_label_dest">Đích</string>
+    <string name="task_edit_hint_source">Đường dẫn nguồn</string>
+    <string name="task_edit_hint_dest">Đường dẫn đích</string>
+    <string name="task_extra_flags_label">Tham số bổ sung</string>
+    <string name="dry_run">Dry-run</string>
+    
 </resources>
