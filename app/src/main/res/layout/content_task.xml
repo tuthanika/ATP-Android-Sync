@@ -17,7 +17,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Title -->
+            <!-- Task Title -->
             <TextView
                 android:id="@+id/label_name"
                 android:layout_width="match_parent"
@@ -31,7 +31,36 @@
                 android:id="@+id/task_title_textfield"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/task_edit_hint_title"/>
+                android:hint="@string/task_edit_hint_title"
+                android:inputType="text"/>
+
+            <!-- Wifi + MD5 -->
+            <Switch
+                android:id="@+id/task_md5sum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/use_md5checksum"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/task_md5_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/task_hint_md5checksum"
+                android:layout_marginBottom="8dp"/>
+
+            <Switch
+                android:id="@+id/task_wifionly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/transfer_only_on_wifi"/>
+
+            <TextView
+                android:id="@+id/task_wifi_hint_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/transfer_only_on_wifi_summary"
+                android:layout_marginBottom="8dp"/>
 
             <!-- Source -->
             <TextView
@@ -83,7 +112,8 @@
                 android:id="@+id/task_extra_flags_textfield"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="--exclude *.tmp --transfers 4"/>
+                android:hint="--exclude *.tmp --transfers 4"
+                android:inputType="text"/>
 
             <!-- Direction -->
             <TextView
