@@ -38,6 +38,10 @@ import ca.pkay.rcloneexplorer.Items.Task;
 import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.workmanager.SyncManager;
 import es.dmoral.toasty.Toasty;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.OneTimeWorkRequestBuilder;
+import androidx.work.WorkManager;
 
 public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecyclerViewAdapter.ViewHolder>{
 
@@ -195,6 +199,9 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
                         createShortcut(context, task);
                     }
                     break;
+                case R.id.action_dryrun_task:
+                    startTaskDryRun(task);
+                    break;
                 default:
                     return false;
             }
@@ -203,7 +210,32 @@ public class TasksRecyclerViewAdapter extends RecyclerView.Adapter<TasksRecycler
         popupMenu.show();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    
+    private void startTaskDryRun(Task task) {
+        try {
+            // Build input data for WorkManager based on existing task id and set dry-run flag
+            androidx.work.Data input = new androidx.work.Data.Builder()
+                    .putLong(ca.pkay.rcloneexplorer.workmanager.SyncWorker.TASK_ID, task.getId())
+                    .putBoolean(ca.pkay.rcloneexplorer.workmanager.SyncWorker.TASK_DRYRUN, true)
+                    .build();
+
+            androidx.work.OneTimeWorkRequest work = new androidx.work.OneTimeWorkRequestBuilder<ca.pkay.rcloneexplorer.workmanager.SyncWorker>()
+                    .setInputData(input)
+                    .build();
+
+            androidx.work.WorkManager.getInstance(context).enqueue(work);
+
+            Toasty.info(context, context.getResources().getString(R.string.task_dryrun_started), Toast.LENGTH_SHORT, true).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try { Toasty.error(context, context.getResources().getString(R.string.operation_failed_unknown_rclone_error), Toast.LENGTH_SHORT, true).show(); } catch (Exception ex) { }
+        }
+    } catch (Exception e) {
+            e.printStackTrace();
+        }
+        startTask(task);
+    }
+public static class ViewHolder extends RecyclerView.ViewHolder {
 
         final View view;
         final ImageView taskIcon;

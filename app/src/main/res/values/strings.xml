@@ -631,4 +631,5 @@
     <string name="task_extra_flags_label">Tham số bổ sung</string>
     <string name="dry_run">Dry-run</string>
     
+    <string name="task_dryrun_started">Dry-run started</string>
 </resources>

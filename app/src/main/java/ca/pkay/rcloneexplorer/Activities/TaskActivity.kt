@@ -117,6 +117,8 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
         super.onCreate(savedInstanceState)
         ActivityHelper.applyTheme(this)
         setContentView(R.layout.activity_task)
+        try { task_extra_flags_textfield = findViewById(R.id.task_extra_flags_textfield) } catch (e: Exception) { }
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
