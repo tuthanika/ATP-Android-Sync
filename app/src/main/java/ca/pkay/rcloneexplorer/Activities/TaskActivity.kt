@@ -63,9 +63,6 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
 
     private lateinit var filterOptionsButton: ImageButton
 
-    // New labels to indicate Local / Remote for Source and Destination
-    private lateinit var sourceTypeLabel: TextView
-    private lateinit var destTypeLabel: TextView
 
     private var existingTask: Task? = null
     private var remotePathHolder = ""
@@ -140,10 +137,6 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
         switchWifi = findViewById(R.id.task_wifionly)
         switchMD5sum = findViewById(R.id.task_md5sum)
 
-        // bind new labels
-        sourceTypeLabel = findViewById(R.id.task_source_type_label)
-        destTypeLabel = findViewById(R.id.task_dest_type_label)
-
         rcloneInstance = Rclone(this)
         dbHandler = DatabaseHandler(this)
         val extras = intent.extras
@@ -191,12 +184,6 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
         prepareFilterDropdown()
         prepareOnFailDropdown()
         prepareOnSuccessDropdown()
-
-        // show labels by default: local for localPath and remote for remotePath
-        sourceTypeLabel.visibility = View.VISIBLE
-        sourceTypeLabel.text = getString(R.string.task_label_local_storage)
-        destTypeLabel.visibility = View.VISIBLE
-        destTypeLabel.text = getString(R.string.task_label_remote_storage)
     }
 
     private val remoteItems: Array<String?>
@@ -352,9 +339,6 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
                     remotePath.setText(remotePathHolder)
                 }
 
-                // set dest label when remote selection changes
-                destTypeLabel.visibility = View.VISIBLE
-                destTypeLabel.text = getString(R.string.task_label_remote_storage)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {}
