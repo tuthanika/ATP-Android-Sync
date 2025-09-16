@@ -1,179 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/create_task_layout"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:layout_height="match_parent">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- General -->
+        <TextView
+            android:id="@+id/label_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/task_edit_label_name"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/task_title_textfield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/task_edit_hint_title"/>
+
+        <Switch
+            android:id="@+id/task_md5sum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/use_md5checksum"/>
+
+        <TextView
+            android:id="@+id/task_md5_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/task_hint_md5checksum"/>
+
+        <Switch
+            android:id="@+id/task_wifionly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/transfer_only_on_wifi"/>
+
+        <TextView
+            android:id="@+id/task_wifi_hint_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/transfer_only_on_wifi_summary"/>
+
+        <TextView
+            android:id="@+id/task_wifi_hint_ignore_defaults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/task_hint_wifi_ignore_defaults"/>
+
+        <!-- Direction -->
+        <TextView
+            android:id="@+id/label_direction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/task_edit_label_direction"
+            android:textSize="18sp"
+            android:layout_marginTop="12dp"/>
+
+        <Spinner
+            android:id="@+id/task_direction_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/descriptionSyncDirection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description_sync_direction_sync_toremote"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Source / Destination selection -->
+        <TextView
+            android:id="@+id/label_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_label_source"/>
+
+        <Spinner
+            android:id="@+id/task_remote_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/task_remote_path_textfield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/task_edit_hint_source"/>
+
+        <TextView
+            android:id="@+id/label_dest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_label_dest"/>
+
+        <EditText
+            android:id="@+id/task_local_path_textfield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/task_edit_hint_dest"/>
+
+        <!-- Extra flags -->
+        <TextView
+            android:id="@+id/label_extra_flags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_extra_flags_label"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/task_extra_flags_textfield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/task_hint_extra_flags"/>
+
+        <!-- Filter -->
+        <TextView
+            android:id="@+id/label_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/task_edit_label_filter"
+            android:textSize="18sp"
+            android:layout_marginTop="12dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- Task Title -->
-            <TextView
-                android:id="@+id/label_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/task_edit_label_name"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
-
-            <EditText
-                android:id="@+id/task_title_textfield"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/task_edit_hint_title"
-                android:inputType="text"/>
-
-            <!-- Wifi + MD5 -->
-            <Switch
-                android:id="@+id/task_md5sum"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/use_md5checksum"
-                android:layout_marginTop="12dp"/>
-
-            <TextView
-                android:id="@+id/task_md5_hint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/task_hint_md5checksum"
-                android:layout_marginBottom="8dp"/>
-
-            <Switch
-                android:id="@+id/task_wifionly"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/transfer_only_on_wifi"/>
-
-            <TextView
-                android:id="@+id/task_wifi_hint_cancel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/transfer_only_on_wifi_summary"
-                android:layout_marginBottom="8dp"/>
-
-            <!-- Source -->
-            <TextView
-                android:id="@+id/label_source"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/task_label_source"
-                android:layout_marginTop="12dp"/>
-
-            <Spinner
-                android:id="@+id/task_source_remote_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/task_source_path_textfield"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/task_edit_hint_source"/>
-
-            <!-- Destination -->
-            <TextView
-                android:id="@+id/label_dest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/task_label_dest"
-                android:layout_marginTop="12dp"/>
-
-            <Spinner
-                android:id="@+id/task_dest_remote_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/task_dest_path_textfield"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/task_edit_hint_dest"/>
-
-            <!-- Extra Flags -->
-            <TextView
-                android:id="@+id/label_extra_flags"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/task_extra_flags_label"
-                android:layout_marginTop="12dp"/>
-
-            <EditText
-                android:id="@+id/task_extra_flags_textfield"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="--exclude *.tmp --transfers 4"
-                android:inputType="text"/>
-
-            <!-- Direction -->
-            <TextView
-                android:id="@+id/label_direction"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/task_edit_label_direction"
-                android:layout_marginTop="12dp"/>
-
-            <Spinner
-                android:id="@+id/task_direction_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/descriptionSyncDirection"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/description_sync_direction_sync_toremote"
-                android:layout_marginTop="4dp"/>
-
-            <!-- Filter -->
-            <TextView
-                android:id="@+id/label_filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/task_edit_label_filter"
-                android:layout_marginTop="12dp"/>
+            android:orientation="horizontal">
 
             <Spinner
                 android:id="@+id/task_filter_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
-            <!-- On Fail -->
-            <TextView
-                android:id="@+id/label_onFail"
+            <ImageButton
+                android:id="@+id/task_edit_filter_options_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Run on Failure"
-                android:layout_marginTop="12dp"/>
-
-            <Spinner
-                android:id="@+id/task_onFail_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <!-- On Success -->
-            <TextView
-                android:id="@+id/label_onSuccess"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Run on Success"
-                android:layout_marginTop="12dp"/>
-
-            <Spinner
-                android:id="@+id/task_onSuccess_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:src="@drawable/ic_more_vert"
+                android:contentDescription="@string/task_edit_filter_options_button"/>
 
         </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/task_edit_filter_add_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_filter"/>
+
+        <Switch
+            android:id="@+id/task_exclude_delete_toggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/task_edit_exclude_delete_toggle_text"/>
+
+        <!-- Followups -->
+        <TextView
+            android:id="@+id/label_onFail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/task_edit_label_on_fail"
+            android:textSize="18sp"
+            android:layout_marginTop="12dp"/>
+
+        <Spinner
+            android:id="@+id/task_onFail_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/label_onSuccess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/task_edit_label_on_success"
+            android:textSize="18sp"
+            android:layout_marginTop="12dp"/>
+
+        <Spinner
+            android:id="@+id/task_onSuccess_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Save button (kept here for simplicity) -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/save"/>
+    </LinearLayout>
+</ScrollView>

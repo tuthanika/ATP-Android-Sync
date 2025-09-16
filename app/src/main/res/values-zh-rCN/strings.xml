@@ -1,4 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="task_label_local_storage">本地存储</string>
-    <string name="task_label_remote_storage">远程存储</string>
+<string name="task_copied_id_to_clipboard">Copied ID "%s" to clipboard!</string>
+<string name="task_edit_label_name">General Information</string>
+<string name="task_edit_label_local">Local Storage Path</string>
+<string name="task_edit_label_remote">Remote Storage Path</string>
+<string name="task_edit_label_direction">Direction</string>
+<string name="task_edit_hint_title">Title</string>
+<string name="task_edit_hint_local">Local Path</string>
+<string name="task_edit_hint_remote">Remote Path</string>
+<string name="task_edit_label_filter">Filter</string>
+<string name="task_edit_hint_filter">**/.thumbnails/**</string>
+<string name="task_edit_filter_nofilter">No filter</string>
+<string name="task_edit_description_filter">Select a filter to filter file/folder patterns. You can only select one filter at a time! To select no filter, choose "no filter" in the dropdown.</string>
+<string name="task_edit_exclude_delete_toggle_text">Delete excluded files from destination</string>
+<string name="task_edit_filter_options_button">Filter Options</string>
+<string name="task_edit_label_extra_flags">Extra Flags</string>
+<string name="task_edit_hint_extra_flags">e.g. --ignore-size</string>
+<string name="task_to_run">Task to run</string>
+<string name="task_item_label_from">From:</string>
+<string name="task_item_label_to">To:</string>
+<string name="task_item_label_from_bisync">Path 1:</string>
+<string name="task_item_label_to_bisync">Path 2:</string>
+<string name="task_data_validation_error_no_local_path">You have not selected a local path yet</string>
+<string name="task_data_validation_error_no_remote_path">You have not selected a remote path yet</string>
+<string name="task_hint_wifi_ignore_defaults">If enabled, this setting overrides the global setting to only transfer files over Wi-Fi</string>
+<string name="task_hint_md5checksum">This will use the checksum instead of filesize. May take longer or use more battery.</string>
+<string name="task_copy_suffix">(Copy)</string>
+<string name="task_interval">Interval Settings</string>
+<string name="task_label_mode">Chế độ</string>
+<string name="task_label_source">Nguồn</string>
+<string name="task_label_dest">Đích</string>
+<string name="task_edit_hint_source">Đường dẫn nguồn</string>
+<string name="task_edit_hint_dest">Đường dẫn đích</string>
+<string name="task_extra_flags_label">Tham số bổ sung</string>
+<string name="task_dryrun_started">Dry-run started</string>
 </resources>
