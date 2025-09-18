@@ -634,4 +634,7 @@
     <string name="dry_run">Dry-run</string>
     
     <string name="task_dryrun_started">Dry-run started</string>
+    <string name="task_edit_label_on_fail">Run on Failure</string>
+    <string name="task_edit_label_on_success">Run on Success</string>
+
 </resources>
