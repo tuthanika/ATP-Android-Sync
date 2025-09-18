@@ -383,7 +383,7 @@
     <string name="pref_bugreport_start_summary">Start data collection by tapping the button and try to recreate the issue. When you are finished, stop the data collection.</string>
     <string name="pref_send_sigquit_title">Debug: Stop with SIGQUIT</string>
     <string name="pref_send_sigquit_summary">Stops all rclone processes with kill -SIGQUIT. Requires logging enabled.</string>
-    <string name="sync_notification_transferred">Transferred %1$s of %2$s</string>
+    <string name="sync_notification_transferred" formatted="false">Transferred %1$s of %2$s</string>
     <string name="sync_notification_speed">"Speed:     %s"</string>
     <string name="sync_notification_remaining">"Remaining: %s"</string>
     <string name="sync_notification_errors">"Errors:    %d"</string>
@@ -391,7 +391,7 @@
     <string name="sync_notification_file_syncing">File: %14s</string>
     <string name="sync_notification_file_checking">Checking: %14s</string>
     <string name="sync_notification_elapsed">Elapsed: %14s</string>
-    <string name="sync_notification_short">%1$s of %2$s, %3$s remaining</string>
+    <string name="sync_notification_short" formatted="false">%1$s of %2$s, %3$s remaining</string>
     <plurals name="modern_prettyprint_duration_d">
         <item quantity="one">%s Day</item>
         <item quantity="other">%s Days</item>
@@ -626,5 +626,6 @@
     <string name="task_hint_extra_flags">Extra rclone flags (e.g. --exclude *.tmp --transfers 4)</string>
     <string name="task_edit_label_on_fail">Run on Failure</string>
     <string name="task_edit_label_on_success">Run on Success</string>
-
+    <string name="task_extra_flags_label">Extra Flags</string>
+    <string name="dry_run">Dry-run</string>
 </resources>
