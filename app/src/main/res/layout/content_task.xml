@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/create_task_layout"
     android:layout_width="match_parent"
@@ -13,79 +14,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-            <!-- General information -->
+            <!-- CARD: General -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                style="@style/SecondaryCardStyle"
-                app:cardCornerRadius="@dimen/cardCornerRadius"
-                app:contentPadding="@dimen/cardPadding">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/label_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="@string/task_edit_label_name"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textSize="24sp" />
-
-                    <EditText
-                        android:id="@+id/task_title_textfield"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:hint="@string/task_edit_hint_title"
-                        android:inputType="text"
-                        android:minHeight="48dp" />
-
-                    <Switch
-                        android:id="@+id/task_md5sum"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="48dp"
-                        android:text="@string/use_md5checksum" />
-
-                    <TextView
-                        android:id="@+id/task_md5_hint"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="@string/task_hint_md5checksum" />
-
-                    <Switch
-                        android:id="@+id/task_wifionly"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="48dp"
-                        android:text="@string/transfer_only_on_wifi" />
-
-                    <TextView
-                        android:id="@+id/task_wifi_hint_cancel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="@string/transfer_only_on_wifi_summary" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Source / Remote selection -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 style="@style/SecondaryCardStyle"
                 app:cardCornerRadius="@dimen/cardCornerRadius"
                 app:contentPadding="@dimen/cardPadding">
@@ -97,65 +35,148 @@
                     android:padding="8dp">
 
                     <TextView
-                        android:id="@+id/label_local"
+                        android:id="@+id/label_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:text="@string/task_edit_label_local"
+                        android:text="@string/task_edit_label_name"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:layout_marginBottom="8dp"/>
 
                     <EditText
-                        android:id="@+id/task_local_path_textfield"
+                        android:id="@+id/task_title_textfield"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/task_edit_hint_local"
-                        android:minHeight="48dp" />
+                        android:hint="@string/task_edit_hint_title"
+                        android:inputType="text"
+                        android:minHeight="48dp"/>
+
+                    <Switch
+                        android:id="@+id/task_md5sum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/use_md5checksum"
+                        android:minHeight="48dp"/>
 
                     <TextView
-                        android:id="@+id/label_remote"
+                        android:id="@+id/task_md5_hint"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:text="@string/task_edit_label_remote"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textSize="20sp" />
+                        android:text="@string/task_hint_md5checksum"/>
+
+                    <Switch
+                        android:id="@+id/task_wifionly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transfer_only_on_wifi"
+                        android:minHeight="48dp"/>
+
+                    <TextView
+                        android:id="@+id/task_wifi_hint_cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transfer_only_on_wifi_summary"/>
+
+                    <TextView
+                        android:id="@+id/task_wifi_hint_ignore_defaults"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/task_hint_wifi_ignore_defaults"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- CARD: Source / Destination -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                style="@style/SecondaryCardStyle"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:contentPadding="@dimen/cardPadding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <!-- Mode (e.g., sync/copy) -->
+                    <TextView
+                        android:id="@+id/label_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/task_label_mode"/>
 
                     <Spinner
-                        android:id="@+id/task_remote_spinner"
+                        android:id="@+id/task_mode_spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"/>
+
+                    <!-- Source -->
+                    <TextView
+                        android:id="@+id/label_source"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/task_label_source"
+                        android:layout_marginTop="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/task_source_remote_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
                     <EditText
-                        android:id="@+id/task_remote_path_textfield"
+                        android:id="@+id/task_source_path_textfield"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/task_edit_hint_remote"
-                        android:minHeight="48dp" />
+                        android:hint="@string/task_edit_hint_source"/>
 
+                    <!-- Destination -->
+                    <TextView
+                        android:id="@+id/label_dest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/task_label_dest"
+                        android:layout_marginTop="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/task_dest_remote_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <EditText
+                        android:id="@+id/task_dest_path_textfield"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/task_edit_hint_dest"/>
+
+                    <!-- Extra flags -->
                     <TextView
                         android:id="@+id/label_extra_flags"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="@string/task_extra_flags_label" />
+                        android:text="@string/task_extra_flags_label"
+                        android:layout_marginTop="8dp"/>
 
                     <EditText
                         android:id="@+id/task_extra_flags_textfield"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/task_hint_extra_flags"
-                        android:minHeight="48dp" />
+                        android:inputType="text"
+                        android:minHeight="48dp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Direction & filter -->
+            <!-- CARD: Direction -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 style="@style/SecondaryCardStyle"
                 app:cardCornerRadius="@dimen/cardCornerRadius"
                 app:contentPadding="@dimen/cardPadding">
@@ -172,85 +193,29 @@
                         android:layout_height="wrap_content"
                         android:text="@string/task_edit_label_direction"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"/>
 
                     <Spinner
                         android:id="@+id/task_direction_spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"/>
 
                     <TextView
                         android:id="@+id/descriptionSyncDirection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/description_sync_direction_sync_toremote" />
-
-                    <TextView
-                        android:id="@+id/label_filter"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="@string/task_edit_label_filter"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textSize="20sp" />
-
-                    <FrameLayout
-                        android:id="@+id/task_edit_filter_holder"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp">
-
-                        <Button
-                            android:id="@+id/task_edit_filter_add_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/add_filter" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingTop="8dp">
-
-                            <Spinner
-                                android:id="@+id/task_filter_spinner"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1" />
-
-                            <ImageButton
-                                android:id="@+id/task_edit_filter_options_button"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="?selectableItemBackgroundBorderless"
-                                android:contentDescription="@string/task_edit_filter_options_button"
-                                android:padding="4dp"
-                                android:src="@drawable/ic_more_vert" />
-                        </LinearLayout>
-                    </FrameLayout>
-
-                    <TextView
-                        android:id="@+id/description_exclude"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/task_edit_description_filter" />
-
-                    <Switch
-                        android:id="@+id/task_exclude_delete_toggle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/task_edit_exclude_delete_toggle_text" />
+                        android:text="@string/description_sync_direction_sync_toremote"
+                        android:layout_marginTop="8dp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Followup tasks -->
+            <!-- CARD: Local -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 style="@style/SecondaryCardStyle"
                 app:cardCornerRadius="@dimen/cardCornerRadius"
                 app:contentPadding="@dimen/cardPadding">
@@ -262,38 +227,120 @@
                     android:padding="8dp">
 
                     <TextView
+                        android:id="@+id/label_local"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/task_edit_label_local"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="20sp"/>
+
+                    <EditText
+                        android:id="@+id/task_local_path_textfield"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/task_edit_hint_local"
+                        android:minHeight="48dp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- CARD: Filter / Follow-ups -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                style="@style/SecondaryCardStyle"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:contentPadding="@dimen/cardPadding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/label_filter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/task_edit_label_filter"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="20sp"/>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
+
+                        <Button
+                            android:id="@+id/task_edit_filter_add_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/add_filter"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp">
+
+                            <Spinner
+                                android:id="@+id/task_filter_spinner"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
+
+                            <ImageButton
+                                android:id="@+id/task_edit_filter_options_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/task_edit_filter_options_button"
+                                android:src="@drawable/ic_more_vert"/>
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/description_exclude"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/task_edit_description_filter"/>
+
+                    <Switch
+                        android:id="@+id/task_exclude_delete_toggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/task_edit_exclude_delete_toggle_text"
+                        android:minHeight="48dp"/>
+
+                    <TextView
                         android:id="@+id/label_onFail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/task_edit_label_on_fail"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textSize="20sp" />
+                        android:layout_marginTop="12dp"/>
 
                     <Spinner
                         android:id="@+id/task_onFail_spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"/>
 
                     <TextView
                         android:id="@+id/label_onSuccess"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
                         android:text="@string/task_edit_label_on_success"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textSize="20sp" />
+                        android:layout_marginTop="12dp"/>
 
                     <Spinner
                         android:id="@+id/task_onSuccess_spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="48dp" />
 
         </LinearLayout>
     </ScrollView>
