@@ -627,5 +627,10 @@
     <string name="task_edit_label_on_fail">Run on Failure</string>
     <string name="task_edit_label_on_success">Run on Success</string>
     <string name="task_extra_flags_label">Extra Flags</string>
-    <string name="dry_run">Dry-run</string>
+    <string name="dry_run">Dry-run</string>    
+	<string name="task_label_mode">Label Mode</string>
+    <string name="task_label_source">Nhãn nguồn</string>
+    <string name="task_edit_hint_source">Gợi ý chỉnh sửa nguồn</string>
+    <string name="task_label_dest">Nhãn đích</string>
+    <string name="task_edit_hint_dest">Gợi ý chỉnh sửa đích</string>
 </resources>
