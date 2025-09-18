@@ -366,9 +366,6 @@
     <string name="task_edit_filter_options_button">Filter Options</string>
     <string name="task_edit_label_extra_flags">Extra Flags</string>
     <string name="task_edit_hint_extra_flags">e.g. --ignore-size</string>
-    <string name="task_hint_extra_flags">Extra flags (optional)</string>
-    <string name="task_edit_label_on_fail">On failure</string>
-    <string name="task_edit_label_on_success">On success</string>
     <string name="filter_edit_label_name">General Information</string>
     <string name="filter_edit_label_filters">Filters</string>
     <string name="filter_edit_hint_title">Title</string>

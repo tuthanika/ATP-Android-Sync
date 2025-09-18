@@ -397,6 +397,10 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
                 existingTask?.onSuccessFollowup = pair.id
             }
 
+            override fun onNothingSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
+                // no-op
+            }
+
             override fun onNothingSelected(parentView: AdapterView<*>?) {}
         }
     }
