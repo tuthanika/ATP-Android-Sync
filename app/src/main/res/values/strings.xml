@@ -364,8 +364,6 @@
     <string name="task_edit_description_filter">Select a filter to filter file/folder patterns. You can only select one filter at a time! To select no filter, choose "no filter" in the dropdown.</string>
     <string name="task_edit_exclude_delete_toggle_text">Delete excluded files from destination</string>
     <string name="task_edit_filter_options_button">Filter Options</string>
-    <string name="task_edit_label_extra_flags">Extra Flags</string>
-    <string name="task_edit_hint_extra_flags">e.g. --ignore-size</string>
     <string name="filter_edit_label_name">General Information</string>
     <string name="filter_edit_label_filters">Filters</string>
     <string name="filter_edit_hint_title">Title</string>
@@ -625,15 +623,7 @@
     <string name="intro_update_checks_title">Update Notifications</string>
     <string name="intro_update_checks_description">If you want to recieve updates, you can enable the switch below! We will notify if an update is available, and you can then choose to apply it.</string>
 
-    <string name="task_label_mode">Chế độ</string>
-    <string name="task_label_source">Nguồn</string>
-    <string name="task_label_dest">Đích</string>
-    <string name="task_edit_hint_source">Đường dẫn nguồn</string>
-    <string name="task_edit_hint_dest">Đường dẫn đích</string>
-    <string name="task_extra_flags_label">Tham số bổ sung</string>
-    <string name="dry_run">Dry-run</string>
-    
-    <string name="task_dryrun_started">Dry-run started</string>
+    <string name="task_hint_extra_flags">Extra rclone flags (e.g. --exclude *.tmp --transfers 4)</string>
     <string name="task_edit_label_on_fail">Run on Failure</string>
     <string name="task_edit_label_on_success">Run on Success</string>
 

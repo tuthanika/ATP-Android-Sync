@@ -50,6 +50,8 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
 
     private lateinit var switchWifi: Switch
     private lateinit var switchMD5sum: Switch
+    private lateinit var task_extra_flags_textfield: EditText
+
 
 
     private lateinit var filterDropdown: Spinner
@@ -117,8 +119,6 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
         super.onCreate(savedInstanceState)
         ActivityHelper.applyTheme(this)
         setContentView(R.layout.activity_task)
-        try { task_extra_flags_textfield = findViewById(R.id.task_extra_flags_textfield) } catch (e: Exception) { }
-
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
@@ -395,10 +395,6 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
                 val pair = parentView?.selectedItem as TaskNameIdPair
                 existingTask?.onSuccessFollowup = pair.id
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
-                // no-op
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {}
